@@ -1,0 +1,2 @@
+/* small tweaks for card -- base styles in index.css */
+.card .meta { color: var(--muted); font-size:13px }

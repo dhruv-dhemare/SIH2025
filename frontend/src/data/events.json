@@ -1,0 +1,26 @@
+[
+  {
+    "id": "e1",
+    "title": "Alumni Meetup: Networking Night",
+    "description": "An informal meetup to connect alumni and students. Light snacks provided.",
+    "date": "2025-09-10",
+    "location": "Main Auditorium",
+    "capacity": 200
+  },
+  {
+    "id": "e2",
+    "title": "Career Fair: Industry Connections",
+    "description": "Companies from tech and finance meet alumni and students for hiring and internships.",
+    "date": "2025-09-25",
+    "location": "Expo Hall",
+    "capacity": 500
+  },
+  {
+    "id": "e3",
+    "title": "Web Dev Workshop",
+    "description": "Hands-on workshop on modern web development stacks.",
+    "date": "2025-10-08",
+    "location": "Lab 4",
+    "capacity": 60
+  }
+]

@@ -1,0 +1,27 @@
+.event-preview {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.event-preview:hover {
+  transform: translateY(-2px);
+}
+
+.event-preview h2 {
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.event-preview ul {
+  list-style: none;
+  padding: 0;
+}
+
+.event-preview li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}

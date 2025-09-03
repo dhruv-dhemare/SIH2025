@@ -1,0 +1,38 @@
+[
+  {
+    "id": "a1",
+    "name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "gradYear": 2019,
+    "degree": "B.Tech (CSE)",
+    "skills": ["React", "Node.js", "Docker"],
+    "jobTitle": "Frontend Engineer",
+    "company": "TechWave",
+    "location": "Bengaluru",
+    "bio": "Frontend engineer focused on accessible web apps and performance."
+  },
+  {
+    "id": "a2",
+    "name": "Aditya Rao",
+    "email": "aditya.rao@example.com",
+    "gradYear": 2016,
+    "degree": "MBA",
+    "skills": ["Product Management", "Strategy"],
+    "jobTitle": "Product Manager",
+    "company": "FinServe",
+    "location": "Mumbai",
+    "bio": "Product leader with experience in fintech and user research."
+  },
+  {
+    "id": "a3",
+    "name": "Meera Iyer",
+    "email": "meera.iyer@example.com",
+    "gradYear": 2021,
+    "degree": "B.Sc (Data Science)",
+    "skills": ["Python", "Machine Learning", "Pandas"],
+    "jobTitle": "Data Scientist",
+    "company": "Insight Analytics",
+    "location": "Hyderabad",
+    "bio": "Data scientist working on NLP and recommender systems."
+  }
+]
