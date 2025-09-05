@@ -1,14 +1,22 @@
+// src/components/Card.jsx
 import React from "react";
 import "./Card.css";
 
-export default function Card({ title, subtitle, children, onClick }) {
+export default function PostCard({ post, onLike }) {
   return (
-    <article className="card" onClick={onClick}>
-      <div>
-        <h3>{title}</h3>
-        {subtitle && <div className="meta">{subtitle}</div>}
+    <div className="post-card">
+      <div className="post-header">
+        <div className="post-avatar">{post.author.charAt(0)}</div>
+        <div>
+          <h4>{post.author}</h4>
+          <p className="role">{post.role}</p>
+        </div>
       </div>
-      <div style={{marginTop:10}}>{children}</div>
-    </article>
+      <p className="post-content">{post.content}</p>
+      <div className="post-actions">
+        <button onClick={() => onLike(post.id)}>👍 Like</button>
+        <span>{post.likes} Likes</span>
+      </div>
+    </div>
   );
 }

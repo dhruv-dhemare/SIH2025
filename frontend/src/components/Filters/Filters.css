@@ -1,0 +1,17 @@
+.filters {
+  margin-top: 20px;
+}
+
+.filter-dropdown {
+  margin-bottom: 12px;
+}
+
+.filter-options {
+  background: #f1f3f5;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

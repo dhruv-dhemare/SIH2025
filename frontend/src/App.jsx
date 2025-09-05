@@ -19,11 +19,11 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/alumni" element={<AlumniDirectory />} />
         <Route path="/mentorship" element={<Mentorship />} />
-        <Route path="/messages" element={<Messages />} />
         <Route path="/donations" element={<Donations />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/messages" element={<Messages />} />
       </Routes>
     </Router>
   );
