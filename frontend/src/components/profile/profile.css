@@ -1,0 +1,326 @@
+:root {
+    --linkedin-blue: #0a66c2;
+    --linkedin-light: #f3f6f9;
+    --linkedin-gray: #444;
+    --muted: #777;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--linkedin-light);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+  }
+  
+  /* layout */
+  .profile-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  
+  /* SIDEBAR */
+  .profile-sidebar {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(9, 30, 66, 0.08);
+    text-align: center;
+  }
+  
+  /* big profile pic */
+  .profile-pic {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #eaf4ff 0%, #d9eaff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 6px solid white;
+    box-shadow: 0 6px 18px rgba(10, 66, 132, 0.12);
+  }
+  
+  .profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .placeholder-icon {
+    font-size: 84px;
+    color: var(--linkedin-blue);
+    line-height: 1;
+  }
+  
+  /* delete button */
+  .delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    font-size: 14px;
+  }
+  .delete-btn:hover { background:#cc0000; }
+  
+  /* upload input (only shown when no pic) */
+  .upload-btn input {
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  /* quick sidebar summary */
+  .sidebar-summary {
+    margin-top: 16px;
+    padding-top: 8px;
+  }
+  .side-name {
+    font-weight: 700;
+    font-size: 18px;
+    color: #111;
+  }
+  .side-about {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  
+  /* MAIN */
+  .profile-main {
+    background: #fff;
+    padding: 26px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(9, 30, 66, 0.06);
+    min-height: 60vh;
+  }
+  
+  .profile-title {
+    color: var(--linkedin-blue);
+    font-size: 26px;
+    margin: 2px 0 18px 0;
+    font-weight: 700;
+    border-bottom: 3px solid rgba(10,102,194,0.08);
+    padding-bottom: 12px;
+  }
+  
+  /* fields */
+  .profile-field {
+    margin-bottom: 20px;
+  }
+  
+  .profile-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--linkedin-gray);
+  }
+  
+  .profile-field input,
+  .profile-field textarea,
+  .profile-field select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #222;
+    background: #fff;
+    transition: box-shadow 0.12s, border 0.12s;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .profile-field textarea { min-height: 110px; resize: vertical; }
+  .profile-field input:focus,
+  .profile-field textarea:focus,
+  .profile-field select:focus {
+    outline: none;
+    border-color: var(--linkedin-blue);
+    box-shadow: 0 6px 18px rgba(10, 66, 132, 0.08);
+  }
+  
+  /* buttons - consistent with shadow */
+  .btn,
+  .save-btn {
+    background: var(--linkedin-blue);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 8px 22px rgba(10, 66, 132, 0.12);
+    transition: transform .12s, background .12s;
+  }
+  .btn:hover, .save-btn:hover { transform: translateY(-3px); background: #004182; }
+  
+  /* inputs row (education/experience) */
+  .edu-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .edu-inputs input,
+  .edu-inputs select { flex: 1; min-width: 140px; }
+  
+  /* education / experience list items (white card with strong shadow) */
+  .edu-list { margin-top: 10px; }
+  .edu-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #fff;
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 30px rgba(9, 30, 66, 0.06);
+    align-items: flex-start;
+  }
+  .edu-year {
+    min-width: 72px;
+    font-weight: 800;
+    color: var(--linkedin-blue);
+    font-size: 14px;
+  }
+  .edu-details { flex: 1; }
+  .edu-main { font-weight: 700; color: #111; margin-bottom: 4px; }
+  .edu-sub { color: var(--muted); font-size: 13px; }
+  
+  /* remove small button */
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  .remove-btn:hover { color: #d33; }
+  
+  /* skills */
+  .skill-inputs { display:flex; gap:10px; }
+  .skill-list { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+  .skill-tag {
+    background: var(--linkedin-blue);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 999px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    box-shadow: 0 8px 22px rgba(10,66,132,0.12);
+  }
+  .skill-tag button { background:none; border:none; color:#fff; font-weight:700; cursor:pointer; }
+  
+  /* certs */
+  .cert-list { margin-top: 10px; display:flex; flex-direction: column; gap:10px; }
+  .cert-item {
+    display:flex;
+    gap:12px;
+    align-items:center;
+    background:#fff;
+    padding:10px;
+    border-radius:10px;
+    box-shadow: 0 8px 20px rgba(9,30,66,0.06);
+  }
+  .cert-thumb { width:70px; height:50px; object-fit:cover; border-radius:6px; }
+  .cert-icon { font-size:34px; }
+  .cert-meta { flex:1; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .cert-name { font-weight:600; color:#111; }
+  .cert-download { color:var(--linkedin-blue); font-weight:700; text-decoration:none; }
+  
+  /* saved / view styling */
+  .saved-top { display:flex; justify-content: space-between; align-items:center; margin-bottom:12px; gap:12px; }
+  .saved-name { font-weight:800; font-size:20px; }
+  .saved-about { color:var(--muted); margin-top:6px; }
+  .saved-section { margin-top: 14px; }
+  .saved-section h3 { color:var(--linkedin-blue); margin-bottom:8px; }
+  .muted { color: var(--muted); }
+  
+  /* modal (photo editor) */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 18, 32, 0.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 1200;
+  }
+  .modal {
+    background: #0f1720;
+    width: 520px;
+    border-radius:12px;
+    color: #fff;
+    overflow: hidden;
+  }
+  .modal-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .modal-header h3 { margin:0; font-size:18px; }
+  .modal-close { background:none; border:none; color:#fff; font-size:18px; cursor:pointer; }
+  
+  .modal-body { padding:18px; display:flex; gap:18px; align-items:center; }
+  .modal-pic-preview {
+    width:180px; height:180px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .modal-pic-preview img { width:100%; height:100%; object-fit:cover; }
+  .modal-placeholder { font-size:56px; color:#0a66c2; }
+  
+  .modal-actions { display:flex; flex-direction:column; gap:10px; }
+  .modal-upload {
+    background: #fff; color:#0a66c2; padding:10px 14px; border-radius:8px; font-weight:700; cursor:pointer; text-align:center;
+  }
+  .modal-upload input { display:none; }
+  .modal-delete { background:#ff4d4d; color:white; padding:10px 14px; border:none; border-radius:8px; cursor:pointer; font-weight:700; }
+  
+  /* responsive */
+  @media (max-width: 900px) {
+    .profile-container { grid-template-columns: 1fr; padding: 14px; }
+    .profile-sidebar { order: 2; }
+    .profile-main { order: 1; }
+    .profile-pic { width:180px; height:180px; }
+  }
+  /* Sidebar name bigger */
+.side-name { 
+    font-size: 22px; 
+    font-weight: 700; 
+  }
+  
+  /* Hide about from sidebar */
+  .side-about { 
+    display: none; 
+  }
+  
+  /* Ensure profile-main full width on save */
+  .profile-main { 
+    min-height: 60vh; 
+    width: 100%; 
+  }
+  
+  /* Align skill add button with input height */
+  .skill-inputs .btn {
+    padding: 12px 16px;
+    font-size: 15px;
+    height: 100%;
+  }
+  
+  
+  
+  
