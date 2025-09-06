@@ -4,13 +4,12 @@ import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import Events from "./pages/Events.jsx"; 
 import Messages from "./pages/Messages.jsx"; 
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
 
-  const handleSelectPage = (pageName) => {
-    setSelectedPage(pageName);
-  };
+  const handleSelectPage = (pageName) => setSelectedPage(pageName);
 
   const renderContent = () => {
     switch (selectedPage) {
@@ -20,6 +19,8 @@ function App() {
         return <Events />;
       case "messages":
         return <Messages />;
+      case "profile":
+        return <Profile />;
       default:
         return <div>404: Page not found.</div>;
     }
@@ -34,3 +35,4 @@ function App() {
 }
 
 export default App;
+
