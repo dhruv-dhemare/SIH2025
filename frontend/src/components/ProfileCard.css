@@ -1,0 +1,38 @@
+.profile-card {
+  width: var(--card-width);    /* use same variable as navbar so widths stay synced */
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;                   /* container (.profile-wrapper) centers it */
+}
+
+.profile-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.profile-name {
+  margin: 6px 0 4px;
+  color: #222;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.profile-title {
+  margin: 6px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.profile-location {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}

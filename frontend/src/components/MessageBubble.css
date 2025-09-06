@@ -1,0 +1,65 @@
+/* Wrap container to make alignment work */
+.chat-body,
+.forum-body {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+/* Message bubble */
+.message-bubble {
+  max-width: 70%;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Other people's messages (left) */
+.message-bubble:not(.own) {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  align-self: flex-start;
+}
+
+/* Own messages (right) */
+.message-bubble.own {
+  background: #4f46e5;
+  color: #fff;
+  align-self: flex-end;
+}
+
+/* Sender label */
+.message-sender {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #374151;
+}
+
+.message-bubble.own .message-sender {
+  display: none; /* Hide for self */
+}
+
+/* Text */
+.message-text {
+  white-space: pre-wrap;
+}
+
+/* Time */
+.message-time {
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-top: 4px;
+  text-align: right;
+}
+.message-bubble.own .message-time {
+  color: #e0e7ff;
+}

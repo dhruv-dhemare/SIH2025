@@ -1,0 +1,155 @@
+.chat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* NEW: make chat list scrollable */
+  max-height: 70vh;       /* adjust to your layout */
+  overflow-y: auto;
+  padding-right: 6px;      /* avoid scrollbar overlap */
+  scrollbar-width: thin;   /* Firefox */
+}
+
+.chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Each chat item */
+.chat-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: fadeInUp 0.35s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #4f46e5;
+  margin: 5px;
+}
+
+.chat-item:hover {
+  background: #f9fafb;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  margin: 5px;
+}
+
+/* Unread highlight */
+.chat-item.unread {
+  border-left: 4px solid #4f46e5;
+  background: #f4f6ff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin: 5px;
+}
+
+.chat-item.unread:hover {
+  background: #f9fafb;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  margin: 5px;
+}
+
+/* Avatar */
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Content */
+.chat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-name {
+  font-weight: 600;
+  color: #222;
+}
+
+.chat-time {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.chat-last {
+  font-size: 0.9rem;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Badge */
+.chat-badge {
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* Empty state */
+.chat-empty {
+  padding: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔥 Sticky header for Chat panel */
+.panel-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 5;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
