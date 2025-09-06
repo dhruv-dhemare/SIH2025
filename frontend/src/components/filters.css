@@ -1,0 +1,59 @@
+.filters-sidebar {
+  position: fixed;
+  top: 0;
+  right: 60px;               /* leave some space from the right edge */
+  height: 100vh;             /* take full window height */
+  width: 220px;              /* fixed width, looks neat */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+
+  /* smooth slide-in animation */
+  transform: translateX(40px);
+  opacity: 0;
+  animation: slideIn 0.6s ease forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.filters-sidebar h3 {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.filters-sidebar select {
+  padding: 12px;
+  font-size: 14px;
+  width: 100%;                /* stretch to sidebar width */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filters-sidebar select:hover {
+  border-color: #0073b1;      /* LinkedIn blue */
+  box-shadow: 0 0 6px rgba(0, 115, 177, 0.3);
+  transform: scale(1.02);     /* slight zoom effect */
+}
+
+.filters-sidebar select:focus {
+  outline: none;
+  border-color: #0073b1;
+  box-shadow: 0 0 6px rgba(0, 115, 177, 0.4);
+}
