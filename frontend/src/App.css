@@ -2,7 +2,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: #ffffff; /* full white background */
+  background-color: #fff8e1; /* full white background */
   font-family: Arial, sans-serif; /* optional */
 }
 
@@ -21,14 +21,16 @@ body, html {
 
 /* Main content expands fully */
 .content-area {
-  margin-left: 250px;       /* leave space for navbar */
-  width: calc(100% - 250px);
+  width: calc(100vw);
   display: flex;
-  justify-content: center;  /* center horizontally */
-  align-items: flex-start;  /* start from top */
+  margin-right: 15vw;
+  flex-grow: 1; 
+  justify-content: center;
+  align-items: flex-start; 
   padding: 20px;
   box-sizing: border-box;
-  min-height: 100vh;        /* full page height */
+  min-height: 100vh;       
+  background-color: #ffffff;    
 }
 
 /* Center posts in content */
@@ -38,6 +40,8 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;       /* center items horizontally */
+  margin: 0 auto;            /* optional, ensures container is centered if needed */
 }
 
 
@@ -46,8 +50,8 @@ body, html {
 .home-content {
   display: flex;
   justify-content: center;     /* center feed horizontally */
-  width: calc(100% - 250px);   /* subtract navbar width */
-  margin-left: 250px;          /* push feed away from navbar */
+  width: 100vw;   /* subtract navbar width */
+  /* margin-left: 25vw;          push feed away from navbar */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -59,8 +63,7 @@ body, html {
   flex-direction: column;      /* stack posts */
   gap: 20px;
   width: 100%;
-  max-width: 1200px;           /* ⬅️ increased from 700px to make it almost double */
-  margin-left: 50px;           /* ⬅️ pushes it slightly to the right */
+  max-width: 1200px; 
 }
 
 

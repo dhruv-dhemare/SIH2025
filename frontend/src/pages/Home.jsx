@@ -69,48 +69,65 @@ function Home() {
     connections: "all",
   });
 
-  // Apply filters without changing structure
+  // ✅ Dynamic filter options
+  const filterOptions = {
+    sortBy: [
+      { label: "Most Recent", value: "recent" },
+      { label: "Most Popular", value: "popular" },
+      { label: "Most Liked", value: "liked" },
+      { label: "Most Commented", value: "commented" },
+    ],
+    category: [
+      { label: "All", value: "all" },
+      { label: "Technology", value: "tech" },
+      { label: "Education", value: "education" },
+      { label: "Business", value: "business" },
+      { label: "Design", value: "design" },
+      { label: "Finance", value: "finance" },
+    ],
+    timeframe: [
+      { label: "Anytime", value: "anytime" },
+      { label: "Last 24 hours", value: "24h" },
+      { label: "Last 7 days", value: "7d" },
+      { label: "Last 30 days", value: "30d" },
+    ],
+    connections: [
+      { label: "All Connections", value: "all" },
+      { label: "1st Degree", value: "1st" },
+      { label: "2nd Degree", value: "2nd" },
+      { label: "3rd Degree", value: "3rd" },
+    ],
+  };
+
+  // Apply filters
   let filteredPosts = [...posts];
 
-  // Category filter
   if (filter.category !== "all") {
     filteredPosts = filteredPosts.filter(
       (post) => post.category === filter.category
     );
   }
 
-  // Timeframe filter
   if (filter.timeframe !== "anytime") {
     const now = new Date();
     let cutoff;
-    if (filter.timeframe === "24h") {
-      cutoff = new Date(now - 24 * 60 * 60 * 1000);
-    } else if (filter.timeframe === "7d") {
-      cutoff = new Date(now - 7 * 24 * 60 * 60 * 1000);
-    } else if (filter.timeframe === "30d") {
-      cutoff = new Date(now - 30 * 24 * 60 * 60 * 1000);
-    }
+    if (filter.timeframe === "24h") cutoff = new Date(now - 24 * 60 * 60 * 1000);
+    else if (filter.timeframe === "7d") cutoff = new Date(now - 7 * 24 * 60 * 60 * 1000);
+    else if (filter.timeframe === "30d") cutoff = new Date(now - 30 * 24 * 60 * 60 * 1000);
+
     filteredPosts = filteredPosts.filter((post) => post.date >= cutoff);
   }
 
-  // Sorting filter
-  if (filter.sortBy === "popular") {
-    filteredPosts.sort((a, b) => b.comments - a.comments);
-  } else if (filter.sortBy === "liked") {
-    filteredPosts.sort((a, b) => b.likes - a.likes);
-  } else if (filter.sortBy === "commented") {
-    filteredPosts.sort((a, b) => b.comments - a.comments);
-  } else {
-    // recent
-    filteredPosts.sort((a, b) => b.date - a.date);
-  }
+  if (filter.sortBy === "popular") filteredPosts.sort((a, b) => b.comments - a.comments);
+  else if (filter.sortBy === "liked") filteredPosts.sort((a, b) => b.likes - a.likes);
+  else if (filter.sortBy === "commented") filteredPosts.sort((a, b) => b.comments - a.comments);
+  else filteredPosts.sort((a, b) => b.date - a.date);
 
   return (
     <div className="home-content">
-      {/* Keep filters here */}
-      <Filters filter={filter} setFilter={setFilter} />
+      {/* ✅ Dynamic filters */}
+      <Filters filter={filter} setFilter={setFilter} filterOptions={filterOptions} showAddPost={true}  />
 
-      {/* Keep posts exactly as before */}
       <div className="posts-container">
         {filteredPosts.map((post) => (
           <PostCard

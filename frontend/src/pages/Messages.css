@@ -1,10 +1,11 @@
 /* Page base */
+
 .messages-container {
   background: #ffffff;
   min-height: 70vh;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
   display: flex; /* layout main + filter side by side */
-  min-width: 70vw;
+  min-width: 80vw;
   /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); soft outer shadow */
   border-radius: 12px; /* optional: smooth corners */
 }
@@ -14,21 +15,22 @@
   flex: 3; /* make it bigger (double the filter) */
   display: flex;
   flex-direction: column;
-  max-width: 1400px; 
+  max-width: 100vw; 
   margin-left: 120px;  /* push it a bit more to the right */
   padding: 10px 20px;
   height: 95vh;
   animation: fadeIn 0.25s ease;
-  background: #fff;
+  background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(201, 201, 201, 0.05);
+  margin-left:20vw;
 }
 
 /* Right Filter placeholder */
 .messages-filter {
   flex: 1; /* smaller compared to messages */
   border-left: 1px solid #e5e7eb;
-  background: #f1f5f9;
+  background: #ffffff;
   min-width: 250px;
   height: 95vh;
 }
