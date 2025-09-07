@@ -53,11 +53,14 @@ body, html {
 }
 
 /* Posts feed */
+/* Posts feed / Messages window */
 .posts-container {
   display: flex;
   flex-direction: column;      /* stack posts */
   gap: 20px;
   width: 100%;
-  max-width: 700px;            /* limit feed width */
+  max-width: 1200px;           /* ⬅️ increased from 700px to make it almost double */
+  margin-left: 50px;           /* ⬅️ pushes it slightly to the right */
 }
+
 
