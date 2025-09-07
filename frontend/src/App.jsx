@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import Events from "./pages/Events.jsx"; 
 import Messages from "./pages/Messages.jsx"; 
-import Profile from "./components/Profile/Profile";
+import Profile from "./components/profile/profile";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
