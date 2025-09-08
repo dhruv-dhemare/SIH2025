@@ -1,25 +1,20 @@
 import PieChart from "../components/PieChart";
 import Graph from "../components/Graph";
+import "./Analytics.css"; // ✅ create this CSS file
 
 export default function Analytics() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1 style={{ textAlign: "center", color: "#333" }}>Analytics</h1>
+    <div className="analytics-container">
+      <h1 className="analytics-title">Analytics</h1>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          gap: "20px",
-          flexWrap: "wrap", // makes them stack on smaller screens
-        }}
-      >
-        <div style={{ flex: 1, maxWidth: "50%" }}>
-          <PieChart />
+      <div className="analytics-charts">
+        <div className="analytics-chart">
+          <PieChart style={{ width: "500px", height: "300px", border: "1px solid #ccc" }} />
+
         </div>
-        <div style={{ flex: 1, maxWidth: "50%" }}>
-          <Graph />
+        <div className="analytics-chart">
+          <Graph style={{ width: "500px", height: "500px", border: "1px solid #ccc"}} />
+
         </div>
       </div>
     </div>
