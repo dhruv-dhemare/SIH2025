@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const eventPostSchema = new mongoose.Schema({
   tag: {
@@ -14,4 +14,4 @@ const eventPostSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.model("EventPost", eventPostSchema);
+module.exports = mongoose.model("EventPost", eventPostSchema);
