@@ -25,6 +25,7 @@ function App() {
           <Route path="/addevent" element={<AddEvent />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>

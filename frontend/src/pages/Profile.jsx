@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([
   {
     id: 1,
@@ -53,19 +55,10 @@ export default function Profile() {
   <div className="section-header">
     <h3>Posts</h3>
     <button
-      className="btn"
-      onClick={() =>
-        setPosts([
-          ...posts,
-          {
-            id: posts.length + 1,
-            img: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=900&q=60",
-            desc: "This is a new post example."
-          }
-        ])
-      }
-    >
-      + Create Post
+          className="btn"
+          onClick={() => navigate("/addpost")}
+        >
+          + Add Post
     </button>
   </div>
   <div className="posts">
