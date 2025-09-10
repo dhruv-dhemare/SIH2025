@@ -7,6 +7,7 @@ import Events from "./pages/Events.jsx";
 import Messages from "./pages/Messages.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import AddEvent from "./pages/AddEvent.jsx";
+import Profile from "./pages/Profile.jsx";
 import Analytics from "./pages/Analytics.jsx";
 import { Routes, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/addpost" element={<AddPost />} />
           <Route path="/addevent" element={<AddEvent />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
