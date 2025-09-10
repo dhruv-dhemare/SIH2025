@@ -13,29 +13,22 @@ import Contact from "./pages/Contact.jsx";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [selectedPage, setSelectedPage] = useState("home");
-
-  const handleSelectPage = (pageName) => {
-    setSelectedPage(pageName);
-  };
-
-  const renderContent = () => {
-    switch (selectedPage) {
-      case "home":
-        return <Home />;
-      case "events":
-        return <Events />;
-      case "messages":
-        return <Messages />;
-      default:
-        return <div>404: Page not found.</div>;
-    }
-  };
-
   return (
     <div className="flex">
-      <Navbar onSelectPage={handleSelectPage} selectedPage={selectedPage} />
-      <main className="content-area">{renderContent()}</main>
+      <Navbar />
+      <main className="content-area">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/addpost" element={<AddPost />} />
+          <Route path="/addevent" element={<AddEvent />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<div>404: Page not found.</div>} />
+        </Routes>
+      </main>
     </div>
   );
 }

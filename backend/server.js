@@ -1,9 +1,13 @@
+// server.js
 const express = require("express");
 const cors = require("cors");
-const alumniData = require("./alumni_geocoded.json");
+const fs = require("fs");
 
 const app = express();
 app.use(cors()); // allow frontend requests
+
+// Load JSON data (must be pure JSON array, NOT JS variable)
+const alumniData = JSON.parse(fs.readFileSync("./alumni_geocoded.json", "utf8"));
 
 app.get("/api/alumni", (req, res) => {
   res.json(alumniData);

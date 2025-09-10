@@ -46,3 +46,12 @@
   max-width: 40vw;     
   max-height: 50vh;    
 }
+
+.divider-alumni {
+  width: 100%;          /* half the card width */
+  border: 0;
+  height: 4px;
+  background-color: #7c7c7c;
+  margin: 0px;
+  margin-bottom: 40px;
+}

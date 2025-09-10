@@ -44,14 +44,14 @@ var alumniData = [
   {
     "name": "Sneha Deshmukh",
     "pincode": "411004",
-    "lat": 18.5163087,
-    "lng": 73.8359411
+    "lat": 18.5163319,
+    "lng": 73.8359809
   },
   {
     "name": "Pratiksha Pawar",
     "pincode": "411014",
-    "lat": 18.5588458,
-    "lng": 73.9219241
+    "lat": 18.5587884,
+    "lng": 73.9220842
   },
   {
     "name": "Sanket Shinde",
@@ -80,8 +80,8 @@ var alumniData = [
   {
     "name": "Tejas Joshi",
     "pincode": "411045",
-    "lat": 18.5649733,
-    "lng": 73.7807094
+    "lat": 18.5649561,
+    "lng": 73.7807561
   },
   {
     "name": "Vaibhav Kulkarni",
@@ -128,8 +128,8 @@ var alumniData = [
   {
     "name": "Neha Patil",
     "pincode": "400069",
-    "lat": 19.121673,
-    "lng": 72.8534478
+    "lat": 19.1215086,
+    "lng": 72.8532719
   },
   {
     "name": "Aarav Mehta",
@@ -278,8 +278,8 @@ var alumniData = [
   {
     "name": "Emily Brown",
     "pincode": "10001",
-    "lat": 40.7484337,
-    "lng": -73.9940233
+    "lat": 40.7484322,
+    "lng": -73.9940224
   },
   {
     "name": "Liam Wilson",
@@ -298,5 +298,305 @@ var alumniData = [
     "pincode": "100-0001",
     "lat": 35.6848662,
     "lng": 139.7526407
+  },
+  {
+    "name": "Olivia Taylor",
+    "pincode": "90210",
+    "lat": 34.0942489,
+    "lng": -118.4114324
+  },
+  {
+    "name": "Noah Smith",
+    "pincode": "SW1A",
+    "lat": 51.5056966,
+    "lng": -0.1397148
+  },
+  {
+    "name": "Isabella Rossi",
+    "pincode": "20121",
+    "lat": 45.4717666,
+    "lng": 9.1886528
+  },
+  {
+    "name": "Hiroshi Yamamoto",
+    "pincode": "150-0001",
+    "lat": 35.6680508,
+    "lng": 139.7065085
+  },
+  {
+    "name": "Maya Singh",
+    "pincode": "110002",
+    "lat": 28.6388449,
+    "lng": 77.2389115
+  },
+  {
+    "name": "Arnav Kapoor",
+    "pincode": "110003",
+    "lat": 28.6007586,
+    "lng": 77.2240382
+  },
+  {
+    "name": "Tanya Sharma",
+    "pincode": "110004",
+    "lat": 28.6154726,
+    "lng": 77.2028976
+  },
+  {
+    "name": "Rohan Mehra",
+    "pincode": "110005",
+    "lat": 28.7873665,
+    "lng": 77.1971813
+  },
+  {
+    "name": "Priya Singh",
+    "pincode": "110006",
+    "lat": 28.6559844,
+    "lng": 77.2316234
+  },
+  {
+    "name": "Aarav Sharma",
+    "pincode": "110007",
+    "lat": 28.6835175,
+    "lng": 77.2051385
+  },
+  {
+    "name": "Ananya Jain",
+    "pincode": "110008",
+    "lat": 28.6430938,
+    "lng": 77.1600533
+  },
+  {
+    "name": "Vivaan Verma",
+    "pincode": "110009",
+    "lat": 28.7030307,
+    "lng": 77.2052713
+  },
+  {
+    "name": "Kiara Rao",
+    "pincode": "110010",
+    "lat": 28.5788994,
+    "lng": 77.1186142
+  },
+  {
+    "name": "Rhea Deshmukh",
+    "pincode": "110012",
+    "lat": 28.6375163,
+    "lng": 77.161133
+  },
+  {
+    "name": "Aditya Sharma",
+    "pincode": "110013",
+    "lat": 28.5887108,
+    "lng": 77.253169
+  },
+  {
+    "name": "Saanvi Patil",
+    "pincode": "110014",
+    "lat": 28.5800691,
+    "lng": 77.2527603
+  },
+  {
+    "name": "Ishaan Gupta",
+    "pincode": "110015",
+    "lat": 28.6558467,
+    "lng": 77.1469537
+  },
+  {
+    "name": "Meera Joshi",
+    "pincode": "110016",
+    "lat": 28.5493158,
+    "lng": 77.1991476
+  },
+  {
+    "name": "Aryan Malhotra",
+    "pincode": "110017",
+    "lat": 28.5414714,
+    "lng": 77.2128819
+  },
+  {
+    "name": "Anika Verma",
+    "pincode": "110018",
+    "lat": 28.6375991,
+    "lng": 77.0830226
+  },
+  {
+    "name": "Vivaan Sharma",
+    "pincode": "110019",
+    "lat": 28.5447481,
+    "lng": 77.2534444
+  },
+  {
+    "name": "Riya Kapoor",
+    "pincode": "110020",
+    "lat": 28.4488339,
+    "lng": 77.4426914
+  },
+  {
+    "name": "Kabir Singh",
+    "pincode": "110021",
+    "lat": 28.593008,
+    "lng": 77.1810396
+  },
+  {
+    "name": "Diya Patel",
+    "pincode": "110022",
+    "lat": 28.5658172,
+    "lng": 77.1750958
+  },
+  {
+    "name": "Advait Nair",
+    "pincode": "110023",
+    "lat": 28.5752275,
+    "lng": 77.1956099
+  },
+  {
+    "name": "Anvi Sharma",
+    "pincode": "110024",
+    "lat": 28.4931158,
+    "lng": 77.2073054
+  },
+  {
+    "name": "Ayaan Verma",
+    "pincode": "110025",
+    "lat": 28.5557028,
+    "lng": 77.2853967
+  },
+  {
+    "name": "Ira Kapoor",
+    "pincode": "110026",
+    "lat": 28.6599383,
+    "lng": 77.1380916
+  },
+  {
+    "name": "Arya Jain",
+    "pincode": "110027",
+    "lat": 28.6469052,
+    "lng": 77.1196595
+  },
+  {
+    "name": "Kabir Malhotra",
+    "pincode": "110028",
+    "lat": 28.6189682,
+    "lng": 77.1511935
+  },
+  {
+    "name": "Ananya Gupta",
+    "pincode": "110030",
+    "lat": 28.5172749,
+    "lng": 77.1911589
+  },
+  {
+    "name": "Rudra Sharma",
+    "pincode": "110031",
+    "lat": 28.6530845,
+    "lng": 77.2731611
+  },
+  {
+    "name": "Myra Mehta",
+    "pincode": "110032",
+    "lat": 28.6752962,
+    "lng": 77.2856385
+  },
+  {
+    "name": "Aarush Kapoor",
+    "pincode": "110033",
+    "lat": 28.7278353,
+    "lng": 77.1693456
+  },
+  {
+    "name": "Kiara Singh",
+    "pincode": "110034",
+    "lat": 28.6947069,
+    "lng": 77.1343204
+  },
+  {
+    "name": "Reyansh Verma",
+    "pincode": "110035",
+    "lat": 28.6830148,
+    "lng": 77.1616281
+  },
+  {
+    "name": "Tara Sharma",
+    "pincode": "110036",
+    "lat": 28.8091554,
+    "lng": 77.1640245
+  },
+  {
+    "name": "Yash Gupta",
+    "pincode": "110037",
+    "lat": 28.5441638,
+    "lng": 77.1249201
+  },
+  {
+    "name": "Anvi Mehra",
+    "pincode": "110038",
+    "lat": 28.5131037,
+    "lng": 77.106859
+  },
+  {
+    "name": "Advika Kapoor",
+    "pincode": "110039",
+    "lat": 28.809983,
+    "lng": 77.0287544
+  },
+  {
+    "name": "Reyanshi Singh",
+    "pincode": "110040",
+    "lat": 28.8484009,
+    "lng": 77.0896352
+  },
+  {
+    "name": "Ishaan Malhotra",
+    "pincode": "110041",
+    "lat": 28.6679924,
+    "lng": 77.050791
+  },
+  {
+    "name": "Sia Verma",
+    "pincode": "110042",
+    "lat": 28.7450728,
+    "lng": 77.1601505
+  },
+  {
+    "name": "Aarav Patel",
+    "pincode": "110043",
+    "lat": 28.5829277,
+    "lng": 76.9694108
+  },
+  {
+    "name": "Mihika Sharma",
+    "pincode": "110044",
+    "lat": 28.5061191,
+    "lng": 77.2999265
+  },
+  {
+    "name": "Vivaan Kapoor",
+    "pincode": "110045",
+    "lat": 28.59331,
+    "lng": 77.0801106
+  },
+  {
+    "name": "Diya Singh",
+    "pincode": "110046",
+    "lat": 28.597389,
+    "lng": 77.1265179
+  },
+  {
+    "name": "Ayaan Sharma",
+    "pincode": "110047",
+    "lat": 28.4695358,
+    "lng": 77.1353872
+  },
+  {
+    "name": "Kiara Mehta",
+    "pincode": "110048",
+    "lat": 28.5486665,
+    "lng": 77.2380608
+  },
+  {
+    "name": "Rudra Verma",
+    "pincode": "110049",
+    "lat": 28.5599256,
+    "lng": 77.2216948
   }
 ];
