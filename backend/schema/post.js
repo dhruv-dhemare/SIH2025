@@ -1,0 +1,22 @@
+import mongoose from "mongoose";
+
+const postSchema = new mongoose.Schema({
+  tag: {
+    type: String,
+    enum: ["career", "networking", "achievement", "opportunity", "general"],
+    required: true
+  },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  photo: { type: String }, // URL or file path
+  likes: { type: Number, default: 0 },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  userType: {
+    type: String,
+    enum: ["Alumni", "Recruiter", "Faculty", "College Administrator"],
+    required: true
+  },
+  createdAt: { type: Date, default: Date.now }
+});
+
+export default mongoose.model("Post", postSchema);
