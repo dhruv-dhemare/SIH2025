@@ -14,8 +14,7 @@ const userRoutes = require('./routes/userRoutes');
 app.get("/api/alumni", (req, res) => {
   res.json(alumniData);
 });
-
-app.use('/user', userRoutes);
+app.use('/api/user', userRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
