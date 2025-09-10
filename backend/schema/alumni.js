@@ -14,10 +14,13 @@ const alumniSchema = new mongoose.Schema({
     certification: { type: [String], default: [] },
     skills: { type: [String], default: [] },
     urls: { type: [String], default: [] },
+    likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+    likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
     resume: { type: String },
     posts: { type: [String], default: [] },
     locations: { type: [String], default: [] }
 }, { timestamps: true });
+
 
 alumniSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();

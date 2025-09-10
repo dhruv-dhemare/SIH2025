@@ -1,4 +1,3 @@
-// backend/schema/post.js
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
@@ -11,7 +10,7 @@ const postSchema = new mongoose.Schema({
   description: { type: String, required: true },
   photo: { type: String },
   likes: { type: Number, default: 0 },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "Admin", required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "Alumni", required: true },
   userType: {
     type: String,
     enum: ["Alumni", "Recruiter", "Faculty", "College Administrator"],

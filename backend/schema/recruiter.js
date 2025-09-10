@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const recruitorSchema = new mongoose.Schema({
+const recruiterSchema = new mongoose.Schema({
     name: { type: String, required: true },
     username: { type: String, unique: true },
     phn: { type: String },
@@ -14,7 +14,7 @@ const recruitorSchema = new mongoose.Schema({
     locations: { type: [String], default: [] }
 }, { timestamps: true });
 
-recruitorSchema.pre('save', async function (next) {
+recruiterSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     try {
         const salt = await bcrypt.genSalt(10);
@@ -25,8 +25,8 @@ recruitorSchema.pre('save', async function (next) {
     }
 });
 
-recruitorSchema.methods.comparePassword = async function (pw) {
+recruiterSchema.methods.comparePassword = async function (pw) {
     return bcrypt.compare(pw, this.password);
 };
 
-module.exports = mongoose.model('Recruitor', recruitorSchema);
+module.exports = mongoose.model('recruiter', recruiterSchema);
