@@ -1,0 +1,117 @@
+User
+
+1.Student
+2.alumni
+3.recruitors
+4.college adminstrator
+5.teacher
+6.club
+
+-------------------------------------
+
+
+Schema
+
+1.Student {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), Locations(derieved) }
+2.alumni {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), post[], Locations(derieved) }
+3.recruitors {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), post[], Locations(derieved) }
+4.college adminstrator {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), post[],, events[] Locations(derieved) }
+5.teacher  {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), post[], Locations(derieved) }
+6.club {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), events[], Locations(derieved) }
+7. Post {tag,title,desc,photo,liked, author, date , typeOfAuthor}
+8. Event {tag,title,desc,photo,liked, club, date}
+9. Messages wala schema 
+
+
+-------------------------------------
+
+
+
+Students Routes
+
+1. Sign up {}
+2. Login in
+3. Change password
+4. Change profile info
+5. like post
+6. Messages wala feature 
+7. Like Event
+
+
+-------------------------------
+
+
+Alumni Routes
+
+1. Sign up
+2. Login in
+3. Change password
+4. Change profile info
+5. Post add
+6. Delete post
+7. Like post 
+8. Messages wala feature
+9. Like Event
+
+
+----------------------------------
+
+
+Recruitor Routes
+
+1. Login in
+2. Change password
+3. Change profile info
+4. Messages wala feature
+5. Post add
+6. Delete post
+7. Like post 
+8. Like Event
+
+
+------------------------------------
+
+
+College Administration Routes
+
+1. Login in
+2. Change password
+3. Change profile info
+4. Messages wala feature
+5. Post add
+6. Delete post
+7. Like post 
+8. Add event'
+9. Delete event
+10. Like event
+
+
+-------------------------------------
+
+
+Clubs Routes
+
+1. Login in
+2. Change password
+3. Change profile info
+4. Messages wala feature
+5. Event add
+6. Delete Event
+7. Like Event
+8. Like post
+
+
+-------------------------------------
+
+
+Fauculty Routes
+
+1. Sign up
+2. Login in
+3. Change password
+4. Change profile info
+5. Post add
+6. Delete post
+7. Like post 
+8. Messages wala feature
+9. Like Event
