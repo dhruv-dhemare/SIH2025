@@ -1,0 +1,99 @@
+.contact-card {
+  width: 22vw;
+  height:60vh;          /* scales with screen width */
+  margin: 5vh auto;         /* spacing relative to viewport height */
+  background: #ffffff;         /* vertical & horizontal padding responsive */
+  border-radius: 2vh;
+  box-shadow: 0 0.8vh 3vh rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.contact-img {
+  width: 15vw;              /* responsive circle size */
+  height: 15vw;
+  border-radius: 50%;
+  border: 0.5vh solid #e6e6e6;
+  margin-bottom: 2vh;
+  object-fit: cover;
+  max-width: 150px;         /* still prevent huge images on desktops */
+  max-height: 150px;
+}
+
+.creator-name {
+  font-size: 1.8vw;           /* scales with screen */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1vh;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  margin:1px;
+  margin-left: 2vh;
+  margin-top: 4vh;
+}
+
+.icon {
+  font-size: 3vh;
+}
+
+.phone-icon {
+  color: #0077ff;
+}
+
+.email-icon {
+  color: #ff4444;
+}
+
+.linkedin-icon {
+  color: #0a66c2;
+}
+
+.info-text,
+.info-link {
+  font-size: 1.1vw;         /* scales with viewport height */
+  font-weight: 600;
+  color: #444;
+  margin: 0px;
+}
+
+.info-link {
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.info-link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .contact-card {
+    max-width: 80vw;
+    padding: 4vh 4vw;
+  }
+
+  .profile-img {
+    width: 25vw;
+    height: 25vw;
+  }
+
+  .creator-name {
+    font-size: 4vw;
+  }
+
+  .info-text,
+  .info-link {
+    font-size: 2.2vh;
+  }
+}
+
+.divider {
+  width: 80%;          /* half the card width */
+  border: 0;
+  height: 4px;
+  background-color: #7c7c7c;
+  margin: 0px;
+}

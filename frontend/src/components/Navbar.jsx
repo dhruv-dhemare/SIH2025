@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";  // ✅ use NavLink
+import { NavLink } from "react-router-dom";  // already imported
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
 import profileImg from "../assets/profile.jpg";
@@ -14,12 +14,14 @@ function Navbar() {
       <div className="top-spacer"></div>
 
       <div className="profile-wrapper">
-        <ProfileCard
-          name="Dhruv Dhemare"
-          title="FullStack Engineer | AI/ML Enthusiast"
-          location="Pune, India"
-          profileImg={profileImg}
-        />
+        <NavLink to="/profile" className="profile-link">
+          <ProfileCard
+            name="Dhruv Dhemare"
+            title="FullStack Engineer | AI/ML Enthusiast"
+            location="Pune, India"
+            profileImg={profileImg}
+          />
+        </NavLink>
       </div>
 
       <div className="spacer" />

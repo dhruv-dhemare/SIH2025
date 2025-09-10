@@ -8,6 +8,7 @@ import Messages from "./pages/Messages.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import AddEvent from "./pages/AddEvent.jsx";
 import Analytics from "./pages/Analytics.jsx";
+import Contact from "./pages/Contact.jsx";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -19,10 +20,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/messages" element={<Messages />} />
-          
           <Route path="/addpost" element={<AddPost />} />
           <Route path="/addevent" element={<AddEvent />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/Contact" element={<Contact />} />
           <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
