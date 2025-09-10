@@ -6,15 +6,18 @@ const db =require('./db');
 
 const app = express();
 app.use(cors()); // allow frontend requests
+app.use(express.json());
 
 // Load JSON data (must be pure JSON array, NOT JS variable)
 const alumniData = JSON.parse(fs.readFileSync("./alumni_geocoded.json", "utf8"));
-const userRoutes = require('./routes/userRoutes');
+const studentRoutes = require('./routes/studentRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 app.get("/api/alumni", (req, res) => {
   res.json(alumniData);
 });
-app.use('/api/user', userRoutes);
+app.use('/api/student', studentRoutes);
+app.use('/api/admin', adminRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {

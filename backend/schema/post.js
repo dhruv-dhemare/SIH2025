@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+// backend/schema/post.js
+const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
   tag: {
@@ -8,9 +9,9 @@ const postSchema = new mongoose.Schema({
   },
   title: { type: String, required: true },
   description: { type: String, required: true },
-  photo: { type: String }, // URL or file path
+  photo: { type: String },
   likes: { type: Number, default: 0 },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "Admin", required: true },
   userType: {
     type: String,
     enum: ["Alumni", "Recruiter", "Faculty", "College Administrator"],
@@ -19,4 +20,4 @@ const postSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Post", postSchema);

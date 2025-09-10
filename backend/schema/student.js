@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 const studentSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    username: { type: String, unique: true },
+    username: { type: String, unique: true }, // remove required
     phn: { type: String },
-    email: { type: String },
+    email: { type: String, unique: true, required: true }, // email should be required
     password: { type: String, required: true },
     headline: { type: String },
     about: { type: String },
@@ -17,10 +17,15 @@ const studentSchema = new mongoose.Schema(
     urls: { type: [String], default: [] },
     resume: { type: String },
     locations: { type: [String], default: [] },
+
+    // Likes
+    likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+    likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
   },
   { timestamps: true }
 );
 
+// Hash password before save
 studentSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
@@ -32,6 +37,7 @@ studentSchema.pre("save", async function (next) {
   }
 });
 
+// Compare password method
 studentSchema.methods.comparePassword = async function (pw) {
   return bcrypt.compare(pw, this.password);
 };
