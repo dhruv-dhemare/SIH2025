@@ -5,7 +5,7 @@ const Post = require("../schema/post");
 const { jwtAuthMiddleware, generateToken } = require("../jwt");
 const router = express.Router();
 
-// 🔹 Signup (with auto-generated Club IDs)
+// 1🔹 Signup (with auto-generated Club IDs)
 // 🔹 Club Signup Route
 router.post("/signup", async (req, res) => {
   try {
@@ -62,7 +62,7 @@ router.post("/signup", async (req, res) => {
 
 
 
-// 🔹 Login (no signup)
+// 2🔹 Login (no signup)
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -79,7 +79,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// 🔹 Change Password
+// 3🔹 Change Password
 router.put("/change-password", jwtAuthMiddleware, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -98,7 +98,7 @@ router.put("/change-password", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Update Profile
+// 4🔹 Update Profile
 router.put("/update-profile", jwtAuthMiddleware, async (req, res) => {
   try {
     const updates = req.body;
@@ -109,7 +109,7 @@ router.put("/update-profile", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Add Event Post
+// 5🔹 Add Event Post
 router.post("/event-post", jwtAuthMiddleware, async (req, res) => {
   try {
     const { tag, title, description, photo } = req.body;
@@ -133,7 +133,7 @@ router.post("/event-post", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Delete Event Post
+// 6🔹 Delete Event Post
 router.delete("/event-post/:id", jwtAuthMiddleware, async (req, res) => {
   try {
     const eventPost = await EventPost.findById(req.params.id);
@@ -155,7 +155,7 @@ router.delete("/event-post/:id", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Like an Event Post
+// 7🔹 Like an Event Post
 router.post("/like/event/:id", jwtAuthMiddleware, async (req, res) => {
   try {
     const eventPost = await EventPost.findById(req.params.id);
@@ -170,7 +170,7 @@ router.post("/like/event/:id", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-//like a post
+//8. like a post
 router.post("/like/post/:id", jwtAuthMiddleware, async (req, res) => {
   try {
     const Post = await Post.findById(req.params.id);

@@ -200,7 +200,7 @@ router.post('/like/post/:postId', jwtAuthMiddleware, async (req, res) => {
 
 
 
-// ------------------ 10. CREATE EVENT ------------------
+// ------------------ 8. CREATE EVENT ------------------
 router.post('/event', jwtAuthMiddleware, async (req, res) => {
   try {
     const user = await Admin.findById(req.user.id); // can be Admin or Club
@@ -235,7 +235,7 @@ router.post('/event', jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// ------------------ 11. DELETE EVENT ------------------
+// ------------------ 9. DELETE EVENT ------------------
 router.delete('/event/:eventId', jwtAuthMiddleware, async (req, res) => {
   try {
     const { eventId } = req.params;
@@ -274,7 +274,7 @@ router.delete('/event/:eventId', jwtAuthMiddleware, async (req, res) => {
 
 
 
-// ------------------ 11. LIKE EVENT ------------------
+// ------------------ 10. LIKE EVENT ------------------
 router.post('/like/event/:eventId', jwtAuthMiddleware, async (req, res) => {
   try {
     const event = await EventPost.findById(req.params.eventId);
@@ -294,7 +294,7 @@ router.post('/like/event/:eventId', jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// ------------------ 12. GET ADMIN PROFILE ------------------
+// ------------------ 11. GET ADMIN PROFILE ------------------
 router.get('/profile', jwtAuthMiddleware, async (req, res) => {
   try {
     const admin = await Admin.findById(req.user.id).select('-password'); // exclude password

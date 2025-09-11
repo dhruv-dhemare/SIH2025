@@ -5,7 +5,7 @@ const { jwtAuthMiddleware, generateToken } = require("../jwt");
 
 const router = express.Router();
 
-// ✅ Signup
+// 1.✅ Signup
 // 🔹 Recruiter Signup with Auto-generated Username
 router.post("/signup", async (req, res) => {
   try {
@@ -44,7 +44,7 @@ router.post("/signup", async (req, res) => {
 });
 
 
-// ✅ Login
+// 2✅ Login
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// ✅ Change Password
+// 3✅ Change Password
 router.put("/change-password", jwtAuthMiddleware, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -79,7 +79,7 @@ router.put("/change-password", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Update Profile
+// 4✅ Update Profile
 router.put("/update-profile", jwtAuthMiddleware, async (req, res) => {
   try {
     const { headline, about, urls, locations } = req.body;
@@ -94,7 +94,7 @@ router.put("/update-profile", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Create Post and update recruiter
+// 5✅ Create Post and update recruiter
 router.post("/post", jwtAuthMiddleware, async (req, res) => {
   try {
     const { tag, title, description, photo } = req.body;
@@ -124,7 +124,7 @@ router.post("/post", jwtAuthMiddleware, async (req, res) => {
 });
 
 
-// ✅ Like Post
+// 6✅ Like Post
 router.post("/like/post/:postId", jwtAuthMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
@@ -144,7 +144,7 @@ router.post("/like/post/:postId", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// Like Event
+// 7.Like Event
 router.post("/like/event/:eventId", jwtAuthMiddleware, async (req, res) => {
   try {
     const event = await EventPost.findById(req.params.eventId);
@@ -160,7 +160,7 @@ router.post("/like/event/:eventId", jwtAuthMiddleware, async (req, res) => {
   } 
 }); 
 
-// ✅ Delete Post
+// 8.✅ Delete Post
 router.delete("/post/:postId", jwtAuthMiddleware, async (req, res) => {
   try {
     const post = await Post.findOneAndDelete({ _id: req.params.postId, author: req.user.id });

@@ -98,7 +98,7 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// LIKE POST
+//6. LIKE POST
 router.post('/like/post/:postId', jwtAuthMiddleware, async (req, res) => {
   try {
     const user = await Student.findById(req.user.id);
@@ -121,7 +121,7 @@ router.post('/like/post/:postId', jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// LIKE EVENT
+// 7. LIKE EVENT
 router.post('/like/event/:eventId', jwtAuthMiddleware, async (req, res) => {
   try {
     const user = await Student.findById(req.user.id);

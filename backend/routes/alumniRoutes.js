@@ -5,7 +5,7 @@ const Post = require("../schema/post");
 const { jwtAuthMiddleware, generateToken } = require("../jwt");
 const router = express.Router();
 
-// 🔹 Signup
+// 1🔹 Signup
 // 🔹 Signup with Auto-generated Username
 router.post("/signup", async (req, res) => {
   try {
@@ -55,7 +55,7 @@ router.post("/signup", async (req, res) => {
 });
 
 
-// 🔹 Login
+// 2🔹 Login
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -72,7 +72,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// 🔹 Change Password
+// 3🔹 Change Password
 router.put("/change-password", jwtAuthMiddleware, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -91,7 +91,7 @@ router.put("/change-password", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Update Profile
+// 4🔹 Update Profile
 router.put("/update-profile", jwtAuthMiddleware, async (req, res) => {
   try {
     const updates = req.body;
@@ -102,7 +102,7 @@ router.put("/update-profile", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Like a Post
+// 5🔹 Like a Post
 router.post("/like/:postId", jwtAuthMiddleware, async (req, res) => {
   try {
     const alumni = await Alumni.findById(req.user.id);
@@ -126,7 +126,7 @@ router.post("/like/:postId", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Create a Post
+// 6🔹 Create a Post
 router.post("/post", jwtAuthMiddleware, async (req, res) => {
   try {
     const { tag, title, description, photo } = req.body;
@@ -150,7 +150,7 @@ router.post("/post", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// 🔹 Delete a Post
+// 7🔹 Delete a Post
 router.delete("/post/:postId", jwtAuthMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
@@ -172,7 +172,7 @@ router.delete("/post/:postId", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-//like a event post
+//8 .like a event post
 router.post("/like/event/:eventId", jwtAuthMiddleware, async (req, res) => {
   try {
     const event = await EventPost.findById(req.params.eventId);
