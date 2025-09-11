@@ -12,12 +12,12 @@ User
 
 Schema
 
-1.Student {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), Locations(derieved) }
-2.alumni {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), post[], Locations(derieved) }
-3.recruitors {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), post[], Locations(derieved) }
-4.college adminstrator {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), post[],, events[] Locations(derieved) }
-5.teacher  {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), post[], Locations(derieved) }
-6.club {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), events[], Locations(derieved) }
+1. Student {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), Locations(derieved) }
+2. alumni {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), post[], Locations(derieved) }
+3. recruitors {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), post[], Locations(derieved) }
+4. college adminstrator {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), post[],, events[] Locations(derieved) }
+5. teacher  {Name, Password, Phn, Email, HeadLine,  About, Experience , Education, Certification, Skills, Urls, Resume, Username(we will assign), post[], Locations(derieved) }
+6. club {Name, Password, Phn, Email, HeadLine,  About, Urls, Username(we will assign), events[], Locations(derieved) }
 7. Post {tag,title,desc,photo,liked, author, date , typeOfAuthor}
 8. Event {tag,title,desc,photo,liked, club, date}
 9. Messages wala schema 
