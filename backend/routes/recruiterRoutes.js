@@ -125,11 +125,16 @@ router.post("/post", jwtAuthMiddleware, async (req, res) => {
 
 
 // ✅ Like Post
-router.post("/like/:postId", jwtAuthMiddleware, async (req, res) => {
+router.post("/like/post/:postId", jwtAuthMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
     if (!post) return res.status(404).json({ message: "Post not found" });
 
+    const postId = req.params.postId;
+    const user = await Student.findById(req.user.id);
+
+    user.likedPost.push(postId);
+    await user.save();
     post.likes += 1;
     await post.save();
 
@@ -138,6 +143,22 @@ router.post("/like/:postId", jwtAuthMiddleware, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Like Event
+router.post("/like/event/:eventId", jwtAuthMiddleware, async (req, res) => {
+  try {
+    const event = await EventPost.findById(req.params.eventId);
+    if (!event) return res.status(404).json({ message: "Event not found" });  
+    const user = await Student.findById(req.user.id);
+    user.likedEvents.push(event._id);
+    await user.save();
+    event.likes += 1;
+    await event.save();
+    res.json({ message: "Event liked successfully", likes: event.likes });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  } 
+}); 
 
 // ✅ Delete Post
 router.delete("/post/:postId", jwtAuthMiddleware, async (req, res) => {

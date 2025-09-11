@@ -11,7 +11,10 @@ const clubSchema = new mongoose.Schema({
     about: { type: String },
     urls: { type: [String], default: [] },
     events: { type: [String], default: [] },
-    locations: { type: [String], default: [] }
+    locations: { type: [String], default: [] },
+    // Likes
+        likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+        likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
 }, { timestamps: true });
 
 clubSchema.pre('save', async function (next) {

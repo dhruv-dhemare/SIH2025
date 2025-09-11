@@ -18,7 +18,10 @@ const alumniSchema = new mongoose.Schema({
     likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
     resume: { type: String },
     posts: { type: [String], default: [] },
-    locations: { type: [String], default: [] }
+    locations: { type: [String], default: [] },
+    // Likes
+        likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+        likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
 }, { timestamps: true });
 
 

@@ -16,7 +16,10 @@ const teacherSchema = new mongoose.Schema({
     urls: { type: [String], default: [] },
     resume: { type: String },
     posts: { type: [String], default: [] },
-    locations: { type: [String], default: [] }
+    locations: { type: [String], default: [] },
+    // Likes
+        likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+        likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
 }, { timestamps: true });
 
 teacherSchema.pre('save', async function (next) {

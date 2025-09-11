@@ -1,6 +1,7 @@
 const express = require("express");
 const Club = require("../schema/club");
 const EventPost = require("../schema/eventPost");
+const Post = require("../schema/post");
 const { jwtAuthMiddleware, generateToken } = require("../jwt");
 const router = express.Router();
 
@@ -155,7 +156,7 @@ router.delete("/event-post/:id", jwtAuthMiddleware, async (req, res) => {
 });
 
 // 🔹 Like an Event Post
-router.post("/like-event/:id", jwtAuthMiddleware, async (req, res) => {
+router.post("/like/event/:id", jwtAuthMiddleware, async (req, res) => {
   try {
     const eventPost = await EventPost.findById(req.params.id);
     if (!eventPost) return res.status(404).json({ message: "Event post not found" });
@@ -167,6 +168,22 @@ router.post("/like-event/:id", jwtAuthMiddleware, async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+//like a post
+router.post("/like/post/:id", jwtAuthMiddleware, async (req, res) => {
+  try {
+    const Post = await Post.findById(req.params.id);
+    if (!Post) return res.status(404).json({ message: "Event post not found" });
+    Post.likes += 1;
+    await Post.save();
+    const user = await User.findById(req.user.id);
+    user.likedPosts.push(Post._id);
+    await user.save();
+    res.json({ message: "Post liked", Post });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  } 
 });
 
 module.exports = router;

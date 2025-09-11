@@ -12,7 +12,10 @@ const collegeAdminSchema = new mongoose.Schema({
     urls: { type: [String], default: [] },
     posts: { type: [String], default: [] },
     events: { type: [String], default: [] },
-    locations: { type: [String], default: [] }
+    locations: { type: [String], default: [] },
+    // Likes
+        likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+        likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
 }, { timestamps: true });
 
 collegeAdminSchema.pre('save', async function (next) {

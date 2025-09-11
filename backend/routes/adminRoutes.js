@@ -184,6 +184,10 @@ router.post('/like/post/:postId', jwtAuthMiddleware, async (req, res) => {
     const post = await Post.findById(req.params.postId);
     if (!post) return res.status(404).json({ error: "Post not found" });
 
+    const admin = await Admin.findById(req.user.id);
+    const postId = req.params.postId;
+    admin.likedPosts.push(postId);
+    await admin.save();
     post.likes += 1;
     await post.save();
 
@@ -276,6 +280,10 @@ router.post('/like/event/:eventId', jwtAuthMiddleware, async (req, res) => {
     const event = await EventPost.findById(req.params.eventId);
     if (!event) return res.status(404).json({ error: "Event not found" });
 
+    const user = await Admin.findById(req.user.id);
+    const eventId = req.params.eventId;
+    user.likedEvents.push(eventId);
+    await user.save();
     event.likes += 1;
     await event.save();
 
