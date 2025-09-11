@@ -36,7 +36,7 @@ app.use("/api/club", clubRoutes);
 const recruiterRoutes = require("./routes/recruiterRoutes");
 app.use('/api/recruiter', recruiterRoutes);
 
-const teacherRoutes = require("./routes/teacherRoutes");
+const teacherRoutes = require("./routes/facultyRoutes");
 app.use('/api/teacher', teacherRoutes);
 
 
