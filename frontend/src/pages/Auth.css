@@ -1,0 +1,107 @@
+/* Auth.css - replace your existing content with this */
+
+/* Base font + background */
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+}
+
+/* Make sure the outer container does not interfere.
+   You can keep this wrapper or remove it if unused. */
+.auth-container {
+  position: relative; /* not strictly needed with fixed .auth-box but fine to keep */
+  min-height: 100vh;
+}
+
+/* FIXED box pinned to viewport top-right */
+.auth-box {
+  position: fixed;          /* pin to the viewport (not to a parent) */
+  top: 20px;                /* distance from top */
+  right: 20px;              /* distance from right */
+  width: 360px;             /* fixed ideal width */
+  max-width: calc(100vw - 40px); /* never overflow viewport horizontally */
+  box-sizing: border-box;   /* include padding in width */
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  z-index: 9999;            /* sit above other page elements */
+  text-align: center;
+}
+
+/* Title */
+.auth-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  color: #222;
+  font-weight: 600;
+}
+
+/* Form layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-form select {
+  background: #ffffff;        /* white dropdown */
+  color: #000000;             /* dropdown text color */
+  border: 1px solid #d1d5db;
+}
+/* Inputs / selects */
+.auth-form input,
+.auth-form select {
+  background: #e0e9f3;   
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.06);
+}
+
+/* Button */
+.auth-btn {
+  margin-top: 6px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, transform .05s;
+}
+
+.auth-btn:hover { background: #1e40af; }
+.auth-btn:active { transform: translateY(1px); }
+
+/* Footer link */
+.auth-footer {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #555;
+}
+.auth-footer a { color: #2563eb; text-decoration: none; }
+.auth-footer a:hover { text-decoration: underline; }
+
+/* SMALL SCREEN ADJUSTMENTS */
+@media (max-width: 480px) {
+  .auth-box {
+    left: 10px;
+    right: 10px;
+    top: 12px;
+    width: auto;
+    padding: 16px;
+    border-radius: 10px;
+  }
+}
