@@ -6,14 +6,13 @@ body {
   background: #f3f4f6;
 }
 
-/* Make sure the outer container does not interfere.
-   You can keep this wrapper or remove it if unused. */
+
 .auth-container {
   position: relative; /* not strictly needed with fixed .auth-box but fine to keep */
   min-height: 100vh;
 }
 
-/* FIXED box pinned to viewport top-right */
+
 .auth-box {
   position: fixed;          /* pin to the viewport (not to a parent) */
   top: 20px;                /* distance from top */
@@ -37,18 +36,18 @@ body {
   font-weight: 600;
 }
 
-/* Form layout */
+
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 .auth-form select {
-  background: #ffffff;        /* white dropdown */
-  color: #000000;             /* dropdown text color */
+  background: #ffffff;      
+  color: #000000;            
   border: 1px solid #d1d5db;
 }
-/* Inputs / selects */
+
 .auth-form input,
 .auth-form select {
   background: #e0e9f3;   
@@ -68,7 +67,7 @@ body {
   box-shadow: 0 0 0 3px rgba(37,99,235,0.06);
 }
 
-/* Button */
+
 .auth-btn {
   margin-top: 6px;
   width: 100%;
@@ -85,7 +84,7 @@ body {
 .auth-btn:hover { background: #1e40af; }
 .auth-btn:active { transform: translateY(1px); }
 
-/* Footer link */
+
 .auth-footer {
   margin-top: 12px;
   font-size: 13px;
@@ -94,7 +93,7 @@ body {
 .auth-footer a { color: #2563eb; text-decoration: none; }
 .auth-footer a:hover { text-decoration: underline; }
 
-/* SMALL SCREEN ADJUSTMENTS */
+
 @media (max-width: 480px) {
   .auth-box {
     left: 10px;
