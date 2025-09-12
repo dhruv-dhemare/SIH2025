@@ -1,55 +1,10 @@
-// // src/pages/Messages.jsx
-// import React, { useState } from "react";
-// import LeftSidebar from "../components/LeftSidebar/LeftSidebar";
-// import SearchBar from "../components/SearchBar/SearchBar";
-// import ChatList from "../components/ChatList/ChatList";
-// import ForumList from "../components/ForumList/ForumList";
-// import "./Messages.css";
-
-// export default function Messages() {
-//   const [chatQuery, setChatQuery] = useState("");
-//   const [forumQuery, setForumQuery] = useState("");
-
-//   const chats = [
-//     { id: 1, name: "John Doe", lastMessage: "Hey, how are you?", time: "12:30 PM", unread: true, unreadCount: 2 },
-//     { id: 2, name: "Jane Smith", lastMessage: "Let's meet tomorrow.", time: "11:15 AM", unread: false, unreadCount: 0 },
-//   ];
-
-//   const forums = [
-//     { id: 1, name: "AI/ML Enthusiasts", members: 1200, category: "Tech", lastActivity: "1h ago", tag: "AI", badge: "Hot" },
-//     { id: 2, name: "Entrepreneurs Hub", members: 850, category: "Business", lastActivity: "3h ago", tag: "Startup", badge: "Trending" },
-//   ];
-
-//   return (
-//     <div className="messages-container">
-//       <LeftSidebar />
-
-//       <main className="messages-main">
-//         {/* Chats Section */}
-//         <section className="messages-section">
-//           <h2>Chats</h2>
-//           <SearchBar value={chatQuery} onChange={setChatQuery} placeholder="Search chats..." />
-//           <ChatList items={chats} query={chatQuery} />
-//         </section>
-
-//         {/* Forums Section */}
-//         <section className="messages-section">
-//           <h2>Communities</h2>
-//           <SearchBar value={forumQuery} onChange={setForumQuery} placeholder="Search communities..." />
-//           <ForumList items={forums} query={forumQuery} />
-//         </section>
-//       </main>
-//     </div>
-//   );
-// }
 
 import React, { useState } from "react";
-import LeftSidebar from "../components/LeftSidebar/LeftSidebar";
-import SearchBar from "../components/SearchBar/SearchBar";
-import ChatList from "../components/ChatList/ChatList";
-import ForumList from "../components/ForumList/ForumList";
-import ChatWindow from "../components/ChatWindow/ChatWindow";
-import ForumWindow from "../components/ForumWindow/ForumWindow";
+import SearchBar from "../components/SearchBar";
+import ChatList from "../components/ChatList";
+import ForumList from "../components/ForumList";
+import ChatWindow from "../components/ChatWindow";
+import ForumWindow from "../components/ForumWindow";
 import "./Messages.css";
 
 export default function Messages() {
@@ -63,19 +18,27 @@ export default function Messages() {
   const chats = [
     { id: 1, name: "Alice", lastMessage: "See you tomorrow!", time: "10:00 AM", unread: true, unreadCount: 2 },
     { id: 2, name: "Bob", lastMessage: "Thanks for the update", time: "09:15 AM", unread: false, unreadCount: 0 },
-    { id: 3, name: "Charlie", lastMessage: "How’s the project?", time: "Yesterday", unread: false, unreadCount: 0 }
+    { id: 3, name: "Charlie", lastMessage: "How's the project?", time: "Yesterday", unread: false, unreadCount: 0 },
+    { id: 4, name: "Alice", lastMessage: "See you tomorrow!", time: "10:00 AM", unread: true, unreadCount: 2 },
+    { id: 5, name: "Bob", lastMessage: "Thanks for the update", time: "09:15 AM", unread: false, unreadCount: 0 },
+    { id: 6, name: "Charlie", lastMessage: "How's the project?", time: "Yesterday", unread: false, unreadCount: 0 },
+    { id: 7, name: "Alice", lastMessage: "See you tomorrow!", time: "10:00 AM", unread: true, unreadCount: 2 },
+    { id: 8, name: "Bob", lastMessage: "Thanks for the update", time: "09:15 AM", unread: false, unreadCount: 0 },
+    { id: 9, name: "Charlie", lastMessage: "How's the project?", time: "Yesterday", unread: false, unreadCount: 0 }
   ];
 
   const forums = [
     { id: 1, name: "AI Enthusiasts", members: 120, category: "Technology", lastActivity: "2m ago", tag: "AI/ML", badge: "Hot" },
     { id: 2, name: "Startup Founders", members: 85, category: "Business", lastActivity: "1h ago", tag: "Entrepreneurship" },
-    { id: 3, name: "Data Science Hub", members: 200, category: "Analytics", lastActivity: "Yesterday", tag: "Data" }
+    { id: 3, name: "Data Science Hub", members: 200, category: "Analytics", lastActivity: "Yesterday", tag: "Data" },
+    { id: 4, name: "AI Enthusiasts", members: 120, category: "Technology", lastActivity: "2m ago", tag: "AI/ML", badge: "Hot" },
+    { id: 5, name: "Startup Founders", members: 85, category: "Business", lastActivity: "1h ago", tag: "Entrepreneurship" },
+    { id: 6, name: "Data Science Hub", members: 200, category: "Analytics", lastActivity: "Yesterday", tag: "Data" }
   ];
 
   return (
     <div className="messages-container">
-      {/* Sidebar */}
-      <LeftSidebar />
+      
 
       {/* Main content */}
       <div className="messages-main">
@@ -84,15 +47,17 @@ export default function Messages() {
         <div className="panel">
           <div className="panel-header">
             {activeChat ? (
-              <h3>Chat</h3>
+              <h3 style={{ color: "teal", margin: "20px" }}>Chats</h3>
             ) : (
               <>
-                <h3>Chats</h3>
-                <SearchBar
+                <h3 style={{ color: "teal", margin: "20px" }}>Chats</h3>
+                <center>
+                  <SearchBar
                   value={chatQuery}
                   onChange={setChatQuery}
                   placeholder="Search chats..."
                 />
+                </center>
               </>
             )}
           </div>
@@ -110,15 +75,17 @@ export default function Messages() {
         <div className="panel">
           <div className="panel-header">
             {activeForum ? (
-              <h3>Community</h3>
+              <h3 style={{ color: "teal", margin: "20px" }}>Community</h3>
             ) : (
               <>
-                <h3>Communities</h3>
-                <SearchBar
+                <h3 style={{ color: "teal", margin: "20px" }}>Community</h3>
+                <center>
+                  <SearchBar
                   value={forumQuery}
                   onChange={setForumQuery}
                   placeholder="Search communities..."
                 />
+                </center>
               </>
             )}
           </div>

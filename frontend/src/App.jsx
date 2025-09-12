@@ -1,30 +1,46 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Events from "./pages/Events";
-import AlumniDirectory from "./pages/AlumniDirectory";
-import Mentorship from "./pages/Mentorship";
-import Messages from "./pages/Messages";
-import Donations from "./pages/Donations";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import "./index.css";
+import React, { useState } from "react";
+import {BrowserRouter , Routes , Route} from 'react-router-dom'
+import "./App.css";
+import Navbar from "./components/Navbar.jsx";
+import Home from "./pages/Home.jsx";
+import Events from "./pages/Events.jsx"; 
+import Messages from "./pages/Messages.jsx"; 
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
+function App() {
+  const [selectedPage, setSelectedPage] = useState("home");
 
-export default function App() {
+  const handleSelectPage = (pageName) => {
+    setSelectedPage(pageName);
+  };
+
+  const renderContent = () => {
+    switch (selectedPage) {
+      case "home":
+        return <Home />;
+      case "events":
+        return <Events />;
+      case "messages":
+        return <Messages />;
+      default:
+        return <div>404: Page not found.</div>;
+    }
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/alumni" element={<AlumniDirectory />} />
-        <Route path="/mentorship" element={<Mentorship />} />
-        <Route path="/donations" element={<Donations />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/messages" element={<Messages />} />
-      </Routes>
-    </Router>
+    <div>
+    <div className="flex">
+      <Navbar onSelectPage={handleSelectPage} selectedPage={selectedPage} />
+      <main className="content-area">{renderContent()}</main>
+      <BrowserRouter>
+        <Routes>
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<Signup/>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+    </div>
   );
 }
+
+export default App;

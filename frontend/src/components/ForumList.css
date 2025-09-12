@@ -1,0 +1,134 @@
+.forum-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* NEW: make list scrollable */
+  max-height: 70vh;       /* adjust as per design */
+  overflow-y: auto;
+  padding-right: 6px;      /* prevent scrollbar overlap */
+  scrollbar-width: thin;   /* Firefox */
+}
+
+.forum-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.forum-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.forum-list::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Each forum item */
+.forum-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: fadeInUp 0.35s ease;
+  border-left: 4px solid #4f46e5;
+}
+
+.forum-item:hover {
+  background: #f9fafb;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #4f46e5;
+}
+
+/* Highlight for pinned/important forums */
+.forum-item.pinned {
+  border-left: 4px solid #4f46e5;
+  background: #f4f6ff;
+}
+
+/* Forum title row */
+.forum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forum-title {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+}
+
+.forum-time {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Forum description */
+.forum-desc {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tags */
+.forum-tags {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.forum-tag {
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.forum-tag.highlight {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* Empty state */
+.forum-empty {
+  padding: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Animation (same as ChatList for consistency) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔥 Sticky header (applies globally, but affects your Forum header) */
+.panel-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 5;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}

@@ -1,314 +1,59 @@
-// import React, { useState } from "react";
-// import "./Home.css";
+import React from 'react';
+import PostCard from '../components/PostCard.jsx';
+import '../App.css';
 
+const posts = [
+  {
+    id: 1,
+    userName: 'Jane Doe',
+    userRole: 'Frontend Developer • 3h ago',
+    avatar: 'https://i.pravatar.cc/40?img=1',
+    content: 'Excited to share my new project on CSS animations! Check it out and let me know what you think.',
+    image: 'https://tse4.mm.bing.net/th/id/OIP.x0EvzB8FPfsYABXZBOesNAHaE7?pid=Api&P=0&h=180'
+  },
+  {
+    id: 2,
+    userName: 'John Smith',
+    userRole: 'UI/UX Designer • 1d ago',
+    avatar: 'https://i.pravatar.cc/40?img=2',
+    content: 'A deep dive into the psychology of color in user interface design. Read more on my blog!',
+    image: 'https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+  },
+  {
+    id: 3,
+    userName: 'Samantha Lee',
+    userRole: 'Data Scientist • 5h ago',
+    avatar: 'https://i.pravatar.cc/40?img=3',
+    content: 'Exploring the new features of Python\'s pandas library. Data cleaning just got a lot easier!',
+    image: 'https://tse2.mm.bing.net/th/id/OIP.AzEgci9oxeTXlcgU5ia3DAHaE7?pid=Api&P=0&h=180'
+  },
+  {
+    id: 4,
+    userName: 'Michael Chen',
+    userRole: 'Cloud Engineer • 2d ago',
+    avatar: 'https://i.pravatar.cc/40?img=4',
+    content: 'My thoughts on serverless architecture and its impact on cost efficiency for startups.',
+    image: 'https://www.collegenp.com/uploads/2023/01/Group-Study.jpg'
+  }
+];
 
-// export default function Home() {
-//   const [filters, setFilters] = useState([]);
-//   const [openFilter, setOpenFilter] = useState(null);
-
-//   const [posts, setPosts] = useState([
-//     {
-//       id: 1,
-//       author: "John Doe",
-//       role: "Software Engineer @ Google",
-//       content: "Excited to announce the AI/ML mentorship program is live!",
-//       domain: "AI/ML",
-//       likes: 12,
-//     },
-//     {
-//       id: 2,
-//       author: "Priya Sharma",
-//       role: "Product Manager @ Microsoft",
-//       content: "Business leadership summit happening next week! 🚀",
-//       domain: "Business",
-//       likes: 8,
-//     },
-//     {
-//       id: 3,
-//       author: "Amit Patel",
-//       role: "Data Scientist @ Amazon",
-//       content: "Sharing my journey into Data Science for young alumni.",
-//       domain: "AI/ML",
-//       likes: 20,
-//     },
-//   ]);
-
-//   const toggleFilter = (filter) => {
-//     setFilters((prev) =>
-//       prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
-//     );
-//   };
-
-//   const filteredPosts =
-//     filters.length === 0
-//       ? posts
-//       : posts.filter((p) => filters.includes(p.domain));
-
-//   const handleLike = (id) => {
-//     setPosts((prev) =>
-//       prev.map((p) => (p.id === id ? { ...p, likes: p.likes + 1 } : p))
-//     );
-//   };
-
-//   const toggleDropdown = (section) => {
-//     setOpenFilter(openFilter === section ? null : section);
-//   };
-
-//   return (
-//     <>
-//       <div className="home-container">
-//         {/* Left Sidebar */}
-//         <aside className="left-sidebar">
-//           <h2 className="portal-title">Alumni Portal</h2>
-
-//           <div className="profile-card">
-//             <div className="profile-pic-placeholder"></div>
-//             <h3>Jane Doe</h3>
-//             <p className="info">B.Tech 2022 | Software Engineer</p>
-//           </div>
-
-//           <nav className="nav-buttons">
-//             <button>🏠 Home</button>
-//             <button>📅 Events</button>
-//             <button>💬 Messages</button>
-//             <button>👤 Profile</button>
-//             <button>📊 Dashboard</button>
-//           </nav>
-
-//           <div className="logout-section">
-//             <button className="btn-logout">🚪 Logout</button>
-//           </div>
-//         </aside>
-
-//         {/* Middle Feed */}
-//         <main className="feed">
-//           {filteredPosts.map((post) => (
-//             <div key={post.id} className="post-card">
-//               <div className="post-header">
-//                 <div className="post-avatar"></div>
-//                 <div>
-//                   <h4>{post.author}</h4>
-//                   <p className="role">{post.role}</p>
-//                 </div>
-//               </div>
-//               <p className="post-content">{post.content}</p>
-//               <div className="post-actions">
-//                 <button onClick={() => handleLike(post.id)}>👍 Like</button>
-//                 <span>{post.likes} Likes</span>
-//               </div>
-//             </div>
-//           ))}
-//         </main>
-
-//         {/* Right Sidebar */}
-//         <aside className="right-sidebar">
-//           <h3>Trending Topics</h3>
-//           <ul>
-//             <li>#AI Revolution</li>
-//             <li>#StartupFunding</li>
-//             <li>#MentorshipMatters</li>
-//           </ul>
-
-          
-          
-
-//           {/* Dropdown Filters */}
-//           <div className="filters">
-//             <h4>Filters</h4>
-
-//             <div className="filter-dropdown">
-//               <button onClick={() => toggleDropdown("domain")}>
-//                 Domains ⬇
-//               </button>
-//               {openFilter === "domain" && (
-//                 <div className="filter-options">
-//                   {["AI/ML", "Business", "Data Science", "Entrepreneurship"].map(
-//                     (f) => (
-//                       <label key={f}>
-//                         <input
-//                           type="checkbox"
-//                           checked={filters.includes(f)}
-//                           onChange={() => toggleFilter(f)}
-//                         />
-//                         {f}
-//                       </label>
-//                     )
-//                   )}
-//                 </div>
-//               )}
-//             </div>
-
-//             <div className="filter-dropdown">
-//               <button onClick={() => toggleDropdown("engagement")}>
-//                 Engagement ⬇
-//               </button>
-//               {openFilter === "engagement" && (
-//                 <div className="filter-options">
-//                   {["Trending", "Most Liked", "Recent"].map((f) => (
-//                     <label key={f}>
-//                       <input
-//                         type="checkbox"
-//                         checked={filters.includes(f)}
-//                         onChange={() => toggleFilter(f)}
-//                       />
-//                       {f}
-//                     </label>
-//                   ))}
-//                 </div>
-//               )}
-//             </div>
-//           </div>
-//         </aside>
-//       </div>
-
-     
-//     </>
-//   );
-// }
-
-import React, { useState } from "react";
-import LeftSidebar from "../components/LeftSidebar/LeftSidebar"; // ✅ reuse sidebar
-import "./Home.css";
-
-export default function Home() {
-  const [filters, setFilters] = useState([]);
-  const [openFilter, setOpenFilter] = useState(null);
-
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      author: "John Doe",
-      role: "Software Engineer @ Google",
-      content: "Excited to announce the AI/ML mentorship program is live!",
-      domain: "AI/ML",
-      likes: 12,
-    },
-    {
-      id: 2,
-      author: "Priya Sharma",
-      role: "Product Manager @ Microsoft",
-      content: "Business leadership summit happening next week! 🚀",
-      domain: "Business",
-      likes: 8,
-    },
-    {
-      id: 3,
-      author: "Amit Patel",
-      role: "Data Scientist @ Amazon",
-      content: "Sharing my journey into Data Science for young alumni.",
-      domain: "AI/ML",
-      likes: 20,
-    },
-  ]);
-
-  // ✅ Toggle domain/engagement filters
-  const toggleFilter = (filter) => {
-    setFilters((prev) =>
-      prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
-    );
-  };
-
-  // ✅ Apply filters
-  const filteredPosts =
-    filters.length === 0
-      ? posts
-      : posts.filter((p) => filters.includes(p.domain) || filters.includes("Most Liked"));
-
-  // ✅ Handle Like button
-  const handleLike = (id) => {
-    setPosts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, likes: p.likes + 1 } : p))
-    );
-  };
-
-  // ✅ Handle dropdown sections
-  const toggleDropdown = (section) => {
-    setOpenFilter(openFilter === section ? null : section);
-  };
-
+function Home() {
   return (
-    <div className="home-container">
-      {/* ✅ Left Sidebar (fixed + reused) */}
-      <LeftSidebar />
-
-      {/* ✅ Middle Feed */}
-      <main className="feed">
-        {filteredPosts.map((post) => (
-          <div key={post.id} className="post-card">
-            <div className="post-header">
-              <div className="post-avatar"></div>
-              <div>
-                <h4>{post.author}</h4>
-                <p className="role">{post.role}</p>
-              </div>
-            </div>
-            <p className="post-content">{post.content}</p>
-            <div className="post-actions">
-              <button onClick={() => handleLike(post.id)}>👍 Like</button>
-              <span>{post.likes} Likes</span>
-            </div>
-          </div>
+    <div className="home-content">
+      <div className="posts-container">
+        {posts.map(post => (
+          <PostCard
+            key={post.id}
+            userName={post.userName}
+            userRole={post.userRole}
+            avatar={post.avatar}
+            content={post.content}
+            image={post.image}
+          />
         ))}
-      </main>
-
-      {/* ✅ Right Sidebar (trending + filters) */}
-      <aside className="right-sidebar">
-        <h3>Trending Topics</h3>
-        <ul>
-          <li>#AI Revolution</li>
-          <li>#StartupFunding</li>
-          <li>#MentorshipMatters</li>
-        </ul>
-
-        {/* Dropdown Filters */}
-        <div className="filters">
-          <h4>Filters</h4>
-
-          {/* Domain filter */}
-          <div className="filter-dropdown">
-            <button onClick={() => toggleDropdown("domain")}>
-              Domains ⬇
-            </button>
-            {openFilter === "domain" && (
-              <div className="filter-options">
-                {["AI/ML", "Business", "Data Science", "Entrepreneurship"].map(
-                  (f) => (
-                    <label key={f}>
-                      <input
-                        type="checkbox"
-                        checked={filters.includes(f)}
-                        onChange={() => toggleFilter(f)}
-                      />
-                      {f}
-                    </label>
-                  )
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Engagement filter */}
-          <div className="filter-dropdown">
-            <button onClick={() => toggleDropdown("engagement")}>
-              Engagement ⬇
-            </button>
-            {openFilter === "engagement" && (
-              <div className="filter-options">
-                {["Trending", "Most Liked", "Recent"].map((f) => (
-                  <label key={f}>
-                    <input
-                      type="checkbox"
-                      checked={filters.includes(f)}
-                      onChange={() => toggleFilter(f)}
-                    />
-                    {f}
-                  </label>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </aside>
+      </div>
     </div>
   );
 }
+
+export default Home;

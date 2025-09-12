@@ -8,34 +8,38 @@
 /* Main area with fixed left sidebar */
 /* Main area accounts for fixed left sidebar */
 .messages-main {
-  margin-left: 270px;
-  padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  animation: fadeIn .25s ease;
+  grid-template-columns: 1fr 1fr;  /* two equal columns */
+  gap: 50px;
+
+  max-width: 100%;   /* keep content at a nice readable width */
+  margin: 0 auto;      /* centers horizontally */
+  padding: 5px 20px;  /* spacing around content */
+  animation: fadeIn 0.25s ease;
+  max-width: 1200px; 
+  margin-left: 100px;
+  height:95vh;
 }
 
 
 /* Panel */
 .panel {
-  background: #f8fafc;
+  background: #ffffff;
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  flex: 1; /* take full width */
-  max-width: 1200px; /* keep it centered and not overly wide */
-  min-height: calc(100vh - 40px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+  border-radius: 16px;      /* set a decent height */
+  box-shadow: 0 4px 12px rgba(201, 201, 201, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  width: 350px;
+  height:100vh;
 }
 
 /* Split area for Chats + Forums */
 .lists-split {
   display: grid;
   grid-template-columns: 1fr 1fr; /* equal size */
-  gap: 20px;
+  gap: 10px;
   height: 100%;
 }
 
@@ -83,5 +87,8 @@
   }
 }
 @media (max-width: 900px) {
-  .messages-main { margin-left: 0; flex-direction: column; }
+  .messages-main {
+    grid-template-columns: 1fr;  /* stack vertically */
+    max-width: 600px;            /* narrow for mobile */
+  }
 }
