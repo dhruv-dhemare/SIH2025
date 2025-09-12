@@ -4,61 +4,109 @@ const Teacher = require("../schema/teacher");
 const Post = require("../schema/post");
 const { jwtAuthMiddleware, generateToken } = require("../jwt");
 const router = express.Router();
+const multer = require("multer");
+const nodemailer = require("nodemailer");
 
-// 1🔹 Signup
-router.post("/signup", async (req, res) => {
+const upload = multer({ dest: "uploads/" });
+
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// -------------------- Signup --------------------
+router.post("/signup", upload.single("resume"), async (req, res) => {
   try {
-    const { name, email, password, phn } = req.body;
+    const { name, email, password, phone, headline, about, experience = [], education = [], certification = [], skills = [], urls = [] } = req.body;
 
-    const existing = await Teacher.findOne({ email });
-    if (existing) return res.status(400).json({ message: "Email already exists" });
-
-    const lastTeacher = await Teacher.findOne().sort({ createdAt: -1 });
-    let nextNumber = 1;
-
-    if (lastTeacher && lastTeacher.username) {
-      const lastNum = parseInt(lastTeacher.username.replace("FAC", "")); // keep prefix consistent if needed
-      if (!isNaN(lastNum)) nextNumber = lastNum + 1;
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Name, email, and password are required" });
     }
 
-    const newUsername = "ALU" + String(nextNumber).padStart(3, "0");
+    const existing = await Teacher.findOne({ email });
+    if (existing) return res.status(409).json({ message: "Email already exists" });
 
-    // create Teacher instance (avoid shadowing model)
+    // Auto-generate username FAC001, FAC002...
+    const lastTeacher = await Teacher.findOne().sort({ createdAt: -1 });
+    let nextNumber = 1;
+    if (lastTeacher && lastTeacher.username) {
+      const lastNum = parseInt(lastTeacher.username.replace("FAC", ""));
+      if (!isNaN(lastNum)) nextNumber = lastNum + 1;
+    }
+    const newUsername = `FAC${String(nextNumber).padStart(3, "0")}`;
+
+    // Create Teacher instance (pre-save hook hashes password)
     const newTeacher = new Teacher({
       name,
       username: newUsername,
       email,
       password,
-      phn
+      phn: phone,
+      headline,
+      about,
+      experience,
+      education,
+      certification,
+      skills,
+      urls,
+      resume: req.file ? req.file.path : undefined,
     });
 
-    await newTeacher.save();
+    const savedTeacher = await newTeacher.save();
 
-    const token = generateToken({ id: newTeacher._id, email: newTeacher.email });
+    const token = generateToken({ id: savedTeacher._id, email: savedTeacher.email, role: "teacher" });
+
+    // Send email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: savedTeacher.email,
+      subject: "Welcome to Alumni Portal - Faculty Account Details",
+      text: `Hello ${savedTeacher.name},
+
+Your faculty account has been created successfully.
+
+Your login details:
+Username: ${savedTeacher.username}
+Email: ${savedTeacher.email}
+
+Keep this information safe.
+
+Thank you,
+Team Alumni Portal`,
+    });
 
     res.status(201).json({
-      message: "Signup successful",
-      Teacher: newTeacher,
-      token
+      message: "Faculty signup successful, email sent",
+      teacher: savedTeacher,
+      token,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// 2🔹 Login
+// -------------------- Login --------------------
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+
+    if (!username || !password) return res.status(400).json({ message: "Username and password required" });
+
     const teacher = await Teacher.findOne({ username });
     if (!teacher) return res.status(404).json({ message: "User not found" });
 
     const isMatch = await teacher.comparePassword(password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+    if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
-    const token = generateToken({ id: teacher._id, email: teacher.email });
-    res.json({ message: "Login successful", token, Teacher: teacher });
+    const token = generateToken({ id: teacher._id, email: teacher.email, role: "teacher" });
+    res.json({ message: "Login successful", token, teacher });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });

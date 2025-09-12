@@ -1,65 +1,116 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const Recruiter = require("../schema/recruiter");
-const Post = require("../schema/post");
-const { jwtAuthMiddleware, generateToken } = require("../jwt");
+const { jwtAuthMiddleware,generateToken } = require("../jwt");
+const nodemailer = require("nodemailer");
 
 const router = express.Router();
 
-// 1.✅ Signup
-// 🔹 Recruiter Signup with Auto-generated Username
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// POST /api/recruiter/signup
 router.post("/signup", async (req, res) => {
   try {
-    const { name, phn, email, password, headline, about, urls = [], posts = [], locations = [] } = req.body;
+    const { name, email, password, phn, headline, about, urls = [], posts = [], locations = [] } = req.body;
 
-    // Check if email already exists
+    // ✅ Validate required fields
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Name, email, and password are required." });
+    }
+
+    // ✅ Check if email already exists
     const existing = await Recruiter.findOne({ email });
-    if (existing) return res.status(400).json({ message: "Email already exists" });
+    if (existing) return res.status(409).json({ error: "Email already exists." });
 
-    // 🔹 Auto-generate username (REC001, REC002, ...)
+    // ✅ Auto-generate username: REC001, REC002, ...
     const count = await Recruiter.countDocuments();
-    const newUsername = `REC${String(count + 1).padStart(3, "0")}`;
+    const username = `REC${String(count + 1).padStart(3, "0")}`;
 
+    // ✅ Create recruiter instance WITHOUT manual hashing
     const recruiter = new Recruiter({
       name,
-      username: newUsername, // auto-generated
-      phn,
+      username,
       email,
-      password, // will be hashed automatically by pre-save hook
+      password, // schema will hash automatically
+      phn,
       headline,
       about,
       urls,
       posts,
-      locations
+      locations,
     });
 
-    await recruiter.save();
+    const savedRecruiter = await recruiter.save();
 
-    // Generate JWT token
-    const token = generateToken({ id: recruiter._id, email: recruiter.email });
+    // ✅ Generate JWT
+    const token = generateToken({ id: savedRecruiter._id, role: "recruiter" });
 
-    res.status(201).json({ message: "Recruiter signup successful", recruiter, token });
+    // ✅ Send email
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: savedRecruiter.email,
+        subject: "Welcome! Your Recruiter Account Details",
+        text: `Hello ${savedRecruiter.name},
+
+Your recruiter account has been created successfully.
+Your login username is: ${savedRecruiter.username}
+Your email: ${savedRecruiter.email}
+
+Keep this information safe.
+
+Thank you,
+Team Alumni Portal`,
+      });
+    } catch (emailErr) {
+      console.error("Failed to send email:", emailErr);
+    }
+
+    res.status(201).json({
+      message: "Recruiter signup successful",
+      recruiter: savedRecruiter,
+      token,
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Signup failed." });
   }
 });
 
 
 // 2✅ Login
-router.post("/login", async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const recruiter = await Recruiter.findOne({ username });
-    if (!recruiter) return res.status(404).json({ message: "Recruiter not found" });
 
-    const isMatch = await recruiter.comparePassword(password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password required" });
+    }
 
-    const token = generateToken({ id: recruiter._id, email: recruiter.email });
-    res.json({ message: "Login successful", token, recruiter });
+    const user = await Recruiter.findOne({ username });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const isMatch = await user.comparePassword(password);
+    console.log("Password match?", isMatch);
+
+    if (!isMatch) return res.status(401).json({ error: "Invalid username or password" });
+
+    const token = generateToken({ id: user._id, role: "recruiter" }); // correct role
+
+    res.json({ message: "Login successful", token, user });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Login failed" });
   }
 });
+
 
 // 3✅ Change Password
 router.put("/change-password", jwtAuthMiddleware, async (req, res) => {

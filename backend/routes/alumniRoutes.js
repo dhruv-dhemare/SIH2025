@@ -1,76 +1,149 @@
 const express = require("express");
+const multer = require("multer");
 const bcrypt = require("bcrypt");
 const Alumni = require("../schema/alumni");
-const Post = require("../schema/post");
-const { jwtAuthMiddleware, generateToken } = require("../jwt");
+const { jwtAuthMiddleware,generateToken } = require("../jwt");
+const nodemailer = require("nodemailer");
 const router = express.Router();
+const path = require("path");
+const fs = require("fs");
 
-// 1🔹 Signup
-// 🔹 Signup with Auto-generated Username
-router.post("/signup", async (req, res) => {
+// -------------------- Multer setup --------------------
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadDir = "uploads/resumes";
+    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname);
+    cb(null, `${Date.now()}${ext}`);
+  },
+});
+const upload = multer({ storage });
+
+// -------------------- Nodemailer setup --------------------
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// -------------------- Signup --------------------
+router.post("/signup", upload.single("resume"), async (req, res) => {
   try {
-    const { name, email, password, phn } = req.body;
-
-    // check if email already exists
-    const existing = await Alumni.findOne({ email });
-    if (existing) {
-      return res.status(400).json({ message: "Email already exists" });
-    }
-
-    // find the last created alumni to generate next username
-    const lastAlumni = await Alumni.findOne().sort({ createdAt: -1 });
-    let nextNumber = 1;
-
-    if (lastAlumni && lastAlumni.username) {
-      const lastNum = parseInt(lastAlumni.username.replace("ALU", ""));
-      if (!isNaN(lastNum)) {
-        nextNumber = lastNum + 1;
-      }
-    }
-
-    const newUsername = "ALU" + String(nextNumber).padStart(3, "0");
-
-    // create alumni with generated username
-    const alumni = new Alumni({
+    const {
       name,
-      username: newUsername,
       email,
       password,
-      phn
+      phn,
+      headline,
+      about,
+      experience = [],
+      education = [],
+      certification = [],
+      skills = [],
+      urls = [],
+    } = req.body;
+    const resumeFile = req.file ? req.file.path : null;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Name, email, and password are required." });
+    }
+
+    const existing = await Alumni.findOne({ email });
+    if (existing) return res.status(409).json({ error: "Email already exists." });
+
+    // Auto-generate username ALU001, ALU002...
+    const lastAlumni = await Alumni.findOne().sort({ createdAt: -1 });
+    let nextNumber = 1;
+    if (lastAlumni && lastAlumni.username) {
+      const lastNum = parseInt(lastAlumni.username.replace("ALU", ""));
+      if (!isNaN(lastNum)) nextNumber = lastNum + 1;
+    }
+    const username = "ALU" + String(nextNumber).padStart(3, "0");
+
+    // Create alumni (password will be hashed automatically)
+    const alumni = new Alumni({
+      name,
+      username,
+      email,
+      password,
+      phn,
+      headline,
+      about,
+      experience,
+      education,
+      certification,
+      skills,
+      urls,
+      resume: resumeFile,
     });
 
-    await alumni.save();
+    const savedAlumni = await alumni.save();
 
-    // generate JWT
-    const token = generateToken({ id: alumni._id, email: alumni.email });
+    // JWT token
+    const token = generateToken({ id: savedAlumni._id, role: "alumni" });
+
+    // Send welcome email
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: savedAlumni.email,
+        subject: "Welcome to Alumni Portal!",
+        text: `Hello ${savedAlumni.name},
+
+Your alumni account has been created successfully.
+
+Login details:
+Username: ${savedAlumni.username}
+Email: ${savedAlumni.email}
+
+Keep this information safe.
+
+Thank you,
+Team Alumni Portal`,
+      });
+    } catch (emailErr) {
+      console.error("Failed to send email:", emailErr);
+    }
 
     res.status(201).json({
-      message: "Signup successful",
-      alumni,
-      token
+      message: "Signup successful, email sent",
+      alumni: savedAlumni,
+      token,
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Signup failed." });
   }
 });
 
-
-// 2🔹 Login
+// -------------------- Login --------------------
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    const alumni = await Alumni.findOne({ username });
-    if (!alumni) return res.status(404).json({ message: "User not found" });
 
-    const isMatch = await alumni.comparePassword(password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+    if (!username || !password) return res.status(400).json({ error: "Username and password required" });
 
-    const token = generateToken({ id: alumni._id, email: alumni.email });
-    res.json({ message: "Login successful", token, alumni });
+    const user = await Alumni.findOne({ username });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) return res.status(401).json({ error: "Invalid username or password" });
+
+    const token = generateToken({ id: user._id, role: "alumni" });
+
+    res.json({ message: "Login successful", token, user });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Login failed" });
   }
 });
+
+
 
 // 3🔹 Change Password
 router.put("/change-password", jwtAuthMiddleware, async (req, res) => {

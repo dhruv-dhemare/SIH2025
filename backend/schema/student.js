@@ -4,21 +4,20 @@ const bcrypt = require("bcrypt");
 const studentSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    username: { type: String, unique: true }, // remove required
-    phn: { type: String },
-    email: { type: String, unique: true, required: true }, // email should be required
+    username: { type: String, unique: true }, // auto-generated, not required
+    phone: { type: String },                  // clearer name
+    email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    headline: { type: String },
-    about: { type: String },
+    headline: String,
+    about: String,
     experience: { type: [String], default: [] },
     education: { type: [String], default: [] },
     certification: { type: [String], default: [] },
     skills: { type: [String], default: [] },
     urls: { type: [String], default: [] },
-    resume: { type: String },
+    resume: String,
     locations: { type: [String], default: [] },
 
-    // Likes
     likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     likedEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
   },
@@ -29,7 +28,7 @@ const studentSchema = new mongoose.Schema(
 studentSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10); // or 12
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (err) {

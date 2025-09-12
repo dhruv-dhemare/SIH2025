@@ -6,25 +6,62 @@ const EventPost = require('../schema/eventPost');  // EventPost collection
 const { jwtAuthMiddleware, generateToken } = require('../jwt');
 
 // ------------------ 1. ADMIN SIGNUP (auto username ADMxxx) ------------------
-router.post('/signup', async (req, res) => {
+const nodemailer = require("nodemailer");
+
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // your Gmail
+    pass: process.env.EMAIL_PASS, // 16-character App Password
+  },
+});
+
+router.post("/signup", async (req, res) => {
   try {
     const data = req.body;
 
     // Auto-generate username ADMxxx
     const count = await Admin.countDocuments();
-    const username = `ADM${String(count + 1).padStart(3, '0')}`;
+    const username = `ADM${String(count + 1).padStart(3, "0")}`;
     data.username = username;
 
     const admin = new Admin(data);
-    const response = await admin.save();
+    await admin.save();
 
-    const token = generateToken({ id: response._id, role: 'admin' });
-    res.status(201).json({ admin: response, token });
+    // Generate JWT token
+    const token = generateToken({ id: admin._id, role: "admin" });
+
+    // ✅ Send email with username and email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: admin.email,
+      subject: "Welcome Admin - Your Account Details",
+      text: `Hello ${admin.name},
+
+Your admin account has been created successfully.
+
+Your login details are:
+Username: ${admin.username}
+Email: ${admin.email}
+
+Keep this information safe.
+
+Thank you,
+Team Alumni Portal`
+    });
+
+    res.status(201).json({
+      message: "Admin signup successful, email sent",
+      admin,
+      token
+    });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ err: 'Server Error' });
+    console.error(err);
+    res.status(500).json({ err: "Server Error" });
   }
 });
+
 
 // ------------------ 2. LOGIN ------------------
 router.post('/login', async (req, res) => {

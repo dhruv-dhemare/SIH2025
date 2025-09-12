@@ -1,6 +1,7 @@
 // server.js
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const fs = require("fs");
 const db =require('./db');
 
@@ -8,8 +9,6 @@ const db =require('./db');
 const app = express();
 app.use(cors()); // allow frontend requests
 app.use(express.json());
-
-app.use(express.json()); // <-- parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // optional, for form data
 
 

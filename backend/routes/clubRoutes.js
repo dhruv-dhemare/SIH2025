@@ -7,6 +7,17 @@ const router = express.Router();
 
 // 1🔹 Signup (with auto-generated Club IDs)
 // 🔹 Club Signup Route
+const nodemailer = require("nodemailer");
+
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // your Gmail address
+    pass: process.env.EMAIL_PASS, // 16-character App Password
+  },
+});
+
 router.post("/signup", async (req, res) => {
   try {
     const {
@@ -33,7 +44,7 @@ router.post("/signup", async (req, res) => {
 
     const club = new Club({
       name,
-      username: newUsername, // auto-generated
+      username: newUsername,
       phn,
       email,
       password,
@@ -49,16 +60,35 @@ router.post("/signup", async (req, res) => {
     // Generate JWT
     const token = generateToken({ id: club._id, email: club.email });
 
+    // ✅ Send email with username and login info
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: club.email,
+      subject: "Welcome to Alumni Portal - Club Account Details",
+      text: `Hello ${club.name},
+
+Your club account has been created successfully.
+
+Your login details are:
+Username: ${club.username}
+Email: ${club.email}
+
+Keep this information safe.
+
+Thank you,
+Team Alumni Portal`
+    });
+
     res.status(201).json({
-      message: "Club signup successful",
+      message: "Club signup successful, email sent",
       club,
       token
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
-
 
 
 
