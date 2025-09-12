@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { login } from "../services/api";
-import "./Auth.css";
+import "./Login.css";
 
 function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ username: "", password: "" });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,14 +21,14 @@ function Login() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <h2 className="auth-title">Login</h2>
-        <form onSubmit={handleSubmit} className="auth-form">
+    <div className="log-container">
+      <div className="log-box">
+        <h2 className="log-title">Login</h2>
+        <form onSubmit={handleSubmit} className="log-form">
           <input
-            type="email"
-            name="email"
-            placeholder="Email"
+            type="username"
+            name="username"
+            placeholder="Username"
             onChange={handleChange}
             required
           />
@@ -39,9 +39,9 @@ function Login() {
             onChange={handleChange}
             required
           />
-          <button type="submit" className="auth-btn">Login</button>
+          <button type="submit" className="log-btn">Login</button>
         </form>
-        <p className="auth-footer">
+        <p className="log-footer">
           Don’t have an account?{" "}
           <a href="/signup">Sign up</a>
         </p>

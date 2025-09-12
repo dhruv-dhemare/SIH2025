@@ -12,13 +12,18 @@ import Analytics from "./pages/Analytics.jsx";
 import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+
+  // Paths where Navbar should be hidden
+  const hideNavbarPaths = ["/login", "/signup"];
+  const hideNavbar = hideNavbarPaths.includes(location.pathname.toLowerCase());
+
   return (
-    <div>
     <div className="flex">
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <main className="content-area">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -30,14 +35,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Signup" element={<Signuo />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
     </div>
-    </div>
   );
 }
 
-
-export default App; 
+export default App;

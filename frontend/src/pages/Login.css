@@ -1,0 +1,139 @@
+/* log.css – inputs, select and textarea all white */
+
+/* Base font + background */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #dceeff 0%, #f8faff 100%);
+}
+
+.log-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.log-box {
+  top: 20px;
+  right: 20px;
+  width: 360px;
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .log-box {
+    width: 80%;
+    top: 15px;
+    right: 10%;
+    padding: 20px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .log-box {
+    width: 90%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: 10px;
+    padding: 18px;
+    border-radius: 10px;
+  }
+}
+
+/* Title */
+.log-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Form */
+.log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Input, select and textarea fields */
+.log-form input,
+.log-form select,
+.log-form textarea {
+  background: #ffffff;       /* pure white background */
+  color: #1e293b;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  resize: vertical;          /* allow vertical resize for textarea */
+}
+
+/* Focus states */
+.log-form input:focus,
+.log-form select:focus,
+.log-form textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* Button */
+.log-btn {
+  margin-top: 6px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, transform .05s;
+}
+
+.log-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+}
+
+.log-btn:active {
+  transform: translateY(1px);
+}
+
+/* Footer */
+.log-footer {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.log-footer a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.log-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .log-box {
+    left: 10px;
+    right: 10px;
+    top: 12px;
+    width: auto;
+    padding: 16px;
+    border-radius: 10px;
+  }
+}
