@@ -1,8 +1,9 @@
 /* Reset body background */
-body, html {
+body, html, #root, #map-root {
+  height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #ffffff; /* full white background */
+  background-color: #fff8e1; /* full white background */
   font-family: Arial, sans-serif; /* optional */
 }
 
@@ -21,14 +22,16 @@ body, html {
 
 /* Main content expands fully */
 .content-area {
-  margin-left: 250px;       /* leave space for navbar */
-  width: calc(100% - 250px);
+  width: calc(100vw);
   display: flex;
-  justify-content: center;  /* center horizontally */
-  align-items: flex-start;  /* start from top */
+  /* margin-right: 15vw; */
+  flex-grow: 1; 
+  justify-content: center;
+  align-items: flex-start; 
   padding: 20px;
   box-sizing: border-box;
-  min-height: 100vh;        /* full page height */
+  min-height: 100vh;       
+  background-color: #ffffff;    
 }
 
 /* Center posts in content */
@@ -38,6 +41,8 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;       /* center items horizontally */
+  margin: 0 auto;            /* optional, ensures container is centered if needed */
 }
 
 
@@ -46,18 +51,89 @@ body, html {
 .home-content {
   display: flex;
   justify-content: center;     /* center feed horizontally */
-  width: calc(100% - 250px);   /* subtract navbar width */
-  margin-left: 250px;          /* push feed away from navbar */
+  width: 100vw;   /* subtract navbar width */
+  /* margin-left: 25vw;          push feed away from navbar */
   padding: 20px;
   box-sizing: border-box;
 }
 
 /* Posts feed */
+/* Posts feed / Messages window */
 .posts-container {
   display: flex;
   flex-direction: column;      /* stack posts */
   gap: 20px;
   width: 100%;
-  max-width: 700px;            /* limit feed width */
+  max-width: 1200px; 
 }
 
+
+.map-container {
+  width: 60vw;
+  height: 50vh; /* or 100% if you want full page */
+  max-width: 1200px; /* optional */
+  margin: 0 auto; /* center horizontally */
+}
+
+
+.leaflet-container {
+  width: 70vw;
+  height: 70vh;
+
+  /* Rounded corners */
+  border-radius: 12px;
+
+  /* Box shadow for depth */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  /* Optional: border for definition */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  /* Smooth transition on hover (optional) */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Background in case tiles are loading */
+  background-color: #f0f0f0;
+}
+
+/* Optional: hover effect */
+.leaflet-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+/* Custom marker icon styling */
+.alumni-marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.alumni-marker:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Popup styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.leaflet-popup-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+  font-size: 14px;
+}

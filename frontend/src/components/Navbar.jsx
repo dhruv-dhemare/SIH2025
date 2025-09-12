@@ -1,9 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";  // already imported
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
 import profileImg from "../assets/profile.jpg";
 
-function Navbar({ onSelectPage, selectedPage }) {   // ✅ accept props
+function Navbar() {
   return (
     <nav className="navbar-vertical" aria-label="Main sidebar">
       <div className="site-header">
@@ -13,47 +14,34 @@ function Navbar({ onSelectPage, selectedPage }) {   // ✅ accept props
       <div className="top-spacer"></div>
 
       <div className="profile-wrapper">
-        <ProfileCard
-          name="Dhruv Dhemare"
-          title="FullStack Engineer | AI/ML Enthusiast"
-          location="Pune, India"
-          profileImg={profileImg}
-        />
+        <NavLink to="/profile" className="profile-link">
+          <ProfileCard
+            name="Dhruv Dhemare"
+            title="FullStack Engineer | AI/ML Enthusiast"
+            location="Pune, India"
+            profileImg={profileImg}
+          />
+        </NavLink>
       </div>
 
       <div className="spacer" />
 
       <div className="nav-links">
-        <button
-          className={`nav-link ${selectedPage === "home" ? "active" : ""}`}
-          onClick={() => onSelectPage("home")}
-        >
+        <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
           Home
-        </button>
-        <button
-          className={`nav-link ${selectedPage === "events" ? "active" : ""}`}
-          onClick={() => onSelectPage("events")}
-        >
+        </NavLink>
+        <NavLink to="/events" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
           Events
-        </button>
-        <button
-          className={`nav-link ${selectedPage === "messages" ? "active" : ""}`}
-          onClick={() => onSelectPage("messages")}
-        >
+        </NavLink>
+        <NavLink to="/messages" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
           Messages
-        </button>
-        <button
-          className={`nav-link ${selectedPage === "analytics" ? "active" : ""}`}
-          onClick={() => onSelectPage("analytics")}
-        >
+        </NavLink>
+        <NavLink to="/analytics" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
           Analytics
-        </button>
-        <button
-          className={`nav-link ${selectedPage === "contact" ? "active" : ""}`}
-          onClick={() => onSelectPage("contact")}
-        >
+        </NavLink>
+        <NavLink to="/contact" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
           Contact
-        </button>
+        </NavLink>
       </div>
     </nav>
   );

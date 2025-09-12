@@ -16,6 +16,13 @@
   object-fit: cover;
   margin: 0 auto 12px;
   display: block;
+  transition: all 0.3s ease; /* smooth resize */
+}
+
+/* when on /profile */
+.profile-img.large {
+  width: 160px;   /* bigger size */
+  height: 160px;
 }
 
 .profile-name {

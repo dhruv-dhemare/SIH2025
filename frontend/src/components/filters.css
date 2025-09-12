@@ -84,3 +84,23 @@
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
+
+.add-post-btn {
+  margin-top: auto; /* pushes it to the bottom */
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #0073b1;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.add-post-btn:hover {
+  background: #005f8d;
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 115, 177, 0.3);
+}

@@ -1,94 +1,93 @@
 /* Page base */
+
 .messages-container {
-  background: #f9fafb;
-  min-height: 100vh;
+  background: #ffffff;
+  min-height: 70vh;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  display: flex; /* layout main + filter side by side */
+  min-width: 80vw;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); soft outer shadow */
+  border-radius: 12px; /* optional: smooth corners */
 }
 
-/* Main area with fixed left sidebar */
-/* Main area accounts for fixed left sidebar */
+/* Main section (tabs + messages/community) */
 .messages-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;  /* two equal columns */
-  gap: 50px;
-
-  max-width: 100%;   /* keep content at a nice readable width */
-  margin: 0 auto;      /* centers horizontally */
-  padding: 5px 20px;  /* spacing around content */
+  flex: 3; /* make it bigger (double the filter) */
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw; 
+  margin-left: 120px;  /* push it a bit more to the right */
+  padding: 10px 20px;
+  height: 95vh;
   animation: fadeIn 0.25s ease;
-  max-width: 1200px; 
-  margin-left: 100px;
-  height:95vh;
-}
-
-
-/* Panel */
-.panel {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;      /* set a decent height */
+  border-radius: 16px;
   box-shadow: 0 4px 12px rgba(201, 201, 201, 0.05);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  width: 350px;
-  height:100vh;
+  margin-left:20vw;
 }
 
-/* Split area for Chats + Forums */
-.lists-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* equal size */
-  gap: 10px;
-  height: 100%;
-}
-
-.list-box {
+/* Right Filter placeholder */
+.messages-filter {
+  flex: 1; /* smaller compared to messages */
+  border-left: 1px solid #e5e7eb;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  min-width: 250px;
+  height: 95vh;
 }
 
-.list-box-header {
+/* Tabs */
+.tab-header {
+  display: flex;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 10px;
+}
+
+.tab-header button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: #f9fafb;
+  cursor: pointer;
   font-weight: 600;
   font-size: 15px;
-  padding: 12px 16px;
-  border-bottom: 1px solid #f1f5f9;
-  background: #f9fafb;
+  transition: all 0.2s ease;
+  color: #000000;
 }
 
-.list-box-body {
+.tab-header button:hover {
+  background: #e5e7eb;
+}
+
+.tab-header .active-tab {
+  background: teal;
+  color: white;
+  border-radius: 6px 6px 0 0;
+}
+
+/* Tab content */
+.tab-body {
   flex: 1;
   overflow-y: auto;
   padding: 12px;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .lists-split {
-    grid-template-columns: 1fr; /* stack in small screens */
-  }
-}
-
-/* Scrollbar */
-.list-box-body::-webkit-scrollbar { width: 8px; }
-.list-box-body::-webkit-scrollbar-thumb {
+/* Scrollbar styling */
+.tab-body::-webkit-scrollbar { width: 8px; }
+.tab-body::-webkit-scrollbar-thumb {
   background: #d1d5db; border-radius: 999px;
 }
-.list-box-body:hover::-webkit-scrollbar-thumb { background: #9ca3af; }
+.tab-body:hover::-webkit-scrollbar-thumb { background: #9ca3af; }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .lists-split {
-    grid-template-columns: 1fr;
+  .messages-container {
+    flex-direction: column;
   }
-}
-@media (max-width: 900px) {
   .messages-main {
-    grid-template-columns: 1fr;  /* stack vertically */
-    max-width: 600px;            /* narrow for mobile */
+    margin-left: 0;
+    max-width: 100%;
+  }
+  .messages-filter {
+    display: none; /* hide filter on small screens */
   }
 }
