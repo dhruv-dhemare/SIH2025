@@ -10,10 +10,13 @@ import AddEvent from "./pages/AddEvent.jsx";
 import Profile from "./pages/Profile.jsx";
 import Analytics from "./pages/Analytics.jsx";
 import Contact from "./pages/Contact.jsx";
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
+    <div>
     <div className="flex">
       <Navbar />
       <main className="content-area">
@@ -26,11 +29,15 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Signup" element={<Signuo />} />
           <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
     </div>
+    </div>
   );
 }
 
-export default App;
+
+export default App; 
