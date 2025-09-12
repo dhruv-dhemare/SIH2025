@@ -1,4 +1,3 @@
-// App.jsx
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
@@ -10,12 +9,18 @@ import AddEvent from "./pages/AddEvent.jsx";
 import Profile from "./pages/Profile.jsx";
 import Analytics from "./pages/Analytics.jsx";
 import Contact from "./pages/Contact.jsx";
-import { Routes, Route } from "react-router-dom";
+import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
+
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+  const hideNavbar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname=="/notfound";
+
   return (
     <div className="flex">
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <main className="content-area">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,7 +31,9 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<div>404: Page not found.</div>} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/notfound" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
     </div>

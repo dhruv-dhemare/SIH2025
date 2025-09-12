@@ -1,106 +1,207 @@
-/* Auth.css - replace your existing content with this */
+/* -------------------------
+  Animate.css import (already included in index.html)
+------------------------- */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
-/* Base font + background */
-body {
-  font-family: Arial, sans-serif;
-  background: #f3f4f6;
-}
-
-
+/* -------------------------
+  Full-page gradient + background
+------------------------- */
 .auth-container {
-  position: relative; /* not strictly needed with fixed .auth-box but fine to keep */
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+
+  /* Gradient overlay + image */
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.35), 
+      rgba(0, 0, 0, 0.35)
+    ),
+    url('D:\AlumniPortal\frontend\src\assets\graduation-silhouette-water-color-painting-600nw-531382432.webp') center/cover no-repeat;
+  animation: bgAnimation 20s ease infinite;
+  overflow: hidden;
 }
 
 
+/* Optional overlay for contrast */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.35);
+  z-index: 0;
+}
+
+/* -------------------------
+  Background animation (sideways)
+------------------------- */
+@keyframes bgAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* -------------------------
+  Glassmorphic Auth Card
+------------------------- */
 .auth-box {
-  position: fixed;          /* pin to the viewport (not to a parent) */
-  top: 20px;                /* distance from top */
-  right: 20px;              /* distance from right */
-  width: 360px;             /* fixed ideal width */
-  max-width: calc(100vw - 40px); /* never overflow viewport horizontally */
-  box-sizing: border-box;   /* include padding in width */
-  background: #ffffff;
-  padding: 22px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  z-index: 9999;            /* sit above other page elements */
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  color: #fff;
   text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
 }
 
-/* Title */
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------
+  Titles & Text
+------------------------- */
 .auth-title {
-  margin: 0 0 16px 0;
-  font-size: 20px;
-  color: #222;
-  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
 }
 
+/* Footer & links */
+.auth-footer {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
 
+.auth-footer a {
+  color: #ffd700;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.auth-footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* -------------------------
+  Form Styles
+------------------------- */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.auth-form select {
-  background: #ffffff;      
-  color: #000000;            
-  border: 1px solid #d1d5db;
+  gap: 15px;
 }
 
+/* Inputs + select */
 .auth-form input,
 .auth-form select {
-  background: #e0e9f3;   
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  font-size: 14px;
-  box-sizing: border-box;
-  outline: none;
-  transition: border-color .15s, box-shadow .15s;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
+/* Focus effect */
 .auth-form input:focus,
 .auth-form select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37,99,235,0.06);
+  border: 1px solid #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  outline: none;
+  background: rgba(255,255,255,0.2);
 }
 
+/* Placeholder color */
+.auth-form input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
 
+/* Floating label effect (optional: you can implement react-floating-label) */
+
+/* -------------------------
+  Buttons
+------------------------- */
 .auth-btn {
-  margin-top: 6px;
-  width: 100%;
-  padding: 10px 12px;
+  padding: 12px 20px;
+  border-radius: 10px;
   border: none;
-  border-radius: 8px;
-  background: #2563eb;
-  color: #fff;
   font-weight: 600;
   cursor: pointer;
-  transition: background .15s, transform .05s;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
-.auth-btn:hover { background: #1e40af; }
-.auth-btn:active { transform: translateY(1px); }
-
-
-.auth-footer {
-  margin-top: 12px;
-  font-size: 13px;
-  color: #555;
+.auth-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255,255,255,0.6);
 }
-.auth-footer a { color: #2563eb; text-decoration: none; }
-.auth-footer a:hover { text-decoration: underline; }
 
+.auth-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
+/* -------------------------
+  Error Messages
+------------------------- */
+.auth-error {
+  color: #ff6b6b;
+  margin-bottom: 15px;
+  font-weight: bold;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* -------------------------
+  Responsive
+------------------------- */
 @media (max-width: 480px) {
   .auth-box {
-    left: 10px;
-    right: 10px;
-    top: 12px;
-    width: auto;
-    padding: 16px;
-    border-radius: 10px;
+    padding: 30px 20px;
   }
+}
+
+/* -------------------------
+  Optional extra: subtle particle animation
+------------------------- */
+.auth-container .particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: floatSideways 8s linear infinite;
+}
+
+@keyframes floatSideways {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(40px) translateY(-20px); }
+  100% { transform: translateX(0) translateY(0); }
 }
