@@ -1,0 +1,100 @@
+{
+  "personal_info": {
+    "name": "Apoorv Deshmukh",
+    "email": "theapoorvdeshmukh@gmail.com",
+    "phone": "1329552910359",
+    "location": null,
+    "linkedin": null,
+    "github": null
+  },
+  "education": [
+    {
+      "institution": "Pune Institute of Computer Technology",
+      "degree": "Bachelor of Engineering (BE)",
+      "major": "Computer Engineering",
+      "start_date": "2023-09",
+      "end_date": "2027-05",
+      "gpa": null
+    },
+    {
+      "institution": "Rajarshi Shahu Jr. Science College",
+      "degree": "Higher Secondary Certificate (HSC)",
+      "major": null,
+      "start_date": null,
+      "end_date": "2022",
+      "gpa": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "Event Management Head",
+      "company": "EDC PICT",
+      "start_date": "2025-05",
+      "end_date": "2027-05",
+      "description": "Spearheaded planning and logistics for flagship entrepreneurial fests MAGNATE. Coordinated with sponsors."
+    }
+  ],
+  "skills": [
+    "Python",
+    "C++",
+    "React",
+    "Node.js",
+    "MySQL",
+    "HTML",
+    "CSS",
+    "MongoDB",
+    "NumPy",
+    "Pandas",
+    "Matplotlib",
+    "Deep Learning",
+    "DSA",
+    "Communication",
+    "Marketing",
+    "Public Speaking",
+    "Teamwork",
+    "FastAPI",
+    "OCR",
+    "BM25",
+    "Pinecone"
+  ],
+  "projects": [
+    {
+      "name": "SMARTHIRE: Resume Analyzer and Job Skill Matcher",
+      "description": "Developed the frontend of a resume parsing platform using React. Integrated Google Gemini API for advanced resume parsing and structured data extraction. Implemented dynamic graphical representations and intuitive UI for improved user experience.",
+      "technologies": [
+        "React",
+        "HTML",
+        "CSS",
+        "Python",
+        "Google Gemini API"
+      ]
+    },
+    {
+      "name": "Intelligent Insurance Policy QA System",
+      "description": "Built an LLM-powered QA system during Bajaj-Finserv hackathon HackRx 6. Integrated Google Gemini API and MongoDB for contextual QA data storage.",
+      "technologies": [
+        "Python",
+        "Google Gemini API",
+        "MongoDB",
+        "FastAPI",
+        "BM25",
+        "OCR",
+        "Pinecone"
+      ]
+    }
+  ],
+  "achievements": [],
+  "extracurricular": [],
+  "languages": [
+    "English",
+    "Hindi",
+    "Marathi"
+  ],
+  "interests": [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Data Science",
+    "Backend Development",
+    "Agentic AI"
+  ]
+}
