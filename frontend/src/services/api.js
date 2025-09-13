@@ -1,59 +1,69 @@
 import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
 
-const BASE_URL = "http://localhost:8000";
-const API = axios.create({ baseURL: BASE_URL });
+const API = axios.create({
+  baseURL: "http://localhost:5000/api",
+});
 
-// ------------------------
-// MOCK BACKEND FOR TESTING
-// ------------------------
-if (process.env.NODE_ENV === "development") {
-  const mock = new MockAdapter(API, { delayResponse: 500 });
+// Dynamic signup function
+export const signup = (data, role) => {
+  let endpoint;
 
-  mock.onPost(/\/signup\/?/).reply((config) => {
-    const data = config.data instanceof FormData
-      ? Object.fromEntries(config.data.entries())
-      : JSON.parse(config.data);
-    console.log("Mock Signup called with:", data);
-    return [200, { status: "ok", message: "Signup successful", user: data }];
-  });
+  switch (role) {
+    case "student":
+      endpoint = "/student/signup";
+      break;
+    case "alumni":
+      endpoint = "/alumni/signup";
+      break;
+    case "recruitor":
+      endpoint = "/recruiter/signup";
+      break;
+    case "faculty":
+      endpoint = "/teacher/signup";
+      break;
+    default:
+      throw new Error("Invalid role selected");
+  }
 
-  mock.onPost(/\/login\/?/).reply((config) => {
-    const data = JSON.parse(config.data);
-    console.log("Mock Login called with:", data);
-    if (data.email === "test@example.com" && data.password === "Password@123") {
-      return [200, { message: "Login successful", user: { name: "Test User", role: "student" } }];
-    } else {
-      return [401, { message: "Invalid credentials" }];
-    }
-  });
+  const config =
+    role === "student" || role === "alumni"
+      ? { headers: { "Content-Type": "multipart/form-data" } }
+      : {};
 
-  mock.onPost(/\/parse-resume\/?/).reply((config) => {
-    console.log("Mock Upload Resume called");
-    return [200, { status: "ok", message: "Resume uploaded successfully", resume_parsed: { name: "John Doe" } }];
-  });
-}
-
-// ------------------------
-// REAL API CALLS
-// ------------------------
-export const signup = async (form) => {
-  const data = { name: form.name, email: form.email, password: form.password, role: form.role };
-  const res = await API.post("/signup/", data);
-  return res.data;
+  return API.post(endpoint, data, config).then((r) => r.data);
 };
 
-export const login = async (form) => {
-  const res = await API.post("/login/", { email: form.email, password: form.password });
-  return res.data;
-};
+// Login function with dynamic endpoint
+export const login = async (username, password) => {
+  if (!username || !password) throw new Error("Username and password required");
 
-export const uploadResume = async (file) => {
-  const formData = new FormData();
-  formData.append("file", file);
-  const res = await API.post("/parse-resume", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  const prefix = username.slice(0, 3).toUpperCase();
+  let endpoint = "";
+
+  switch (prefix) {
+    case "REC":
+      endpoint = "/recruiter/login";
+      break;
+    case "ALU":
+      endpoint = "/alumni/login";
+      break;
+    case "CLB":
+      endpoint = "/club/login";
+      break;
+    case "ADM":
+      endpoint = "/admin/login";
+      break;
+    case "STD":
+      endpoint = "/student/login";
+      break;
+    case "FAC":
+      endpoint = "/teacher/login";
+      break;
+    default:
+      throw new Error("Invalid username prefix");
+  }
+
+  const res = await API.post(endpoint, { username, password });
   return res.data;
 };
 

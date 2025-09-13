@@ -13,7 +13,7 @@
   height: 15vw;
   border-radius: 50%;
   border: 0.5vh solid #e6e6e6;
-  margin-bottom: 2vh;
+  margin-top: 2vh;
   object-fit: cover;
   max-width: 150px;         /* still prevent huge images on desktops */
   max-height: 150px;

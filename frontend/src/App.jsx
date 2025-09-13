@@ -1,3 +1,4 @@
+// App.jsx
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
@@ -9,21 +10,25 @@ import AddEvent from "./pages/AddEvent.jsx";
 import Profile from "./pages/Profile.jsx";
 import Analytics from "./pages/Analytics.jsx";
 import Contact from "./pages/Contact.jsx";
-import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-
+import Signup from "./pages/Signup.jsx";
+import Landing from "./pages/Landing.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname=="/notfound";
+
+  // Paths where Navbar should be hidden
+  const hideNavbarPaths = ["/login", "/signup", "/"];
+  const hideNavbar = hideNavbarPaths.includes(location.pathname.toLowerCase());
 
   return (
     <div className="flex">
       {!hideNavbar && <Navbar />}
       <main className="content-area">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/addpost" element={<AddPost />} />
@@ -31,9 +36,9 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/notfound" element={<div>404: Page not found.</div>} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
     </div>

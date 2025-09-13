@@ -1,100 +1,46 @@
-// import React, { useState } from "react";
-// import { login } from "../services/api";
-// import "./Auth.css";
-
-// function Login() {
-//   const [form, setForm] = useState({ email: "", password: "" });
-
-//   const handleChange = (e) => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await login(form);
-//       alert("Login successful!");
-//       console.log(res);
-//     } catch (err) {
-//       alert("Invalid credentials");
-//     }
-//   };
-
-//   return (
-//     <div className="auth-container">
-//       <div className="auth-box">
-//         <h2 className="auth-title">Login</h2>
-//         <form onSubmit={handleSubmit} className="auth-form">
-//           <input
-//             type="email"
-//             name="email"
-//             placeholder="Email"
-//             onChange={handleChange}
-//             required
-//           />
-//           <input
-//             type="password"
-//             name="password"
-//             placeholder="Password"
-//             onChange={handleChange}
-//             required
-//           />
-//           <button type="submit" className="auth-btn">Login</button>
-//         </form>
-//         <p className="auth-footer">
-//           Don’t have an account?{" "}
-//           <a href="/signup">Sign up</a>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Login;
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ for redirection
 import { login } from "../services/api";
-import { Link, useNavigate } from "react-router-dom";
-import "./Auth.css";
+import "./Login.css";
 
 function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [form, setForm] = useState({ username: "", password: "" });
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    if (!form.email || !form.password) {
-      setError("Please fill in all fields");
-      return;
-    }
-
-    setLoading(true);
     try {
-      await login(form); // Mock API
-      navigate("/"); // Redirect to Home after login
+      // ✅ Pass username and password separately
+      const res = await login(form.username, form.password);
+
+      alert("Login successful!");
+      console.log(res);
+
+      // ✅ Save token if needed
+      localStorage.setItem("token", res.token);
+
+      // ✅ Redirect to homepage
+      navigate("/home");
     } catch (err) {
-      setError(err.message || "Login failed. Check credentials.");
-    } finally {
-      setLoading(false);
+      console.error(err);
+      alert(err.response?.data?.error || "Invalid credentials");
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box animate__animated animate__fadeInUp">
-        <h2 className="auth-title">Welcome Back to AlmaMatter</h2>
-        {error && <p className="auth-error">{error}</p>}
-
-        <form className="auth-form" onSubmit={handleSubmit}>
+    <div className="log-container">
+      <div className="log-box">
+        <h2 className="log-title">Login</h2>
+        <form onSubmit={handleSubmit} className="log-form">
           <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={form.email}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={form.username}
             onChange={handleChange}
             required
           />
@@ -106,13 +52,10 @@ function Login() {
             onChange={handleChange}
             required
           />
-          <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
+          <button type="submit" className="log-btn">Login</button>
         </form>
-
-        <p className="auth-footer">
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+        <p className="log-footer">
+          Don’t have an account? <a href="/signup">Sign up</a>
         </p>
       </div>
     </div>
