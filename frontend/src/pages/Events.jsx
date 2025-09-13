@@ -31,7 +31,7 @@ const events = [
     userRole: "Concert • 1d ago",
     avatar: "https://i.pravatar.cc/40?img=18",
     content: "Get ready for an electrifying evening with live bands, solo performances, and an open mic session.",
-    image: "https://images.unsplash.com/photo-1486591038957-19e7c73bdc81?q=80&w=1080&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1080&auto=format&fit=crop",
     category: "concert",
     date: new Date("2025-09-06T19:00:00")
   },

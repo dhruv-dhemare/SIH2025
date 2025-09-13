@@ -11,11 +11,10 @@ export default function Analytics() {
 
       <div className="analytics-charts">
         <div className="analytics-chart">
-          <PieChart style={{ width: "700px", height: "300px", border: "1px solid #ccc" }} />
-
+          <PieChart  />
         </div>
         <div className="analytics-chart">
-          <Graph style={{ width: "700px", height: "500px", border: "1px solid #ccc"}} />
+          <Graph />
         </div>
       </div>
       <center>
