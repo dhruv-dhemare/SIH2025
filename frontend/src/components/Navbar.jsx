@@ -27,7 +27,7 @@ function Navbar() {
       <div className="spacer" />
 
       <div className="nav-links">
-        <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink to="/home" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
           Home
         </NavLink>
         <NavLink to="/events" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>

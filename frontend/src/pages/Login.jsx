@@ -24,7 +24,7 @@ function Login() {
       localStorage.setItem("token", res.token);
 
       // ✅ Redirect to homepage
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.error(err);
       alert(err.response?.data?.error || "Invalid credentials");

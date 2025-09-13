@@ -12,13 +12,14 @@ import Analytics from "./pages/Analytics.jsx";
 import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
+import Landing from "./pages/Landing.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   const location = useLocation();
 
   // Paths where Navbar should be hidden
-  const hideNavbarPaths = ["/login", "/signup"];
+  const hideNavbarPaths = ["/login", "/signup", "/"];
   const hideNavbar = hideNavbarPaths.includes(location.pathname.toLowerCase());
 
   return (
@@ -26,7 +27,8 @@ function App() {
       {!hideNavbar && <Navbar />}
       <main className="content-area">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/addpost" element={<AddPost />} />

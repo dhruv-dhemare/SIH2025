@@ -88,7 +88,7 @@ function Signup() {
       }
 
       const res = await signup(data, form.role);
-      alert("Signup successful!");
+      alert("Signup successful! Check your email for further details.");
       navigate("/login");
     } catch (err) {
       console.error(err);
