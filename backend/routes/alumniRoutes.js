@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// -------------------- Nodemailer setup --------------------
+/* ---------- Nodemailer setup ---------- */
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -31,7 +31,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// -------------------- Signup --------------------
+/* ---------- Signup Route ---------- */
 router.post("/signup", upload.single("resume"), async (req, res) => {
   try {
     const {
@@ -47,29 +47,33 @@ router.post("/signup", upload.single("resume"), async (req, res) => {
       skills = [],
       urls = [],
     } = req.body;
-    const resumeFile = req.file ? req.file.path : null;
 
+    // Basic validation
     if (!name || !email || !password) {
       return res.status(400).json({ error: "Name, email, and password are required." });
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format." });
+    }
 
     const existing = await Alumni.findOne({ email });
-    if (existing) return res.status(409).json({ error: "Email already exists." });
+    if (existing) {
+      return res.status(409).json({ error: "Email already exists." });
+    }
 
     // Auto-generate username ALU001, ALU002...
-    const lastAlumni = await Alumni.findOne().sort({ createdAt: -1 });
-    let nextNumber = 1;
-    if (lastAlumni && lastAlumni.username) {
-      const lastNum = parseInt(lastAlumni.username.replace("ALU", ""));
-      if (!isNaN(lastNum)) nextNumber = lastNum + 1;
-    }
-    const username = "ALU" + String(nextNumber).padStart(3, "0");
+    const count = await Alumni.countDocuments();
+    const username = `ALU${String(count + 1).padStart(3, "0")}`;
 
-    // Create alumni (password will be hashed automatically)
+    // Store only filename, not full path
+    const resumeFile = req.file ? req.file.filename : null;
+
+    // Create alumni (password hashed in schema pre-save)
     const alumni = new Alumni({
-      name,
+      name: name.trim(),
       username,
-      email,
+      email: email.trim(),
       password,
       phn,
       headline,
@@ -84,8 +88,11 @@ router.post("/signup", upload.single("resume"), async (req, res) => {
 
     const savedAlumni = await alumni.save();
 
-    // JWT token
+    // Generate JWT
     const token = generateToken({ id: savedAlumni._id, role: "alumni" });
+
+    // Remove password before sending response
+    const { password: _, ...alumniData } = savedAlumni.toObject();
 
     // Send welcome email
     try {
@@ -108,11 +115,16 @@ Team Alumni Portal`,
       });
     } catch (emailErr) {
       console.error("Failed to send email:", emailErr);
+      return res.status(201).json({
+        message: "Signup successful (email sending failed)",
+        alumni: alumniData,
+        token,
+      });
     }
 
     res.status(201).json({
       message: "Signup successful, email sent",
-      alumni: savedAlumni,
+      alumni: alumniData,
       token,
     });
   } catch (err) {

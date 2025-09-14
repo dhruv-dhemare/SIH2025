@@ -67,4 +67,16 @@ export const login = async (username, password) => {
   return res.data;
 };
 
+export const getProfile = async (token) => {
+  if (!token) throw new Error("Token is required to fetch profile");
+
+  const res = await API.get("/profile", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+
 export default API;

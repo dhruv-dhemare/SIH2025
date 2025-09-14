@@ -1,22 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
+import { getProfile } from "../services/api"; // your API call
 
 export default function Profile() {
   const navigate = useNavigate();
-  const [posts, setPosts] = useState([
-  {
-    id: 1,
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=60",
-    desc: "Excited to share my new MERN stack project! 🚀"
-  },
-  {
-    id: 2,
-    img: "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=900&q=60",
-    desc: "Had a great experience at SIH 2025 hackathon."
-  }
-]);
+  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
 
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // JWT from login
+    if (!token) {
+      setError("No token found. Please login.");
+      return;
+    }
+
+    getProfile(token)
+      .then((data) => {
+        const u = data.user || {};
+
+        // Construct a unified location string
+        const location = Array.isArray(u.locations)
+          ? u.locations.filter(Boolean).join(", ")
+          : u.city || u.location || "";
+
+        setUser({
+          ...u,
+          location,
+          title: u.headline || u.designation || "",
+          profilePhoto: u.profilePhoto || "",
+          education: u.education || u.academics || [], // new field
+        });
+
+        setPosts(u.posts || []);
+      })
+      .catch((err) => setError(err.message || "Failed to load profile"));
+  }, []);
+
+  if (error)
+    return (
+      <div className="profile-page-container">
+        <p>{error}</p>
+      </div>
+    );
+
+  if (!user)
+    return (
+      <div className="profile-page-container">
+        <p>Loading...</p>
+      </div>
+    );
+
+  const safeArray = (arr) => (Array.isArray(arr) ? arr : []);
 
   return (
     <div className="profile-page-container">
@@ -25,61 +61,65 @@ export default function Profile() {
 
       {/* Top Cards */}
       <div className="top-cards">
-        {/* profile-page Card */}
+        {/* Profile Card */}
         <div className="card profile-page-card">
-          {/* <img
-            src="https://via.placeholder.com/120"
-            alt="profile-page"
-            className="profile-page-pic"
-          /> */}
+          
           <div className="profile-page-info">
-            <h2 className="profile-page-name">Disha Bhelke</h2>
-            <p className="profile-page-desc">Full Stack Developer | Student,  PICT</p>
-            <p className="profile-page-detail">📍 Pune, India</p>
-            <p className="profile-page-detail">📧 bhelked5@gmail.com</p>
+            <h2 className="profile-page-name">{user.name}</h2>
+            <p className="profile-page-desc">{user.title}</p>
+            <p className="profile-page-detail">📍 {user.location}</p>
+            <p className="profile-page-detail">📧 {user.email}</p>
           </div>
         </div>
 
         {/* About Card */}
         <div className="card about-card">
           <h3>About</h3>
-          <p>
-            Passionate developer with 3+ years of experience in building scalable web
-            applications and contributing to open source projects.
-          </p>
+          <p>{user.about || "No bio provided."}</p>
         </div>
       </div>
 
-      {/* Posts */}
-<div className="card section-card">
-  <div className="section-header">
-    <h3>Posts</h3>
-    <button
-          className="btn"
-          onClick={() => navigate("/addpost")}
-        >
-          + Add Post
-    </button>
-  </div>
-  <div className="posts">
-    {posts.map((post) => (
-      <div key={post.id} className="post-card">
-        {post.img && <img src={post.img} alt="Post" className="post-img" />}
-        <p className="post-desc">{post.desc || post.content}</p>
+      {/* Posts Section */}
+      <div className="card section-card">
+        <div className="section-header">
+          <h3>Posts</h3>
+          <button className="btn" onClick={() => navigate("/addpost")}>
+            + Add Post
+          </button>
+        </div>
+        <div className="posts">
+          {safeArray(posts).length === 0 && <p>No posts yet</p>}
+          {safeArray(posts).map((post) => (
+            <div key={post._id} className="post-card">
+              {post.img && <img src={post.img} alt="Post" className="post-img" />}
+              <p className="post-desc">{post.desc || post.content}</p>
+            </div>
+          ))}
+        </div>
+        {safeArray(posts).length > 0 && (
+          <button className="btn view-more">View More</button>
+        )}
       </div>
-    ))}
-  </div>
-  <button className="btn view-more">View More</button>
-</div>
-
 
       {/* Experience */}
       <div className="card section-card">
         <h3>Experience</h3>
         <ul>
-          <li>💼 Software Engineer at Microsoft (2023 - Present)</li>
-          <li>💼 Intern at Google (2022)</li>
-          <li>💼 Developer, XYZ University Club (2021)</li>
+          {safeArray(user.experience).length > 0
+            ? user.experience.map((exp, i) => <li key={i}>💼 {exp}</li>)
+            : <li>No experience listed</li>}
+        </ul>
+      </div>
+
+      {/* Education / Academics */}
+      <div className="card section-card">
+        <h3>Education</h3>
+        <ul>
+          {safeArray(user.education).length > 0
+            ? user.education.map((edu, i) => (
+                <li key={i}>🎓 {edu.degree || edu.course || edu.institution || edu}</li>
+              ))
+            : <li>No education listed</li>}
         </ul>
       </div>
 
@@ -87,8 +127,9 @@ export default function Profile() {
       <div className="card section-card">
         <h3>Certifications</h3>
         <ul>
-          <li>✅ AWS Certified Solutions Architect</li>
-          <li>✅ React Developer - Meta</li>
+          {safeArray(user.certification).length > 0
+            ? user.certification.map((cert, i) => <li key={i}>✅ {cert}</li>)
+            : <li>No certifications listed</li>}
         </ul>
       </div>
 
@@ -96,11 +137,11 @@ export default function Profile() {
       <div className="card section-card">
         <h3>Skills</h3>
         <div className="skills">
-          {["React", "Node.js", "MongoDB", "CSS", "AWS"].map((skill, idx) => (
-            <span key={idx} className="skill">
-              {skill}
-            </span>
-          ))}
+          {safeArray(user.skills).length > 0
+            ? user.skills.map((skill, idx) => (
+                <span key={idx} className="skill">{skill}</span>
+              ))
+            : <span className="skill">No skills listed</span>}
         </div>
       </div>
 
@@ -108,15 +149,13 @@ export default function Profile() {
       <div className="card section-card">
         <h3>Important URLs</h3>
         <ul>
-          <li>
-            🔗 <a href="https://leetcode.com">LeetCode</a>
-          </li>
-          <li>
-            🔗 <a href="https://github.com">GitHub</a>
-          </li>
-          <li>
-            🔗 <a href="https://linkedin.com">LinkedIn</a>
-          </li>
+          {safeArray(user.urls).length > 0
+            ? user.urls.map((link, i) => (
+                <li key={i}>
+                  🔗 <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
+                </li>
+              ))
+            : <li>No links provided</li>}
         </ul>
       </div>
     </div>

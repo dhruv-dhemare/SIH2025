@@ -32,7 +32,13 @@ function Login() {
   };
 
   return (
-    <div className="log-container">
+    <div className="whole">
+      <nav className="navbar">
+        <div className="nav-logo">
+          <h2>The Alumni Society</h2>
+        </div>
+      </nav>
+      <div className="log-container">
       <div className="log-box">
         <h2 className="log-title">Login</h2>
         <form onSubmit={handleSubmit} className="log-form">
@@ -58,6 +64,7 @@ function Login() {
           Don’t have an account? <a href="/signup">Sign up</a>
         </p>
       </div>
+    </div>
     </div>
   );
 }

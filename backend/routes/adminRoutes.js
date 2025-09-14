@@ -12,53 +12,65 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // your Gmail
-    pass: process.env.EMAIL_PASS, // 16-character App Password
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
 router.post("/signup", async (req, res) => {
   try {
     const data = req.body;
+    if (!data.password) return res.status(400).json({ error: "Password required" });
+    if (!data.email) return res.status(400).json({ error: "Email required" });
 
-    // Auto-generate username ADMxxx
+    // Auto-generate unique username
     const count = await Admin.countDocuments();
-    const username = `ADM${String(count + 1).padStart(3, "0")}`;
-    data.username = username;
+    data.username = `ADM${String(count + 1).padStart(3, "0")}`;
 
     const admin = new Admin(data);
-    await admin.save();
+    await admin.save();  // password gets hashed by pre-save hook
 
-    // Generate JWT token
     const token = generateToken({ id: admin._id, role: "admin" });
 
-    // ✅ Send email with username and email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: admin.email,
-      subject: "Welcome Admin - Your Account Details",
-      text: `Hello ${admin.name},
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: admin.email,
+        subject: "Welcome Admin - Your Account Details",
+        text: `Hello ${admin.name},
 
 Your admin account has been created successfully.
 
-Your login details are:
+Login details:
 Username: ${admin.username}
 Email: ${admin.email}
 
 Keep this information safe.
 
 Thank you,
-Team Alumni Portal`
-    });
+Team Alumni Portal`,
+      });
+    } catch (mailErr) {
+      console.error("Email failed:", mailErr);
+      // still return success; email failure is non-fatal
+    }
 
     res.status(201).json({
-      message: "Admin signup successful, email sent",
-      admin,
-      token
+      message: "Admin signup successful",
+      admin: {
+        id: admin._id,
+        name: admin.name,
+        username: admin.username,
+        email: admin.email
+      },
+      token,
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ err: "Server Error" });
+    if (err.code === 11000) { // duplicate key error
+      return res.status(409).json({ error: "Email or username already exists" });
+    }
+    res.status(500).json({ error: "Server Error" });
   }
 });
 
@@ -100,16 +112,7 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-// ------------------ 4. UPDATE PROFILE ------------------
-router.put('/profile', jwtAuthMiddleware, async (req, res) => {
-  try {
-    const updatedAdmin = await Admin.findByIdAndUpdate(req.user.id, req.body, { new: true });
-    res.status(200).json({ admin: updatedAdmin });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ err: 'Server Error' });
-  }
-});
+
 
 // ------------------ 5. CREATE POST ------------------
 router.post('/post', jwtAuthMiddleware, async (req, res) => {

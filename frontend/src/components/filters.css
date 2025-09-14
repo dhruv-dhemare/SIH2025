@@ -90,7 +90,7 @@
   font-size: 1vw;             /* 16px */
   font-weight: 600;
   color: #fff;
-  background: #0073b1;
+  background: #067e4e;
   border: none;
   border-radius: 0.75vw;      /* 12px */
   cursor: pointer;
@@ -99,7 +99,7 @@
 }
 
 .add-post-btn:hover {
-  background: #005f8d;
+  background: #00492c;
   transform: scale(1.03);
   box-shadow: 0 0.25vh 0.6vw rgba(0, 115, 177, 0.3); /* 4px 10px */
 }

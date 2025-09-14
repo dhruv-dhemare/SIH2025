@@ -9,43 +9,58 @@ const nodemailer = require("nodemailer");
 
 const upload = multer({ dest: "uploads/" });
 
-// Configure Nodemailer
+/* -------- Nodemailer -------- */
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    pass: process.env.EMAIL_PASS, // 16-character App Password
   },
 });
 
-// -------------------- Signup --------------------
+/* -------- Faculty Signup -------- */
 router.post("/signup", upload.single("resume"), async (req, res) => {
   try {
-    const { name, email, password, phone, headline, about, experience = [], education = [], certification = [], skills = [], urls = [] } = req.body;
-
-    if (!name || !email || !password) {
-      return res.status(400).json({ error: "Name, email, and password are required" });
-    }
-
-    const existing = await Teacher.findOne({ email });
-    if (existing) return res.status(409).json({ message: "Email already exists" });
-
-    // Auto-generate username FAC001, FAC002...
-    const lastTeacher = await Teacher.findOne().sort({ createdAt: -1 });
-    let nextNumber = 1;
-    if (lastTeacher && lastTeacher.username) {
-      const lastNum = parseInt(lastTeacher.username.replace("FAC", ""));
-      if (!isNaN(lastNum)) nextNumber = lastNum + 1;
-    }
-    const newUsername = `FAC${String(nextNumber).padStart(3, "0")}`;
-
-    // Create Teacher instance (pre-save hook hashes password)
-    const newTeacher = new Teacher({
+    const {
       name,
-      username: newUsername,
       email,
       password,
-      phn: phone,
+      phone,
+      headline,
+      about,
+      experience = [],
+      education = [],
+      certification = [],
+      skills = [],
+      urls = [],
+    } = req.body;
+
+    // 1️⃣ Basic validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Name, email, and password are required." });
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format." });
+    }
+
+    // 2️⃣ Check for existing email
+    const existing = await Teacher.findOne({ email });
+    if (existing) {
+      return res.status(409).json({ error: "Email already exists." });
+    }
+
+    // 3️⃣ Auto-generate username FAC001, FAC002…
+    const count = await Teacher.countDocuments();
+    const username = `FAC${String(count + 1).padStart(3, "0")}`;
+
+    // 4️⃣ Create teacher (password hashed in schema pre-save)
+    const teacher = new Teacher({
+      name: name.trim(),
+      username,
+      email: email.trim(),
+      password,
+      phn: phone, // keep DB field consistent
       headline,
       about,
       experience,
@@ -56,20 +71,25 @@ router.post("/signup", upload.single("resume"), async (req, res) => {
       resume: req.file ? req.file.path : undefined,
     });
 
-    const savedTeacher = await newTeacher.save();
+    const savedTeacher = await teacher.save();
 
-    const token = generateToken({ id: savedTeacher._id, email: savedTeacher.email, role: "teacher" });
+    // 5️⃣ Generate JWT
+    const token = generateToken({ id: savedTeacher._id, role: "teacher" });
 
-    // Send email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: savedTeacher.email,
-      subject: "Welcome to Alumni Portal - Faculty Account Details",
-      text: `Hello ${savedTeacher.name},
+    // 6️⃣ Remove password before sending to client
+    const { password: _, ...teacherData } = savedTeacher.toObject();
+
+    // 7️⃣ Send welcome email (don’t block signup if it fails)
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: savedTeacher.email,
+        subject: "Welcome to Alumni Portal - Faculty Account Details",
+        text: `Hello ${savedTeacher.name},
 
 Your faculty account has been created successfully.
 
-Your login details:
+Login details:
 Username: ${savedTeacher.username}
 Email: ${savedTeacher.email}
 
@@ -77,16 +97,25 @@ Keep this information safe.
 
 Thank you,
 Team Alumni Portal`,
-    });
+      });
+    } catch (emailErr) {
+      console.error("Email send failed:", emailErr);
+      return res.status(201).json({
+        message: "Faculty signup successful (email sending failed).",
+        teacher: teacherData,
+        token,
+      });
+    }
 
+    // 8️⃣ Success response
     res.status(201).json({
-      message: "Faculty signup successful, email sent",
-      teacher: savedTeacher,
+      message: "Faculty signup successful, email sent.",
+      teacher: teacherData,
       token,
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("Signup error:", err);
+    res.status(500).json({ error: "Server error during signup." });
   }
 });
 

@@ -19,6 +19,17 @@ function Signup() {
     education: [""],
     urls: [""],
     resume: null,
+    profilePhoto: null,
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    dob: "",
+    gender: "",
+    department: "",
+    yearOfStudy: "",
+    company: "",
+    position: "",
   });
 
   const handleChange = (e) => {
@@ -30,163 +41,217 @@ function Signup() {
     }
   };
 
-  // Education fields
-  const handleEducationChange = (index, value) => {
+  // Education handlers
+  const handleEducationChange = (i, val) => {
     const updated = [...form.education];
-    updated[index] = value;
+    updated[i] = val;
     setForm({ ...form, education: updated });
   };
   const addEducationField = () => setForm({ ...form, education: [...form.education, ""] });
-  const removeEducationField = (index) => {
-    const updated = form.education.filter((_, i) => i !== index);
-    setForm({ ...form, education: updated });
-  };
+  const removeEducationField = (i) =>
+    setForm({ ...form, education: form.education.filter((_, idx) => idx !== i) });
 
-  // URL fields
-  const handleUrlChange = (index, value) => {
+  // URL handlers
+  const handleUrlChange = (i, val) => {
     const updated = [...form.urls];
-    updated[index] = value;
+    updated[i] = val;
     setForm({ ...form, urls: updated });
   };
   const addUrlField = () => setForm({ ...form, urls: [...form.urls, ""] });
-  const removeUrlField = (index) => {
-    const updated = form.urls.filter((_, i) => i !== index);
-    setForm({ ...form, urls: updated });
-  };
+  const removeUrlField = (i) =>
+    setForm({ ...form, urls: form.urls.filter((_, idx) => idx !== i) });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let data;
+      if (!form.role) throw new Error("Role not selected");
 
-      if (form.role === "student" || form.role === "alumni" || form.role === "faculty") {
-        // FormData for file upload
-        const formData = new FormData();
-        Object.entries(form).forEach(([key, val]) => {
-          if (key === "education" || key === "urls") {
-            val.forEach((v, i) => formData.append(`${key}[${i}]`, v));
-          } else {
-            formData.append(key, val);
-          }
-        });
-        data = formData;
-      } else if (form.role === "recruitor") {
-        // JSON for recruiter
-        data = {
-          name: form.name,
-          email: form.email,
-          password: form.password,
-          phn: form.phn,
-          headline: form.headline,
-          about: form.about,
-          urls: form.urls.filter((u) => u !== ""),
-          posts: [],
-          locations: [],
-        };
-      } else {
-        throw new Error("Role not selected");
-      }
+      const formData = new FormData();
 
-      const res = await signup(data, form.role);
-      alert("Signup successful! Check your email for further details.");
+      // Locations as an array
+      const locations = [form.address, form.city, form.state, form.country].filter(Boolean);
+      locations.forEach((loc) => formData.append("locations[]", loc));
+
+      // Education & URLs
+      form.education.forEach((edu) => edu && formData.append("education[]", edu));
+      form.urls.forEach((url) => url && formData.append("urls[]", url));
+
+      // Experience, Certification, Skills (comma-separated -> array)
+      ["experience", "certification", "skills"].forEach((field) => {
+        if (form[field]) {
+          form[field]
+            .split(",")
+            .map((v) => v.trim())
+            .filter(Boolean)
+            .forEach((val) => formData.append(`${field}[]`, val));
+        }
+      });
+
+      // Single fields
+      [
+        "name",
+        "email",
+        "password",
+        "role",
+        "headline",
+        "about",
+        "phn",
+        "dob",
+        "gender",
+        "department",
+        "yearOfStudy",
+        "company",
+        "position",
+      ].forEach((field) => {
+        if (form[field]) formData.append(field, form[field]);
+      });
+
+      // Files
+      if (form.resume) formData.append("resume", form.resume);
+      if (form.profilePhoto) formData.append("profilePhoto", form.profilePhoto);
+
+      // API call
+      await signup(formData, form.role);
+      alert("Signup successful!");
       navigate("/login");
     } catch (err) {
       console.error(err);
-      alert("Signup failed");
+      alert(err.message || "Signup failed");
     }
   };
 
   return (
-    <div className="sign-container">
-      <div className="sign-box">
-        <h2 className="sign-title">Create an Account</h2>
+    <div className="whole">
+      <nav className="navbar">
+        <div className="nav-logo">
+          <h2>The Alumni Society</h2>
+        </div>
+      </nav>
 
-        <form onSubmit={handleSubmit} className="sign-form">
-          {/* Name & Email */}
-          <div className="form-row">
-            <input type="text" name="name" placeholder="Full Name" onChange={handleChange} required />
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-          </div>
+      <div className="sign-container">
+        <div className="sign-box">
+          <h2 className="sign-title">Create an Account</h2>
 
-          {/* Password & Role */}
-          <div className="form-row">
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-            <select name="role" value={form.role} onChange={handleChange} required>
-              <option value="" disabled>Select Role</option>
-              <option value="student">Student</option>
-              <option value="alumni">Alumni</option>
-              <option value="faculty">Faculty</option>
-              <option value="recruitor">Recruitor</option>
-            </select>
-          </div>
+          <form onSubmit={handleSubmit} className="sign-form">
+            {/* Basic Info */}
+            <div className="form-row">
+              <input name="name" placeholder="Full Name" onChange={handleChange} required />
+              <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+            </div>
+            <div className="form-row">
+              <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
+              <select name="role" value={form.role} onChange={handleChange} required>
+                <option value="" disabled>Select Role</option>
+                <option value="student">Student</option>
+                <option value="alumni">Alumni</option>
+                <option value="faculty">Faculty</option>
+                <option value="recruiter">Recruiter</option>
+              </select>
+            </div>
 
-          {/* Student / Alumni / Faculty Fields */}
-          {(form.role === "student" || form.role === "alumni" || form.role === "faculty") && (
-            <>
-              <div className="form-row">
-                <input name="phn" placeholder="Phone" onChange={handleChange} />
-                <input name="headline" placeholder="Headline" onChange={handleChange} />
-              </div>
-              <textarea name="about" placeholder="About" onChange={handleChange} />
-              <input name="experience" placeholder="Experience" onChange={handleChange} />
-              {form.education.map((edu, index) => (
-                <div key={index} className="form-row">
-                  <input
-                    value={edu}
-                    placeholder={`Education ${index + 1}`}
-                    onChange={(e) => handleEducationChange(index, e.target.value)}
-                  />
-                  {form.education.length > 1 && (
-                    <button type="button" onClick={() => removeEducationField(index)}>Remove</button>
-                  )}
+            {/* Common extra fields */}
+            <div className="form-row">
+              <input name="phn" placeholder="Phone" onChange={handleChange} />
+              <input name="dob" type="date" onChange={handleChange} />
+            </div>
+            <div className="form-row">
+              <select name="gender" value={form.gender} onChange={handleChange}>
+                <option value="">Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            {/* Location fields */}
+            <div className="form-row">
+              <input name="address" placeholder="Street / Address" onChange={handleChange} />
+              <input name="city" placeholder="City" onChange={handleChange} />
+            </div>
+            <div className="form-row">
+              <input name="state" placeholder="State" onChange={handleChange} />
+              <input name="country" placeholder="Country" onChange={handleChange} />
+            </div>
+
+            {/* Student / Alumni / Faculty fields */}
+            {(form.role === "student" || form.role === "alumni" || form.role === "faculty") && (
+              <>
+                <div className="form-row">
+                  <input name="headline" placeholder="Headline" onChange={handleChange} />
+                  <input name="department" placeholder="Department/Branch" onChange={handleChange} />
                 </div>
-              ))}
-              <button type="button" onClick={addEducationField}>+ Add Education</button>
-              <input name="certification" placeholder="Certification" onChange={handleChange} />
-              <input name="skills" placeholder="Skills" onChange={handleChange} />
-              {form.urls.map((url, index) => (
-                <div key={index} className="form-row">
+                <input name="yearOfStudy" placeholder="Year of Study" onChange={handleChange} />
+                <textarea name="about" placeholder="About" onChange={handleChange} />
+                <input name="experience" placeholder="Experience (comma separated)" onChange={handleChange} />
+
+                {form.education.map((edu, i) => (
+                  <div key={i} className="form-row">
+                    <input
+                      value={edu}
+                      placeholder={`Education ${i + 1}`}
+                      onChange={(e) => handleEducationChange(i, e.target.value)}
+                    />
+                    {form.education.length > 1 && (
+                      <button type="button" onClick={() => removeEducationField(i)}>Remove</button>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={addEducationField}>+ Add Education</button>
+
+                <input name="certification" placeholder="Certifications (comma separated)" onChange={handleChange} />
+                <input name="skills" placeholder="Skills (comma separated)" onChange={handleChange} />
+
+                {form.urls.map((url, i) => (
+                  <div key={i} className="form-row">
+                    <input
+                      value={url}
+                      placeholder={`Portfolio / URL ${i + 1}`}
+                      onChange={(e) => handleUrlChange(i, e.target.value)}
+                    />
+                    {form.urls.length > 1 && (
+                      <button type="button" onClick={() => removeUrlField(i)}>Remove</button>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={addUrlField}>+ Add URL</button>
+
+                {/* Resume label + input */}
+                <label style={{ color: "#000000" ,marginBottom:"0px" }}>Upload Resume (PDF)</label>
+                <input type="file" name="resume" accept="application/pdf" onChange={handleChange} />
+              </>
+            )}
+
+            {/* Recruiter fields */}
+            {form.role === "recruiter" && (
+              <>
+                <div className="form-row">
+                  <input name="company" placeholder="Company Name" onChange={handleChange} />
+                  <input name="position" placeholder="Position / Title" onChange={handleChange} />
+                </div>
+                <textarea name="about" placeholder="About Company" onChange={handleChange} />
+                {form.urls.map((url, i) => (
                   <input
+                    key={i}
                     value={url}
-                    placeholder={`Portfolio / URL ${index + 1}`}
-                    onChange={(e) => handleUrlChange(index, e.target.value)}
+                    placeholder={`Company / URL ${i + 1}`}
+                    onChange={(e) => handleUrlChange(i, e.target.value)}
                   />
-                  {form.urls.length > 1 && (
-                    <button type="button" onClick={() => removeUrlField(index)}>Remove</button>
-                  )}
-                </div>
-              ))}
-              <button type="button" onClick={addUrlField}>+ Add URL</button>
-              <input type="file" name="resume" accept="application/pdf" onChange={handleChange} />
-            </>
-          )}
+                ))}
+                <button type="button" onClick={addUrlField}>+ Add URL</button>
+              </>
+            )}
 
-          {/* Recruiter Fields */}
-          {form.role === "recruitor" && (
-            <>
-              <div className="form-row">
-                <input name="phn" placeholder="Phone" onChange={handleChange} />
-                <input name="headline" placeholder="Headline" onChange={handleChange} />
-              </div>
-              <textarea name="about" placeholder="About" onChange={handleChange} />
-              {form.urls.map((url, index) => (
-                <input
-                  key={index}
-                  value={url}
-                  placeholder={`Company / URL ${index + 1}`}
-                  onChange={(e) => handleUrlChange(index, e.target.value)}
-                />
-              ))}
-              <button type="button" onClick={addUrlField}>+ Add URL</button>
-            </>
-          )}
+            {/* Profile photo for everyone */}
+            <label style={{ color: "#000000",marginBottom:"0px" }}>Profile Photo (optional)</label>
+            <input type="file" name="profilePhoto" accept="image/*" onChange={handleChange} />
 
-          <button type="submit" className="sign-btn">Sign Up</button>
-        </form>
+            <button type="submit" className="sign-btn">Sign Up</button>
+          </form>
 
-        <p className="sign-footer">
-          Already have an account? <a href="/login">Login</a>
-        </p>
+          <p className="sign-footer">
+            Already have an account? <a href="/login">Login</a>
+          </p>
+        </div>
       </div>
     </div>
   );

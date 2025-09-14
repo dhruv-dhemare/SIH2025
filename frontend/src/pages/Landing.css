@@ -27,11 +27,18 @@
   letter-spacing: 0.5px;
 }
 
+.nav-links {
+  display: flex;               /* Arrange children horizontally */
+  justify-content: flex-end;   /* Push to the right */
+  align-items: center;         /* Vertically center */
+  gap: 20px;                 /* Space between links */
+}
+
 .nav-links a {
-  margin-left: 20px;
   text-decoration: none;
   color: white;
   font-weight: 500;
+  display: inline-block;       /* Ensure proper box behavior */
 }
 
 .nav-links a:hover {

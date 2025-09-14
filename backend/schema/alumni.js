@@ -10,12 +10,27 @@ const alumniSchema = new mongoose.Schema(
     password: { type: String, required: true },
     headline: { type: String },
     about: { type: String },
+
+    // Career & education
     experience: { type: [String], default: [] },
     education: { type: [String], default: [] },
     certification: { type: [String], default: [] },
     skills: { type: [String], default: [] },
+
+    // Links and media
     urls: { type: [String], default: [] },
-    resume: { type: String },
+    resume: { type: String },                 // path or cloud URL
+    profilePhoto: { type: String },           // NEW: optional profile image
+
+    // Location & personal info
+    address: { type: String },                // NEW
+    city: { type: String },                   // NEW
+    state: { type: String },                  // NEW
+    country: { type: String },                // NEW
+    dob: { type: Date },                      // NEW
+    gender: { type: String, enum: ["Male", "Female", "Other"] }, // NEW
+
+    // Platform activity
     posts: { type: [String], default: [] },
     locations: { type: [String], default: [] },
     likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
@@ -24,7 +39,7 @@ const alumniSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// -------- Hash password before saving --------
+// Hash password before save
 alumniSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
@@ -36,7 +51,7 @@ alumniSchema.pre("save", async function (next) {
   }
 });
 
-// -------- Compare password method --------
+// Compare password method
 alumniSchema.methods.comparePassword = async function (candidatePassword) {
   try {
     return await bcrypt.compare(candidatePassword, this.password);

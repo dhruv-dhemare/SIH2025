@@ -67,7 +67,7 @@ export default function ChatWindow({ chat, onBack }) {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
-        <button onClick={handleSend}>Send</button>
+        <button className="send-btn" onClick={handleSend}>Send</button>
       </div>
     </div>
   );
