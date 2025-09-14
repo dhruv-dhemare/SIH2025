@@ -33,10 +33,10 @@ export default function Profile() {
             className="profile-page-pic"
           /> */}
           <div className="profile-page-info">
-            <h2 className="profile-page-name">Disha Sharma</h2>
-            <p className="profile-page-desc">Full Stack Developer | Alumni, XYZ University</p>
-            <p className="profile-page-detail">📍 Bangalore, India</p>
-            <p className="profile-page-detail">📧 disha@example.com</p>
+            <h2 className="profile-page-name">Disha Bhelke</h2>
+            <p className="profile-page-desc">Full Stack Developer | Student,  PICT</p>
+            <p className="profile-page-detail">📍 Pune, India</p>
+            <p className="profile-page-detail">📧 bhelked5@gmail.com</p>
           </div>
         </div>
 

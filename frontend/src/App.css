@@ -16,7 +16,7 @@ body, html, #root, #map-root {
 
 /* Sidebar/Navbar fixed width */
 .navbar-vertical {
-  width: 280px; /* or whatever width you want */
+  width: 20vw; /* or whatever width you want */
   flex-shrink: 0;
 }
 
@@ -40,7 +40,6 @@ body, html, #root, #map-root {
   max-width: 1000px;        /* control width (adjust as needed) */
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;       /* center items horizontally */
   margin: 0 auto;            /* optional, ensures container is centered if needed */
 }
@@ -61,8 +60,7 @@ body, html, #root, #map-root {
 /* Posts feed / Messages window */
 .posts-container {
   display: flex;
-  flex-direction: column;      /* stack posts */
-  gap: 20px;
+  flex-direction: column; 
   width: 100%;
   max-width: 1200px; 
 }

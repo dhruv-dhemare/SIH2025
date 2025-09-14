@@ -1,10 +1,11 @@
 /* Container */
 .profile-page-container {
     padding-left: 300px;
-    width: calc(100vw - 95px);
-  background-color: #f8f9fa; /* keep light grey, or use white if you want */
+    width: calc(100vw);
+  background-color: #ffffff; /* keep light grey, or use white if you want */
   min-height: 100vh;
   font-family: Arial, sans-serif;
+  max-width: 70vw;
 }
 
 /* Title */

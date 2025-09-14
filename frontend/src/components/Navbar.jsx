@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav className="navbar-vertical" aria-label="Main sidebar">
       <div className="site-header">
-        <span className="site-title">AlmaMatter</span>
+        <span className="site-title">The Alumni Society</span>
       </div>
 
       <div className="top-spacer"></div>
@@ -16,7 +16,7 @@ function Navbar() {
       <div className="profile-wrapper">
         <NavLink to="/profile" className="profile-link">
           <ProfileCard
-            name="Dhruv Dhemare"
+            name="Disha Bhelke"
             title="FullStack Engineer | AI/ML Enthusiast"
             location="Pune, India"
             profileImg={profileImg}
