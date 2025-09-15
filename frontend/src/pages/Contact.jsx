@@ -59,6 +59,16 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <h1 className="page-title">Our Creators</h1>
+      <hr
+        className="divider-contact"
+        style={{
+          margin: "0px",
+          padding: "0px",
+          border: "none",           // remove default border
+          height: "2px",            // thickness of the line
+          backgroundColor: "#045233" // your green color
+        }}
+      />
 
       <div className="cards-grid">
         {teamMembers.map((member, index) => (

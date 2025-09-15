@@ -50,8 +50,11 @@
   width: 100%;          /* half the card width */
   border: 0;
   height: 4px;
-  background-color: #7c7c7c;
+  background-color: #067e4e;
   margin: 0px;
   margin-bottom: 40px;
 }
 
+.leaflet-container{
+  margin-bottom: 10vh;
+}

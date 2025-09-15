@@ -1,30 +1,33 @@
 /* --- Card Container --- */
 .post-card {
   width: 100%;
-  max-width: 30vw;
+  max-width: 32vw;
   background: #fff;
-  border: 0.06vw solid #ddd;                 /* 1px */
-  border-radius: 0.75vw;                     /* 12px */
-  padding: 1.25vw;                           /* 20px */
-  font-family: Arial, sans-serif;
-  box-shadow: 0 0.25vw 0.75vw rgba(0,0,0,0.12); /* 0 4px 12px */
-  transition: box-shadow 0.2s ease-in-out;
-  margin-bottom: 2vh;
-  height:65vh;
+  border: 1px solid #e1e1e1;
+  padding: 1.2vw;
+  font-family: "Segoe UI", Arial, sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: box-shadow 0.25s ease, transform 0.15s ease;
+  margin-bottom: 7vh;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 /* --- Post Header --- */
 .post-header {
   display: flex;
   align-items: center;
-  margin-bottom: 1vw;                         /* 16px */
+  margin-bottom: 1vw;
 }
 
 .avatar {
-  width: 3.5vw;                                /* 56px */
-  height: 3.5vw;
-  border-radius: 50%;
-  margin-right: 0.9vw;                          /* 14px */
+  width: 3.2vw;
+  height: 3.2vw;
+  margin-right: 0.8vw;
+  object-fit: cover;
 }
 
 .post-user-info {
@@ -34,66 +37,69 @@
 
 .user-name {
   margin: 0;
-  font-size: 1.125vw;                           /* 18px */
-  font-weight: bold;
-  color: #000000;
+  font-size: 1.05vw;
+  font-weight: 600;
+  color: #222;
 }
 
 .user-role {
-  margin: 0.2vw 0 0;                             /* 3px */
-  font-size: 0.875vw;                             /* 14px */
-  color: gray;
+  margin: 0.2vw 0 0;
+  font-size: 0.85vw;
+  color: #777;
 }
 
 /* --- Post Content --- */
 .post-content {
-  margin: 1vw 0;                                  /* 16px */
-  color: #000000;
+  margin: 1vw 0;
+  color: #333;
 }
 
 .post-content p {
-  font-size: 1vw;                                  /* 16px */
-  line-height: 1.5;
-  margin-bottom: 0.75vw;                            /* 12px */
+  font-size: 0.95vw;
+  line-height: 1.6;
+  margin-bottom: 0.8vw;
 }
 
-/* Image inside post (bigger, LinkedIn-style) */
+/* Image inside post */
 .post-image {
   width: 100%;
-  height: 35vh;                                     /* 290px */
+  max-height: 40vh;
   object-fit: cover;
-  border-radius: 0.625vw;                            /* 10px */
-  border: 0.06vw solid #838383;                      /* 1px */
+  border: 1px solid #ccc;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.25s ease;
 }
 
-.post-card:hover {
-  box-shadow: 0 0.375vw 1.25vw rgba(0,0,0,0.18);     /* 0 6px 20px */
+.post-image:hover {
+  transform: scale(1.02);
 }
 
 /* --- Post Actions --- */
 .post-actions {
   display: flex;
   justify-content: space-around;
-  border-top: 0.06vw solid #eee;                     /* 1px */
-  padding-top: 0.9vw;                                 /* 14px */
-  margin-top: 0.9vw;                                  /* 14px */
+  border-top: 1px solid #eee;
+  padding-top: 0.9vw;
+  margin-top: 0.9vw;
 }
 
 .post-actions button {
   background: none;
   border: none;
-  font-size: 0.94vw;                                  /* 15px */
+  font-size: 0.9vw;
   cursor: pointer;
   color: #555;
-  padding: 0.625vw 0.9vw;                             /* 10px 14px */
-  border-radius: 0.375vw;                              /* 6px */
-  transition: background 0.2s;
+  padding: 0.6vw 0.8vw;
+  border-radius: 0; /* ✅ no rounded buttons */
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4vw;
 }
 
 .post-actions button:hover {
-  background: #f3f3f3;
+  background: #f5f5f5;
+  color: #000;
 }
 
 /* --- Modal (Full Image) --- */
@@ -103,17 +109,18 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
+  cursor: zoom-out;
 }
 
 .modal-image {
-  max-width: 90%;
+  max-width: 92%;
   max-height: 90%;
-  border-radius: 0.625vw;                              /* 10px */
-  box-shadow: 0 0.25vw 0.875vw rgba(0,0,0,0.5);        /* 0 4px 14px */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
   background: #fff;
+  border-radius: 0; /* ✅ removed rounded corners */
 }

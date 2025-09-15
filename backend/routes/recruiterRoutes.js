@@ -15,30 +15,57 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// POST /api/recruiter/signup
+// -------------------- Recruiter Signup --------------------
 router.post("/signup", async (req, res) => {
   try {
-    const { name, email, password, phn, headline, about, urls = [], posts = [], locations = [] } = req.body;
+    const {
+      name,
+      email,
+      password,
+      phn,
+      headline,
+      about,
+      urls = [],
+      posts = [],
+      locations = [],
+    } = req.body;
 
     // ✅ Validate required fields
     if (!name || !email || !password) {
       return res.status(400).json({ error: "Name, email, and password are required." });
     }
 
+    // ✅ Validate email format
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ error: "Invalid email format." });
+    }
+
+    // ✅ Validate URLs (optional)
+    for (const url of urls) {
+      if (url && !validator.isURL(url)) {
+        return res.status(400).json({ error: `Invalid URL: ${url}` });
+      }
+    }
+
     // ✅ Check if email already exists
     const existing = await Recruiter.findOne({ email });
     if (existing) return res.status(409).json({ error: "Email already exists." });
 
-    // ✅ Auto-generate username: REC001, REC002, ...
-    const count = await Recruiter.countDocuments();
-    const username = `REC${String(count + 1).padStart(3, "0")}`;
+    // ✅ Auto-generate username safely (REC001, REC002...)
+    const lastRecruiter = await Recruiter.findOne().sort({ createdAt: -1 });
+    let nextNumber = 1;
+    if (lastRecruiter && lastRecruiter.username) {
+      const lastNum = parseInt(lastRecruiter.username.replace("REC", ""));
+      if (!isNaN(lastNum)) nextNumber = lastNum + 1;
+    }
+    const username = `REC${String(nextNumber).padStart(3, "0")}`;
 
-    // ✅ Create recruiter instance WITHOUT manual hashing
+    // ✅ Create recruiter instance (password will be hashed automatically)
     const recruiter = new Recruiter({
       name,
       username,
       email,
-      password, // schema will hash automatically
+      password,
       phn,
       headline,
       about,
@@ -52,7 +79,7 @@ router.post("/signup", async (req, res) => {
     // ✅ Generate JWT
     const token = generateToken({ id: savedRecruiter._id, role: "recruiter" });
 
-    // ✅ Send email
+    // ✅ Send welcome email (non-blocking)
     try {
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -73,9 +100,11 @@ Team Alumni Portal`,
       console.error("Failed to send email:", emailErr);
     }
 
+    // ✅ Respond without password
+    const { password: pw, ...recruiterData } = savedRecruiter.toObject();
     res.status(201).json({
       message: "Recruiter signup successful",
-      recruiter: savedRecruiter,
+      recruiter: recruiterData,
       token,
     });
   } catch (err) {

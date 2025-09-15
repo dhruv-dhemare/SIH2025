@@ -1,34 +1,30 @@
-/* Page base */
-
+/* Container */
 .messages-container {
   background: #ffffff;
   min-height: 70vh;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  display: flex; /* layout main + filter side by side */
+  display: flex;
   min-width: 80vw;
-  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); soft outer shadow */
-  border-radius: 12px; /* optional: smooth corners */
+  border-radius: 12px;
 }
 
-/* Main section (tabs + messages/community) */
+/* Main Section */
 .messages-main {
-  flex: 3; /* make it bigger (double the filter) */
+  width: 85vw;
+  flex: 3;
   display: flex;
   flex-direction: column;
-  max-width: 100vw; 
-  margin-left: 120px;  /* push it a bit more to the right */
-  padding: 10px 20px;
   height: 95vh;
-  animation: fadeIn 0.25s ease;
+  padding: 10px 20px;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(201, 201, 201, 0.05);
-  margin-left:20vw;
+  margin-left: 20vw;
 }
 
-/* Right Filter placeholder */
+/* Filter Sidebar */
 .messages-filter {
-  flex: 1; /* smaller compared to messages */
+  flex: 1;
   border-left: 1px solid #e5e7eb;
   background: #ffffff;
   min-width: 250px;
@@ -55,39 +51,76 @@
 }
 
 .tab-header button:hover {
-  background: #e5e7eb;
+  background: #004127;
+  color: white;
 }
 
 .tab-header .active-tab {
-  background: teal;
+  background: #067e4e;
   color: white;
   border-radius: 6px 6px 0 0;
 }
 
-/* Tab content */
-.tab-body {
+/* Split Layout (like WhatsApp) */
+.split-layout {
   flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+/* Left panel = list */
+.list-panel {
+  flex: 1;
+  border-right: 1px solid #e5e7eb;
+  padding: 10px;
   overflow-y: auto;
-  padding: 12px;
+}
+
+/* Right panel = window */
+.window-panel {
+  width: 50vw;
+  flex: 2;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholder when nothing is selected */
+.placeholder {
+  color: #888;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
 }
 
 /* Scrollbar styling */
-.tab-body::-webkit-scrollbar { width: 8px; }
-.tab-body::-webkit-scrollbar-thumb {
-  background: #d1d5db; border-radius: 999px;
+.list-panel::-webkit-scrollbar,
+.window-panel::-webkit-scrollbar {
+  width: 8px;
 }
-.tab-body:hover::-webkit-scrollbar-thumb { background: #9ca3af; }
+.list-panel::-webkit-scrollbar-thumb,
+.window-panel::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+.list-panel:hover::-webkit-scrollbar-thumb,
+.window-panel:hover::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+}
 
 /* Responsive */
-@media (max-width: 1200px) {
-  .messages-container {
+@media (max-width: 900px) {
+  .split-layout {
     flex-direction: column;
   }
-  .messages-main {
-    margin-left: 0;
-    max-width: 100%;
+  .list-panel {
+    flex: unset;
+    max-height: 40%;
   }
-  .messages-filter {
-    display: none; /* hide filter on small screens */
+  .window-panel {
+    flex: unset;
+    max-height: 60%;
   }
 }

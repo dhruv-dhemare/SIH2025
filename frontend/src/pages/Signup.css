@@ -1,29 +1,49 @@
 /* sign.css – inputs, select and textarea all white */
 
-/* Base font + background */
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #dceeff 0%, #f8faff 100%);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.whole {
+  min-height: 100vh;     /* always at least full screen */
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #045233;
+  color: rgb(232, 230, 230);
+  z-index: 2;
 }
 
 .sign-container {
-  position: relative;
-  min-height: 100vh;
+  flex: 1;  /* fills space below navbar */
+  display: flex;
+  justify-content: center; /* centers sign-box vertically */
+  align-items: center;
+
+  background: linear-gradient(rgba(250,251,251,0.5), rgba(250,251,251,0.2)),
+              url("../assets/bg.jpg") center/cover no-repeat;
 }
 
 .sign-box {
-  top: 0px;
-  right: 20px;
   width: 60vw;
-  max-width: calc(100vw - 40px);
-  box-sizing: border-box;
-  background: #ffffff;
+  max-width: 800px;
   padding: 22px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
+  background-color: rgba(250, 251, 251, 0.88); /* semi-transparent white */
+  z-index: 1;
   text-align: center;
 }
+
 
 /* Tablet */
 @media (max-width: 768px) {
@@ -99,18 +119,7 @@ body {
 }
 
 /* Button */
-.sign-btn {
-  margin: 6px auto 0;          /* top 6px, left/right auto centers it */
-  width: 50%;
-  padding: 10px 12px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .15s, transform .05s;
-}
+
 
 
 .sign-btn:hover {
@@ -177,7 +186,7 @@ body {
   display: block;         /* makes it a block element for centering */
   margin: 0 auto;         /* centers the block horizontally */
   padding: 0;             /* remove all padding */
-  width: 20vw;            /* fixed width, can be adjusted */
+  width: 10vw;            /* fixed width, can be adjusted */
   height: 2rem;         /* optional: set height for clickable area */
   background: #4f46e5;
   color: #fff;
@@ -193,3 +202,26 @@ body {
 }
 
 
+
+.sign-btn {
+  margin: 6px auto 0;          /* top 6px, left/right auto centers it */
+  width: 20%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #045233;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, transform .05s;
+}
+
+.sign-footer a {
+  color: #0bdb88;      /* pick any hex or named color */
+  text-decoration: none; /* optional: remove underline */
+}
+
+.sign-footer a:hover {
+  color: #067e4e;       /* optional: color on hover */
+  text-decoration: underline; /* optional hover effect */
+}

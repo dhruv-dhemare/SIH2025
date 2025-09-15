@@ -1,14 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --sidebar-width: 20vw;       /* 320px → 20vw (based on 1600px viewport width) */
-  --card-width: 15.625vw;      /* 250px → 15.625vw */
-  --sidebar-pad: 1.375vw;      /* 22px → 1.375vw */
+  --sidebar-width: 18vw;      
+  --card-width: 14vw;         
+  --sidebar-pad: 1.5vw;       
   --bg: #ffffff;
+  --accent: #067e4e;
+  --accent-dark: #013520;
   --muted: #9aa0b3;
+  --shadow: rgba(0, 0, 0, 0.08);
 }
 
-/* Reset box-sizing */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -23,93 +26,81 @@
   width: var(--sidebar-width);
   height: 100vh;
   background: var(--bg);
-  padding: var(--sidebar-pad);
+  padding: var(--sidebar-pad) 1vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0.125vw 0 0.875vw rgba(0,0,0,0.22); /* 2px 0 14px */
+  border-right: 1px solid #e6e6e6;
+  box-shadow: 2px 0 10px var(--shadow);
   overflow: hidden;
-  width: 20vw;
+  transition: all 0.25s ease;
 }
 
-/* Top: site title */
+/* Title */
 .site-header {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 0.375vw; /* 6px */
+  margin-bottom: 1.2vw;
 }
 .site-title {
   font-family: "Playfair Display", serif;
   text-align: center;
-  color: #000;
-  font-size: 2.5vw;   /* unchanged */
+  color: #111;
+  font-size: 1.8vw;
   font-weight: 700;
   letter-spacing: 0.5px;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
-/* NEW: This spacer pushes the profile card down */
-.top-spacer {
-  height: 0.625vw; /* 10px */
-}
-
-/* Profile wrapper centers the card but doesn't stretch it */
+/* Profile wrapper */
 .profile-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5vw;  /* 8px */
-  margin-bottom: 0.5vw;
-  flex-shrink: 0;
+  margin-bottom: 2vw;
 }
 
-/* Spacer pushes nav to bottom */
-.spacer {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-/* Bottom nav — match the card width and center it */
+/* Navigation links */
 .nav-links {
   width: 100%;
   max-width: var(--card-width);
   display: flex;
   flex-direction: column;
-  gap: 0.75vw; /* 12px */
-  margin-bottom: 0.5vw; /* 8px */
-  margin-left: auto;
-  margin-right: auto;
-  align-items: stretch;
+  gap: 0.8vw;
+  margin-bottom: 2vw;
 }
 
-/* Buttons — fill the card width exactly */
 .nav-link {
   display: block;
   width: 100%;
-  padding: 0.75vw 0.875vw; /* 12px 14px */
+  padding: 0.8vw 1vw;
   text-align: center;
   text-decoration: none;
-  color: #000000;
-  background: #ffffff;
-  border-radius: 0.75vw; /* 12px */
-  font-weight: 600;
-  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s;
-  box-shadow: 0 0.375vw 1vw rgba(0,0,0,0.16); /* 0 6px 16px */
+  color: #222;
+  background: #f5f5f5;
+  border-radius: 0.6vw;
+  font-family: "Inter", sans-serif;
+  font-size: 1vw;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
 }
 
-/* Hover + focus */
+/* Hover & focus */
 .nav-link:hover,
 .nav-link:focus {
-  background: #adadad;
-  transform: translateY(-0.125vw); /* -2px */
+  background: var(--accent);
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
-/* Optional: active state */
+/* Active state */
 .nav-link.active {
-  background: #3b3f5a;
+  background: var(--accent-dark);
   color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }

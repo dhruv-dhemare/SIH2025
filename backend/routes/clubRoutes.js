@@ -13,11 +13,12 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // your Gmail address
+    user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS, // 16-character App Password
   },
 });
 
+/* ---------- Club Signup ---------- */
 router.post("/signup", async (req, res) => {
   try {
     const {
@@ -29,64 +30,86 @@ router.post("/signup", async (req, res) => {
       about,
       urls = [],
       events = [],
-      locations = []
+      locations = [],
     } = req.body;
 
-    // Check if email already exists
-    const existingEmail = await Club.findOne({ email });
-    if (existingEmail) {
-      return res.status(400).json({ message: "Email already exists" });
+    // 1️⃣ Basic validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Name, email, and password are required." });
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format." });
     }
 
-    // Auto-generate username (CLB001, CLB002, …)
-    const count = await Club.countDocuments();
-    const newUsername = `CLB${String(count + 1).padStart(3, "0")}`;
+    // 2️⃣ Check for duplicate email
+    const existingEmail = await Club.findOne({ email });
+    if (existingEmail) {
+      return res.status(409).json({ error: "Email already exists." });
+    }
 
+    // 3️⃣ Generate unique username (CLB001, CLB002…)
+    const count = await Club.countDocuments();
+    const username = `CLB${String(count + 1).padStart(3, "0")}`;
+
+    // 4️⃣ Create club (password hashed in schema pre-save)
     const club = new Club({
-      name,
-      username: newUsername,
+      name: name.trim(),
+      username,
       phn,
-      email,
+      email: email.trim(),
       password,
       headline,
       about,
       urls,
       events,
-      locations
+      locations,
     });
 
-    await club.save();
+    const savedClub = await club.save();
 
-    // Generate JWT
-    const token = generateToken({ id: club._id, email: club.email });
+    // 5️⃣ Generate JWT
+    const token = generateToken({ id: savedClub._id, role: "club" });
 
-    // ✅ Send email with username and login info
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: club.email,
-      subject: "Welcome to Alumni Portal - Club Account Details",
-      text: `Hello ${club.name},
+    // 6️⃣ Remove password before sending response
+    const { password: _, ...clubData } = savedClub.toObject();
+
+    // 7️⃣ Send welcome email
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: savedClub.email,
+        subject: "Welcome to Alumni Portal - Club Account Details",
+        text: `Hello ${savedClub.name},
 
 Your club account has been created successfully.
 
-Your login details are:
-Username: ${club.username}
-Email: ${club.email}
+Login details:
+Username: ${savedClub.username}
+Email: ${savedClub.email}
 
 Keep this information safe.
 
 Thank you,
-Team Alumni Portal`
-    });
+Team Alumni Portal`,
+      });
+    } catch (emailErr) {
+      console.error("Email send failed:", emailErr);
+      return res.status(201).json({
+        message: "Club signup successful (email sending failed).",
+        club: clubData,
+        token,
+      });
+    }
 
     res.status(201).json({
-      message: "Club signup successful, email sent",
-      club,
-      token
+      message: "Club signup successful, email sent.",
+      club: clubData,
+      token,
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("Signup error:", err);
+    res.status(500).json({ error: "Server error during signup." });
   }
 });
 

@@ -1,5 +1,6 @@
 .chat-window,
 .forum-window {
+  width: 100%;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
@@ -9,6 +10,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,.05);
   overflow: hidden;
   animation: fadeIn 0.3s ease;
+  height: 85vh;
 }
 
 .chat-header,
@@ -59,22 +61,26 @@
 }
 
 .chat-footer button {
-  background: #2563eb;
+  background: #067e4e;
   color: white;
 }
 .chat-footer button:hover {
-  background: #1d4ed8;
+  background: #067e4e;
 }
 
 .forum-footer button {
-  background: #16a34a;
+  background: #067e4e;
   color: white;
 }
 .forum-footer button:hover {
-  background: #15803d;
+  background: #067e4e;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.send-btn{
+  background: #067e4e;
 }

@@ -31,9 +31,7 @@ export default function Messages() {
 
   return (
     <div className="messages-container">
-      {/* Main content */}
       <div className="messages-main">
-        
         {/* Tab Switcher */}
         <div className="tab-header">
           <button
@@ -50,42 +48,61 @@ export default function Messages() {
           </button>
         </div>
 
-        {/* Tab Content */}
-        <div className="tab-body">
-          {activeTab === "chats" ? (
-            activeChat ? (
-              <ChatWindow chat={activeChat} onBack={() => setActiveChat(null)} />
-            ) : (
-              <>
-                <SearchBar
-                  value={chatQuery}
-                  onChange={setChatQuery}
-                  placeholder="Search chats..."
-                />
-                <ChatList items={chats} query={chatQuery} onSelect={setActiveChat} />
-              </>
-            )
-          ) : (
-            activeForum ? (
-              <ForumWindow forum={activeForum} onBack={() => setActiveForum(null)} />
-            ) : (
-              <>
-                <SearchBar
-                  value={forumQuery}
-                  onChange={setForumQuery}
-                  placeholder="Search communities..."
-                />
-                <ForumList items={forums} query={forumQuery} onOpen={setActiveForum} />
-              </>
-            )
-          )}
-        </div>
+        {/* Chats Layout */}
+        {activeTab === "chats" && (
+          <div className="split-layout">
+            <div className="list-panel">
+              <SearchBar
+                value={chatQuery}
+                onChange={setChatQuery}
+                placeholder="Search chats..."
+              />
+              <ChatList
+                items={chats}
+                query={chatQuery}
+                onSelect={setActiveChat}
+                activeChat={activeChat}
+              />
+            </div>
+            <div className="window-panel">
+              {activeChat ? (
+                <ChatWindow chat={activeChat} />
+              ) : (
+                <div className="placeholder">Select a chat to start messaging</div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Communities Layout */}
+        {activeTab === "community" && (
+          <div className="split-layout">
+            <div className="list-panel">
+              <SearchBar
+                value={forumQuery}
+                onChange={setForumQuery}
+                placeholder="Search communities..."
+              />
+              <ForumList
+                items={forums}
+                query={forumQuery}
+                onOpen={setActiveForum}
+                activeForum={activeForum}
+              />
+            </div>
+            <div className="window-panel">
+              {activeForum ? (
+                <ForumWindow forum={activeForum} />
+              ) : (
+                <div className="placeholder">Select a community to view details</div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Right Filter Section */}
-      <div className="messages-filter">
-        {/* Empty placeholder for now */}
-      </div>
+      <div className="messages-filter">{/* Placeholder for filters */}</div>
     </div>
   );
 }

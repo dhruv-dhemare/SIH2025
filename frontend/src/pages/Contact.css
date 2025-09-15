@@ -1,32 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+/* Page Container */
 .contact-page {
   text-align: center;
+  font-family: 'Merriweather', serif;
+ /* light greenish background */
+  margin-left:20vw ;
 }
 
+/* Page Title */
 .page-title {
   font-size: 5vh;
-  font-weight: bold;
-  margin-bottom: 1vh;
-  color: #333;
-  margin-top:4px;
-  margin-left: 13vw;
+  font-weight: 700;
+  color: #045233; /* primary green color */
+  margin-bottom: 0.5vh;
 }
 
+/* Cards Grid */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 per row */
-  gap: 1vw; /* spacing between cards */
-  justify-items: center; /* center each card */
-  margin-left: 19vw;
+  grid-template-columns: repeat(3, 1fr); /* keep same layout */
+  gap: 1vw; /* spacing remains the same */
+  justify-items: center; /* centering preserved */
 }
 
-/* Responsive: stack into 2 per row for tablets */
+/* Individual Card */
+.contact-card {
+  background-color: rgba(4, 82, 51, 0.2);/* subtle green tint */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Profile Image */
+.contact-card img {
+  border: 3px solid #045233;
+  border-radius: 50%;
+}
+
+/* Name */
+.contact-card h3 {
+  color: #045233;
+}
+
+/* Contact Info */
+.contact-card p,
+.contact-card a {
+  color: #333;
+}
+
+.contact-card a:hover {
+  color: #045233;
+  text-decoration: underline;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Responsive: stack into 1 per row for mobile */
 @media (max-width: 600px) {
   .cards-grid {
     grid-template-columns: 1fr;

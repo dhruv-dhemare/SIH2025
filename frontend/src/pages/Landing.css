@@ -17,21 +17,28 @@
   align-items: center;
   padding: 15px 50px;
   background-color: #045233;
-  color: white;
+  color: rgb(232, 230, 230);
   z-index: 2;
 }
 
 .nav-logo h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: "Playfair Display", serif;
   letter-spacing: 0.5px;
 }
 
+.nav-links {
+  display: flex;               /* Arrange children horizontally */
+  justify-content: flex-end;   /* Push to the right */
+  align-items: center;         /* Vertically center */
+  gap: 20px;                 /* Space between links */
+}
+
 .nav-links a {
-  margin-left: 20px;
   text-decoration: none;
   color: white;
   font-weight: 500;
+  display: inline-block;       /* Ensure proper box behavior */
 }
 
 .nav-links a:hover {
@@ -77,7 +84,7 @@
 .join-btn {
   margin-top: 4vh;
   background-color: #045233;
-  color: white;
+  color: rgb(232, 230, 230);;
   border: none;
   padding: 14px 30px;
   font-size: 1rem;
@@ -103,6 +110,7 @@
 }
 
 .hero-logo {
+  margin-left: 10vh;
   max-width: 40vh;
   opacity: 0.95;
 }

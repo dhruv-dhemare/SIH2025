@@ -13,7 +13,18 @@ const ContactCard = ({ name, image, phone, email, linkedin }) => {
         <h2 className="creator-name">{name}</h2>
 
         {/* Divider Line */}
-        <hr className="divider" />
+        <hr
+  className="divider-contact"
+  style={{
+    margin: "0px",
+    padding: "0px",
+    border: "none",           // remove default border
+    height: "2px",            // thickness of the line
+    backgroundColor: "#045233", // your green color
+    width: "80%"
+  }}
+/>
+
 
         {/* Phone */}
         <div className="info-row">
