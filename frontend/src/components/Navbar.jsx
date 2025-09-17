@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-        import { LogOut } from "lucide-react"; // add this import at top
-import {
-  Home,
-  Calendar,
-  MessageSquare,
-  BarChart3,
-  Phone,
-} from "lucide-react"; // ✅ lucide icons
+import { NavLink, useNavigate } from "react-router-dom";
+import { LogOut, Home, Calendar, MessageSquare, BarChart3, Phone } from "lucide-react";
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
 import profileImg from "../assets/profile.jpg";
-import { getProfile } from "../services/api";
+import { getProfile, logout as apiLogout } from "../services/api"; // import logout
 
 function Navbar() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // for redirect after logout
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -54,6 +48,25 @@ function Navbar() {
   if (error) {
     console.error(error);
   }
+
+  // Logout handler
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        // call backend logout to blacklist token (optional)
+        await apiLogout(token);
+      }
+
+      // remove token locally
+      localStorage.removeItem("token");
+
+      // redirect to login page
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
 
   return (
     <nav className="navbar-vertical" aria-label="Main sidebar">
@@ -118,12 +131,12 @@ function Navbar() {
         >
           <Phone /> Contact
         </NavLink>
-        <NavLink to="/" className="logout-btn">
-  <LogOut className="logout-icon" />
-  <span className="logout-text">Logout</span>
-</NavLink>
 
-
+        {/* Logout NavLink with onClick */}
+        <div className="logout-btn" onClick={handleLogout} style={{ cursor: "pointer" }}>
+          <LogOut className="logout-icon" />
+          <span className="logout-text">Logout</span>
+        </div>
       </div>
     </nav>
   );

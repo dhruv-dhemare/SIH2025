@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;   /* ✅ centers text horizontally */
   align-items: center;       /* ✅ centers text vertically */
-  padding: 1rem 0.5rem;
+  /* padding: 1rem 0.5rem; */
   width: 100%;               /* ✅ fills only navbar width */
   text-align: center;
   box-sizing: border-box;    /* ✅ respects padding inside navbar */
@@ -11,7 +11,7 @@
 
 .site-title {
   font-family: "Georgia", "Times New Roman", serif; /* or Segoe UI for modern */
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: #067e4e;
   letter-spacing: 0.5px;
