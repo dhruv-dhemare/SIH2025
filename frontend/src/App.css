@@ -8,6 +8,7 @@ body, html, #root, #map-root {
 }
 
 
+
 /* Root flex container for navbar + content */
 .flex {
   display: flex;
@@ -135,3 +136,68 @@ body, html, #root, #map-root {
   margin: 0;
   font-size: 14px;
 }
+
+.home-content {
+  display: flex;
+  flex-direction: column; /* stack filters, search bar, posts vertically */
+  align-items: center;    /* center them horizontally */
+  width: 100%;
+  background: rgb(250, 250, 250);
+}
+/* Search bar container */
+/* --- Search Bar Container --- */
+.search-bar {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Input Box --- */
+.search-bar input {
+  color: rgb(60, 60, 60);
+  width: 80%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 50px 0 0 50px; /* Rounded left side */
+  font-size: 1rem;
+  background: #fff; /* White input */
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Search Button --- */
+.search-btn {
+  background: linear-gradient(135deg, #067e4e, #05613c); /* gradient */
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0 50px 50px 0; /* Rounded right side */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* --- Icon Styling --- */
+.search-btn svg {
+  color: #fff;  /* White icon */
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Hover Effect --- */
+.search-btn:hover {
+  background: linear-gradient(135deg, #035031, #067e4e);
+}
+
+
+.posts-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center; /* keep posts centered */
+}
+
