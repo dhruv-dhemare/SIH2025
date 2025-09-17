@@ -60,7 +60,7 @@ export default function Profile() {
       <h1 className="profile-page-title">Profile</h1>
 
       {/* Top Cards */}
-      <div className="top-cards">
+      {/* <div className="top-cards"> */}
         {/* Profile Card */}
         <div className="card profile-page-card">
           
@@ -71,13 +71,13 @@ export default function Profile() {
             <p className="profile-page-detail">📧 {user.email}</p>
           </div>
         </div>
-
+        {/* <div className="top-cards"></div> */}
         {/* About Card */}
         <div className="card about-card">
           <h3>About</h3>
           <p>{user.about || "No bio provided."}</p>
         </div>
-      </div>
+      {/* </div> */}
 
       {/* Posts Section */}
       <div className="card section-card">

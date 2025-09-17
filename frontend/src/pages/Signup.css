@@ -13,14 +13,18 @@ html, body {
 }
 
 .navbar {
-  height: 10vh;
+  position: fixed;       /* stays on top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 50px;
   background-color: #045233;
   color: rgb(232, 230, 230);
-  z-index: 2;
+  z-index: 1000;         /* ensures it stays above everything */
 }
 
 .sign-container {
@@ -28,12 +32,14 @@ html, body {
   display: flex;
   justify-content: center; /* centers sign-box vertically */
   align-items: center;
-
+  margin-top: 9vh;
   background: linear-gradient(rgba(250,251,251,0.5), rgba(250,251,251,0.2)),
               url("../assets/bg.jpg") center/cover no-repeat;
+  background-attachment: fixed; /* keeps background constant */
 }
 
 .sign-box {
+  margin: 5vh;
   width: 60vw;
   max-width: 800px;
   padding: 22px;

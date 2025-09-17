@@ -1,0 +1,66 @@
+{
+  "personal_info": {
+    "name": "Apoorv Deshmukh",
+    "email": "theapoorvdeshmukh@gmail.com",
+    "phone": "1329552910359"
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Engineering",
+      "major": "Computer Engineering",
+      "institution": "Pune Institute of Computer Technology",
+      "year": 2027
+    }
+  ],
+  "skills": [
+    "Python",
+    "C++",
+    "React",
+    "Node.js",
+    "MySQL",
+    "Git",
+    "HTML",
+    "CSS",
+    "MongoDB",
+    "NumPy",
+    "Pandas",
+    "Matplotlib",
+    "Deep Learning",
+    "DSA",
+    "FastAPI",
+    "OCR"
+  ],
+  "projects": [
+    {
+      "name": "SmartHire: Resume Analyzer and Job Skill Matcher",
+      "description": "Developed the frontend of a resume parsing platform using React. Integrated Google Gemini API for advanced resume parsing and structured data extraction. Implemented dynamic graphical representations and intuitive UI for improved user experience.",
+      "technologies": [
+        "React",
+        "HTML",
+        "CSS",
+        "Python",
+        "Google Gemini API"
+      ]
+    },
+    {
+      "name": "Intelligent Insurance Policy QA System",
+      "description": "Built an LLM-powered QA system during Bajaj-Finserv hackathon HackRx 6. Integrated Google Gemini API and MongoDB for contextual QA.",
+      "technologies": [
+        "Google Gemini API",
+        "MongoDB",
+        "FastAPI",
+        "BM25",
+        "Pinecone"
+      ]
+    }
+  ],
+  "achievements": [],
+  "extracurricular": [
+    {
+      "title": "Event Management Head",
+      "organization": "EDC",
+      "dates": "May 2025 - May 2027",
+      "description": "Spearheaded planning and logistics for flagship entrepreneurial fests MAGNATE. Coordinated with sponsors."
+    }
+  ]
+}

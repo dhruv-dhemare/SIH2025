@@ -1,0 +1,88 @@
+{
+  "personal_info": {
+    "name": "Apoorv Deshmukh",
+    "emails": [
+      "apoorvdeshmukh2945@gmail.com"
+    ],
+    "phones": [
+      "9552910359"
+    ],
+    "organizations": [
+      "Pune Institute of Computer Technology"
+    ]
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Engineering",
+      "major": "Computer Engineering",
+      "institution": "Pune Institute of Computer Technology",
+      "start_date": "2023-09",
+      "end_date": "2027-05"
+    },
+    {
+      "degree": "HSC",
+      "institution": "Rajarshi Shahu Jr. Science College",
+      "year": 2022
+    },
+    {
+      "degree": "SSC",
+      "institution": "Shripatrao Bhosale Highschool",
+      "year": 2020
+    }
+  ],
+  "experience": [],
+  "skills": [
+    "HTML",
+    "CSS",
+    "Python",
+    "React",
+    "Node.js",
+    "MongoDB",
+    "C++",
+    "Matplotlib",
+    "Scikit-learn",
+    "OOP",
+    "DSA"
+  ],
+  "projects": [
+    {
+      "name": "Expensify: An Expense Management Platform",
+      "description": "Frontend Team Lead for an expense management platform enabling users to manage their expense and update it frequently. Optimized visualization of user expenses and their transaction history using graphs and charts. Key Features: Dynamic Graphic Visualization, Tracking daily expenses.",
+      "tools": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "AegisCare: A Health Risk Assessment Tool",
+      "description": "Team Leader for this AI/ML based health risk assessment platform. It provides potential health risks for users. Key Features: Trained AI Models, Dynamic Data Handling.",
+      "tools": [
+        "Gemini",
+        "Numpy",
+        "Pandas",
+        "Python",
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Matplotlib",
+        "Scikit-learn"
+      ]
+    }
+  ],
+  "achievements": [],
+  "extracurricular": [
+    "Event Management Head at EDC PICT"
+  ],
+  "interests": [
+    "AI",
+    "ML",
+    "Data Science",
+    "Backend Development"
+  ],
+  "languages": [
+    "English",
+    "Hindi",
+    "Marathi"
+  ]
+}

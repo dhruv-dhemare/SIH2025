@@ -78,5 +78,26 @@ export const getProfile = async (token) => {
   return res.data;
 };
 
+export const logout = async (token) => {
+  try {
+    // Call backend logout route
+    await API.post(
+      "/logout",
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    // Remove token locally
+    localStorage.removeItem("token");
+
+    // Redirect
+    window.location.href = "/login";
+  } catch (err) {
+    console.error("Logout failed:", err);
+  }
+};
+
 
 export default API;

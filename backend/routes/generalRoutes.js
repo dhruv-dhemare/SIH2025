@@ -41,7 +41,7 @@ router.get("/profile", jwtAuthMiddleware, async (req, res) => {
     }
 
     res.status(200).json({
-      role,         // which collection the user was found in
+      role, 
       user: foundUser
     });
   } catch (err) {
@@ -50,4 +50,33 @@ router.get("/profile", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-module.exports = router;
+const tokenBlacklist = new Set();
+
+router.post("/logout", jwtAuthMiddleware, (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) {
+      return res.status(400).json({ message: "No token provided" });
+    }
+
+    tokenBlacklist.add(token);
+
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+const checkBlacklist = (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (token && tokenBlacklist.has(token)) {
+    return res.status(401).json({ message: "Token is invalid (logged out)" });
+  }
+  next();
+};
+router.use(jwtAuthMiddleware, checkBlacklist);
+
+
+module.exports = { router, tokenBlacklist };

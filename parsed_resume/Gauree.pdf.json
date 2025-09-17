@@ -1,0 +1,63 @@
+{
+  "personal_info": {
+    "name": "Gauree Rajput",
+    "emails": [
+      "gaurirajput742@gmail.com"
+    ],
+    "phones": [
+      "+919322627249"
+    ],
+    "organizations": [
+      "WebSockets",
+      "React.js",
+      "NLP",
+      "BERT",
+      "RandomForest",
+      "OCR",
+      "Python",
+      "DBMS",
+      "CSS",
+      "SQL",
+      "AWS",
+      "Git/GitHub",
+      "TensorFlow",
+      "PyTorch",
+      "Spacy",
+      "BigBird-Pegasus"
+    ]
+  },
+  "education": [
+    "Bachelor of Engineering"
+  ],
+  "experience": [],
+  "skills": [
+    "Python",
+    "React",
+    "C++",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "SQL",
+    "MongoDB",
+    "Tailwind CSS",
+    "Git",
+    "GitHub"
+  ],
+  "projects": [
+    "DefenceX",
+    "AI-Based Scam Call Detection System",
+    "LegalLens",
+    "AI-Powered Legal Document Analyzer"
+  ],
+  "achievements": [
+    "First Place - WebWeaver",
+    "Runner-up - Startathon2024"
+  ],
+  "extracurricular": [
+    "Aesthetics Head - EDC Club"
+  ],
+  "certifications": [
+    "Data Analytics Certificate",
+    "AWS Cloud Learning Challenge Certificate"
+  ]
+}

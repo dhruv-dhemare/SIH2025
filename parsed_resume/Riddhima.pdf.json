@@ -1,0 +1,124 @@
+{
+  "personal_info": {
+    "name": "Riddhima",
+    "emails": [
+      "riddhima8214@gmail.com"
+    ],
+    "phones": [
+      "8329735739"
+    ]
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Engineering",
+      "major": "Computer Engineering",
+      "institution": "Pune Institute of Computer Technology",
+      "location": "Pune"
+    },
+    {
+      "degree": "Junior College",
+      "institution": "Fergusson College",
+      "location": "Pune"
+    }
+  ],
+  "experience": [],
+  "skills": [
+    "Python",
+    "C++",
+    "JavaScript",
+    "Dart",
+    "MySQL",
+    "Firebase",
+    "HTML",
+    "CSS",
+    "Figma",
+    "GitHub",
+    "Flutter",
+    "Node.js",
+    "TinkerCAD",
+    "Assembly"
+  ],
+  "projects": [
+    {
+      "name": "GoSafe: Safe Route Recommendation App",
+      "description": "Developed a mobile application that dynamically recommends the safest routes by analyzing real-time crime data from Firestore. Integrated OSRM API for geocoding.",
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "OSRM API"
+      ]
+    },
+    {
+      "name": "ZeroQ: Cashier Website",
+      "description": "Merchant and User Application.",
+      "technologies": [
+        "Flutter"
+      ]
+    },
+    {
+      "name": "AI based merchant application",
+      "description": "AI based merchant application that will give recommendations on the basis of stock and seasonal changes.",
+      "technologies": [
+        "Gemini API",
+        "NFC"
+      ]
+    },
+    {
+      "name": "Laptop Price Prediction Model",
+      "description": "In-depth analysis of feature distributions along with feature engineering. Random forest algorithm used to train data. Web interface using Streamlit.",
+      "technologies": [
+        "Python",
+        "Scikit-learn",
+        "Streamlit",
+        "Random Forest"
+      ]
+    }
+  ],
+  "achievements": [
+    "TechFiesta International Hackathon PICT Selected among 600 teams and made it to the Top 7 in the finals in domain Women and Child Safety",
+    "Innovation Software Hackathon : Cummins and Mastercard Selected from 660",
+    "Top 5 overall - and clinched first place in our Problem Statement",
+    "Leetcode 50 days Badges 2024"
+  ],
+  "extracurricular": [
+    "Pictoreal Club Member",
+    "PICT Swim team",
+    "Participation in Zonals 2024 - present",
+    "Bachelor and Diploma in Bharatnatyam",
+    "Madhyama Pratham in Indian Classical Music"
+  ],
+  "certifications": [
+    "Supervised Machine Learning",
+    "Classification",
+    "Regression certification course Stanford",
+    "DeepLearning",
+    "AI",
+    "Advanced Learning Algorithms",
+    "Decision Trees",
+    "Neural Networks Stanford and DeepLearning",
+    "AI",
+    "Unsupervised Learning",
+    "Recommenders",
+    "Reinforcement Learning certification Stanford and DeepLearning",
+    "AI",
+    "Flutter and Dart - Developing Android",
+    "100 Hours of Python from Scratch PICT",
+    "Foundations of Coding Full-Stack Microsoft",
+    "Project Management",
+    "HTML and CSS Certification course DataFlair training",
+    "German for beginners Course Cursa"
+  ],
+  "internships": [
+    {
+      "title": "Contributor",
+      "organization": "GirlScript Summer of Code",
+      "year": 2025,
+      "description": "Actively collaborating with project maintainers and fellow contributors on GitHub to enhance real-world applications"
+    },
+    {
+      "title": "Flutter Intern",
+      "organization": "StyleCheck",
+      "description": "Collaborated in an agile environment using iterative development and team sync-ups during the internship. Worked on Flutter frontend part of application using Figma design provided."
+    }
+  ]
+}

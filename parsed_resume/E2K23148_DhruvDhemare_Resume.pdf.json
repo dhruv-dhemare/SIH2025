@@ -1,0 +1,84 @@
+{
+  "personal_info": {
+    "name": "Dhruv Dhemare",
+    "emails": [
+      "dhruvdhemare@gmail.com"
+    ],
+    "phones": [
+      "+91 7020961222"
+    ]
+  },
+  "education": [
+    {
+      "institution": "Pune Institute of Computer Technology",
+      "degree": "Bachelor of Engineering in Electronics and Telecommunication",
+      "expected_graduation": "2027",
+      "location": "Pune",
+      "cgpa": "9"
+    },
+    {
+      "institution": "Raja Shivaji Jr. College",
+      "degree": "HSC",
+      "percentage": "76",
+      "location": "Chhatrapati Sambhajinagar"
+    },
+    {
+      "institution": "Alphonsa English School",
+      "degree": "SSC",
+      "percentage": "92",
+      "location": "Chhatrapati Sambhajinagar"
+    }
+  ],
+  "experience": [],
+  "skills": [
+    "C++",
+    "Python",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "MongoDB",
+    "Git",
+    "Firebase"
+  ],
+  "projects": [
+    {
+      "name": "Voting App",
+      "description": "Developed a RESTful backend with role-based access control using JWT authentication and bcrypt password hashing. Enabled users to vote only once and view real-time voting results. Implemented secure admin features to manage candidates and restrict voting access. Used Postman for comprehensive testing of all API routes and edge cases.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Postman",
+        "JWT",
+        "bcrypt"
+      ]
+    },
+    {
+      "name": "Emergency Alert System for Children",
+      "description": "Developed a wearable safety device for children using ESP32 microcontroller and GPS/GSM modules. Implemented real-time location tracking and SOS feature with Firebase integration. Designed robust communication logic ensuring emergency alerts are delivered even in poor network conditions.",
+      "technologies": [
+        "ESP32",
+        "GPS",
+        "GSM",
+        "Firebase",
+        "Arduino IDE"
+      ]
+    }
+  ],
+  "achievements": [],
+  "extracurricular": [
+    {
+      "organization": "Entrepreneurship Development Cell (EDC), Pune Institute of Computer Technology",
+      "position": "Vice President and Design Head",
+      "year": "2025"
+    },
+    {
+      "organization": "Entrepreneurship Development Cell (EDC), Pune Institute of Computer Technology",
+      "position": "Organizing Team Member",
+      "event": "EntrepreneurialHunt",
+      "year": "2024-25"
+    }
+  ]
+}
