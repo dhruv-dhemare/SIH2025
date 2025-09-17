@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+        import { LogOut } from "lucide-react"; // add this import at top
 import {
   Home,
   Calendar,
@@ -117,6 +118,12 @@ function Navbar() {
         >
           <Phone /> Contact
         </NavLink>
+        <NavLink to="/" className="logout-btn">
+  <LogOut className="logout-icon" />
+  <span className="logout-text">Logout</span>
+</NavLink>
+
+
       </div>
     </nav>
   );

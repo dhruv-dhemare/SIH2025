@@ -40,7 +40,7 @@
   left: 0;
   width: 17vw;
   height: 100vh;
-  /* background: #fff; */
+  background: #fff;
   padding-top: 1rem;
   border-right: 1px solid #eee;
   display: flex;
@@ -106,4 +106,35 @@
 .nav-link.active {
   color: #067e4e;
   font-weight: 600;       /* optional: subtle background for active */
+}
+
+.logout-btn{
+    font-size: 2vh;
+  height: 6vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: #444 !important;       /* ✅ force dark grey */
+  font-weight: 500;
+  padding: 0.3rem 1rem 0.3rem 1.5rem;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.logout-btn:hover {
+  background-color: #e63946;
+}
+
+.logout-text{
+  align-items: center;
+}
+
+.logout-icon{
+  height: 21px;
+  width: 21px;
+  margin-right: 8px;
+  align-items: center;
 }

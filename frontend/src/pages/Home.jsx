@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard.jsx";
 import Filters from "../components/Filters.jsx";
+import { Search } from "lucide-react";  // ✅ Import the icon
 import "../App.css";
 
 const posts = [
@@ -69,6 +71,9 @@ function Home() {
     connections: "all",
   });
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
   // ✅ Dynamic filter options
   const filterOptions = {
     sortBy: [
@@ -111,22 +116,57 @@ function Home() {
   if (filter.timeframe !== "anytime") {
     const now = new Date();
     let cutoff;
-    if (filter.timeframe === "24h") cutoff = new Date(now - 24 * 60 * 60 * 1000);
-    else if (filter.timeframe === "7d") cutoff = new Date(now - 7 * 24 * 60 * 60 * 1000);
-    else if (filter.timeframe === "30d") cutoff = new Date(now - 30 * 24 * 60 * 60 * 1000);
+    if (filter.timeframe === "24h")
+      cutoff = new Date(now - 24 * 60 * 60 * 1000);
+    else if (filter.timeframe === "7d")
+      cutoff = new Date(now - 7 * 24 * 60 * 60 * 1000);
+    else if (filter.timeframe === "30d")
+      cutoff = new Date(now - 30 * 24 * 60 * 60 * 1000);
 
     filteredPosts = filteredPosts.filter((post) => post.date >= cutoff);
   }
 
-  if (filter.sortBy === "popular") filteredPosts.sort((a, b) => b.comments - a.comments);
-  else if (filter.sortBy === "liked") filteredPosts.sort((a, b) => b.likes - a.likes);
-  else if (filter.sortBy === "commented") filteredPosts.sort((a, b) => b.comments - a.comments);
+  if (filter.sortBy === "popular")
+    filteredPosts.sort((a, b) => b.comments - a.comments);
+  else if (filter.sortBy === "liked")
+    filteredPosts.sort((a, b) => b.likes - a.likes);
+  else if (filter.sortBy === "commented")
+    filteredPosts.sort((a, b) => b.comments - a.comments);
   else filteredPosts.sort((a, b) => b.date - a.date);
+
+  // ✅ Handle search submit
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() !== "") {
+      navigate(`/searched?query=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
     <div className="home-content">
       {/* ✅ Dynamic filters */}
-      <Filters filter={filter} setFilter={setFilter} filterOptions={filterOptions} showAddPost={true}  />
+      <Filters
+        filter={filter}
+        setFilter={setFilter}
+        filterOptions={filterOptions}
+        showAddPost={true}
+      />
+
+      {/* ✅ Search Bar */}
+
+<form className="search-bar" onSubmit={handleSearch}>
+  <input
+    type="text"
+    placeholder="Search..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+  <button type="submit" className="search-btn">
+    <Search size={20} strokeWidth={2.5} />  {/* ✅ Lucide Search Icon */}
+  </button>
+</form>
+
+
 
       <div className="posts-container">
         {filteredPosts.map((post) => (
