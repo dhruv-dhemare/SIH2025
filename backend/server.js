@@ -38,8 +38,8 @@ app.use('/api/recruiter', recruiterRoutes);
 const teacherRoutes = require("./routes/facultyRoutes");
 app.use('/api/teacher', teacherRoutes);
 
-const generalRoutes = require("./routes/generalRoutes");
-app.use('/api', generalRoutes);
+const { router: generalRoutes } = require("./routes/generalRoutes");
+app.use("/api", generalRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
