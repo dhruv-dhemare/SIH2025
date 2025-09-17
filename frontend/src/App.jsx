@@ -1,4 +1,4 @@
-// App.jsx
+// App.jsx (the almost final code)
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
