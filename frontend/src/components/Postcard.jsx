@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { ThumbsUp, Share2 } from "lucide-react";
+
 import "./PostCard.css";
 
 const PostCard = ({ userName, userRole, avatar, content, image }) => {
   const [showModal, setShowModal] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [shared, setShared] = useState(false);
 
   return (
     <div className="post-card">
@@ -33,10 +37,31 @@ const PostCard = ({ userName, userRole, avatar, content, image }) => {
       </div>
 
       {/* Post Actions */}
-      <div className="post-actions">
-        <button>👍 Like</button>
-        <button>🔗 Share</button>
-      </div>
+
+<div className="post-actions">
+      <button
+        className={`action-btn ${liked ? "active" : ""}`}
+        onClick={() => setLiked(!liked)}
+      >
+        <ThumbsUp
+          size={18}
+          className={`action-icon ${liked ? "active-icon" : ""}`}
+        />
+        Like
+      </button>
+
+      <button
+        className={`action-btn ${shared ? "active" : ""}`}
+        onClick={() => setShared(!shared)}
+      >
+        <Share2
+          size={18}
+          className={`action-icon ${shared ? "active-icon" : ""}`}
+        />
+        Share
+      </button>
+    </div>
+
 
       {/* Image Modal */}
       {showModal && (

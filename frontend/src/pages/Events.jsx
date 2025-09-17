@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PostCard from '../components/PostCard.jsx';
 import Filters from '../components/Filters.jsx';
-import '../App.css';
+import { useNavigate } from "react-router-dom";
 
+import '../App.css';
+import { Search } from "lucide-react";  // ✅ Import the icon
 // ✅ Updated events array with category and date
 const events = [
   {
@@ -52,6 +54,9 @@ function Events() {
     category: "all",
     timeframe: "anytime"
   });
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
 
   // ✅ Dynamic filter options for Events
   const filterOptions = {
@@ -96,6 +101,12 @@ function Events() {
       filteredEvents = filteredEvents.filter(event => event.date >= now);
     }
   }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() !== "") {
+      navigate(`/searched?query=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
     <div className="home-content">
@@ -106,6 +117,20 @@ function Events() {
         filterOptions={filterOptions} 
         showEventPost={true}  // ✅ enable Add Post button
       />
+
+<form className="search-bar" onSubmit={handleSearch}>
+  <input
+    type="text"
+    placeholder="Search..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+  <button type="submit" className="search-btn">
+    <Search size={20} strokeWidth={2.5} />  {/* ✅ Lucide Search Icon */}
+  </button>
+</form>
+
+
 
       <div className="events-container">
         {filteredEvents.map(event => (
