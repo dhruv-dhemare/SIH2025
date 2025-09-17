@@ -1,30 +1,25 @@
+/* --- Sidebar Container --- */
 .filters-sidebar {
   position: fixed;
-  top: 1.5vh;                 /* 24px */
-  right: 2.5vw;               /* 40px */
-
-  /* ↓ Give some space from the bottom of the viewport */
-  max-height: calc(100vh - 3vh - 1.5vh); /* 48px + 24px */
-  bottom: 1.5vh;              /* 24px */
-
-  width: 15vw;                /* 240px */
+  top: 1.5vh;
+  right: 2.5vw;
+  max-height: calc(100vh - 3vh - 1.5vh);
+  bottom: 1.5vh;
+  width: 15vw;
   display: flex;
   flex-direction: column;
-  gap: 1.5vh;                 /* 24px vertical gap */
-  padding: 1.5vh 1.25vw;      /* 24px 20px */
-  background: rgba(255, 255, 255, 0.95);
-  border: 0.06vw solid rgba(220, 220, 220, 0.6);
-
-  /* ↓ Rounded corners all around */
-  border-radius: 0.9vw;       /* 14px */
-
-  box-shadow: 0 0.375vh 1.25vw rgba(0, 0, 0, 0.12); /* 0 6px 20px */
-  backdrop-filter: blur(0.5vw);                     /* 8px */
+  gap: 1.5vh;
+  padding: 1.5vh 1.25vw;
+  background: #ffffff; /* Solid white for better visibility */
+  border: 0.08vw solid #ccc; /* Slightly darker border */
+  border-radius: 0.9vw;
+  box-shadow: 0 0.375vh 1.25vw rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  backdrop-filter: blur(0.4vw);
   z-index: 1000;
   overflow-y: auto;
 
   /* smooth slide-in animation */
-  transform: translateX(2.5vw); /* 40px */
+  transform: translateX(2.5vw);
   opacity: 0;
   animation: slideIn 0.6s ease forwards;
 }
@@ -36,63 +31,66 @@
   }
 }
 
+/* --- Sidebar Title --- */
 .filters-sidebar h3 {
-  margin: 0 0 1vh 0;          /* 16px */
-  font-size: 1.375vw;         /* 22px */
+  margin: 0 0 1vh 0;
+  font-size: 1.4vw;      /* Slightly bigger for visibility */
   font-weight: 600;
-  color: #222;
+  color: #111;           /* Darker for better contrast */
   text-align: center;
-  letter-spacing: 0.5px;      /* keep as-is */
+  letter-spacing: 0.5px;
 }
 
+/* --- Dropdowns --- */
 .filters-sidebar select {
-  padding: 0.75vh 0.9vw;      /* 12px 14px */
-  font-size: 0.94vw;          /* 15px */
+  padding: 0.85vh 1vw;
+  font-size: 0.95vw;
   width: 100%;
-  border-radius: 0.65vw;      /* 10px */
-  border: 0.06vw solid #ccc;
+  border-radius: 0.65vw;
+  border: 0.08vw solid #aaa;
   background: #fefefe;
-  color: #333;
+  color: #111;
   cursor: pointer;
   transition: all 0.25s ease;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0.75vw center;  /* right 12px */
-  background-size: 1vw;                      /* 16px */
+  background-position: right 0.75vw center;
+  background-size: 1vw;
 }
 
 .filters-sidebar select:hover {
   border-color: #0073b1;
-  box-shadow: 0 0 0.4vw rgba(0, 115, 177, 0.3); /* 6px */
+  box-shadow: 0 0 0.4vw rgba(0, 115, 177, 0.3);
   transform: scale(1.015);
 }
 
 .filters-sidebar select:focus {
   outline: none;
   border-color: #0073b1;
-  box-shadow: 0 0 0.5vw rgba(0, 115, 177, 0.4); /* 8px */
+  box-shadow: 0 0 0.5vw rgba(0, 115, 177, 0.4);
 }
 
-/* Optional: Custom scrollbar for overflow */
+/* --- Scrollbar --- */
 .filters-sidebar::-webkit-scrollbar {
-  width: 0.4vw;               /* 6px */
+  width: 0.5vw; /* Slightly thicker for visibility */
 }
 
 .filters-sidebar::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 0.25vw;      /* 4px */
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.3vw;
 }
 
+/* --- Add Post / Event Button --- */
 .add-post-btn {
   margin-top: auto;
-  padding: 0.9vh 0;           /* 14px */
-  font-size: 1vw;             /* 16px */
+  padding: 1vh 0;
+  font-size: 1.05vw;
   font-weight: 600;
   color: #fff;
   background: #067e4e;
   border: none;
-  border-radius: 0.75vw;      /* 12px */
+  border-radius: 0.75vw;
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
@@ -101,5 +99,31 @@
 .add-post-btn:hover {
   background: #00492c;
   transform: scale(1.03);
-  box-shadow: 0 0.25vh 0.6vw rgba(0, 115, 177, 0.3); /* 4px 10px */
+  box-shadow: 0 0.25vh 0.6vw rgba(0, 115, 177, 0.35);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .filters-sidebar {
+    width: 28vw;
+    padding: 1.2vh 1vw;
+  }
+
+  .filters-sidebar h3 { font-size: 1.2vw; }
+  .filters-sidebar select { font-size: 0.9vw; padding: 0.8vh 0.8vw; }
+  .add-post-btn { font-size: 1vw; padding: 0.9vh 0; }
+}
+
+@media (max-width: 768px) {
+  .filters-sidebar {
+    position: relative;
+    width: 95%;
+    max-height: auto;
+    margin: 0 auto 20px auto;
+    padding: 1.2vh 2vw;
+  }
+
+  .filters-sidebar h3 { font-size: 1rem; }
+  .filters-sidebar select { font-size: 0.9rem; padding: 0.7vh 0.8vw; }
+  .add-post-btn { font-size: 0.95rem; padding: 0.8vh 0; }
 }

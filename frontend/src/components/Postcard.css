@@ -1,30 +1,40 @@
 /* --- Card Container --- */
 .post-card {
   width: 100%;
-  max-width: 30vw;
+  max-width: 28vw;                       /* slightly smaller */
   background: #fff;
-  border: 0.06vw solid #ddd;                 /* 1px */
-  border-radius: 0.75vw;                     /* 12px */
-  padding: 1.25vw;                           /* 20px */
-  font-family: Arial, sans-serif;
-  box-shadow: 0 0.25vw 0.75vw rgba(0,0,0,0.12); /* 0 4px 12px */
-  transition: box-shadow 0.2s ease-in-out;
-  margin-bottom: 2vh;
-  height:65vh;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;                         /* slightly smaller */
+  font-family: "Inter", Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect on card */
+.post-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 /* --- Post Header --- */
 .post-header {
   display: flex;
   align-items: center;
-  margin-bottom: 1vw;                         /* 16px */
+  margin-bottom: 12px;
 }
 
 .avatar {
-  width: 3.5vw;                                /* 56px */
-  height: 3.5vw;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  margin-right: 0.9vw;                          /* 14px */
+  margin-right: 12px;
+  object-fit: cover;
 }
 
 .post-user-info {
@@ -34,66 +44,64 @@
 
 .user-name {
   margin: 0;
-  font-size: 1.125vw;                           /* 18px */
-  font-weight: bold;
-  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
 }
 
 .user-role {
-  margin: 0.2vw 0 0;                             /* 3px */
-  font-size: 0.875vw;                             /* 14px */
-  color: gray;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #6b7280;
 }
 
 /* --- Post Content --- */
 .post-content {
-  margin: 1vw 0;                                  /* 16px */
-  color: #000000;
+  color: #111827;
+  margin-bottom: 12px;
 }
 
 .post-content p {
-  font-size: 1vw;                                  /* 16px */
+  font-size: 15px;
   line-height: 1.5;
-  margin-bottom: 0.75vw;                            /* 12px */
+  margin-bottom: 10px;
 }
 
-/* Image inside post (bigger, LinkedIn-style) */
+/* Image inside post */
 .post-image {
   width: 100%;
-  height: 35vh;                                     /* 290px */
+  height: 220px;                        /* slightly smaller */
   object-fit: cover;
-  border-radius: 0.625vw;                            /* 10px */
-  border: 0.06vw solid #838383;                      /* 1px */
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.post-card:hover {
-  box-shadow: 0 0.375vw 1.25vw rgba(0,0,0,0.18);     /* 0 6px 20px */
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  cursor: default;
 }
 
 /* --- Post Actions --- */
 .post-actions {
   display: flex;
-  justify-content: space-around;
-  border-top: 0.06vw solid #eee;                     /* 1px */
-  padding-top: 0.9vw;                                 /* 14px */
-  margin-top: 0.9vw;                                  /* 14px */
+  justify-content: space-evenly;
+  gap: 10px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .post-actions button {
-  background: none;
-  border: none;
-  font-size: 0.94vw;                                  /* 15px */
+  background: #065f46;
+  color: #fff;
+  font-size: 14px;                      /* smaller */
+  font-weight: 600;
   cursor: pointer;
-  color: #555;
-  padding: 0.625vw 0.9vw;                             /* 10px 14px */
-  border-radius: 0.375vw;                              /* 6px */
+  padding: 6px 12px;                     /* smaller padding */
+  border-radius: 8px;
+  border: none;
+  flex: 1;
   transition: background 0.2s;
 }
 
 .post-actions button:hover {
-  background: #f3f3f3;
+  background: #047857;
 }
 
 /* --- Modal (Full Image) --- */
@@ -103,17 +111,45 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
 .modal-image {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 0.625vw;                              /* 10px */
-  box-shadow: 0 0.25vw 0.875vw rgba(0,0,0,0.5);        /* 0 4px 14px */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
   background: #fff;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .post-card { max-width: 48vw; padding: 14px; }
+  .avatar { width: 44px; height: 44px; }
+  .user-name { font-size: 15px; }
+  .user-role { font-size: 12px; }
+  .post-content p { font-size: 14px; }
+  .post-image { height: 180px; }
+  .post-actions button { font-size: 13px; padding: 5px 10px; }
+}
+
+@media (max-width: 768px) {
+  .post-card { max-width: 100%; padding: 12px; }
+  .avatar { width: 36px; height: 36px; }
+  .user-name { font-size: 14px; }
+  .user-role { font-size: 11px; }
+  .post-content p { font-size: 13px; }
+  .post-image { height: 150px; }
+  .post-actions button { font-size: 12px; padding: 4px 8px; }
 }

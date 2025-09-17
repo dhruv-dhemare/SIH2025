@@ -4,13 +4,14 @@ import "./ForumWindow.css";
 
 export default function ForumWindow({ forum, onBack }) {
   const [messages, setMessages] = useState([
-    { id: 1, sender: "Moderator", text: "Welcome to the forum!", time: "9:00 AM", mine: false },
-    { id: 2, sender: "You", text: "Excited to be here 🎉", time: "9:05 AM", mine: true },
+    { id: 1, sender: "Moderator", text: `Welcome to ${forum.name}! 🎉`, time: "9:00 AM", mine: false },
+    { id: 2, sender: "You", text: "Excited to be here 🚀", time: "9:05 AM", mine: true },
   ]);
   const [input, setInput] = useState("");
 
   const handleSend = () => {
     if (!input.trim()) return;
+
     const newMsg = {
       id: messages.length + 1,
       sender: "You",
@@ -18,8 +19,21 @@ export default function ForumWindow({ forum, onBack }) {
       time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       mine: true,
     };
-    setMessages([...messages, newMsg]);
+
+    setMessages((prev) => [...prev, newMsg]);
     setInput("");
+
+    // Auto-reply from moderator
+    setTimeout(() => {
+      const reply = {
+        id: messages.length + 2,
+        sender: "Moderator",
+        text: "Welcome to the group 👋 Feel free to share your thoughts!",
+        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        mine: false,
+      };
+      setMessages((prev) => [...prev, reply]);
+    }, 800);
   };
 
   return (
@@ -27,6 +41,7 @@ export default function ForumWindow({ forum, onBack }) {
       <div className="forum-header">
         <button className="back-btn" onClick={onBack}>← Back</button>
         <h4>{forum.name}</h4>
+        <span className="forum-category">{forum.category}</span>
       </div>
 
       <div className="forum-body">

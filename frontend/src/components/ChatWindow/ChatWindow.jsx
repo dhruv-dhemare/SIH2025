@@ -54,13 +54,24 @@ import "./ChatWindow.css";
 
 export default function ChatWindow({ chat, onBack }) {
   const [messages, setMessages] = useState([
-    { id: 1, sender: "System", text: "Hey there!", time: "10:00 AM", mine: false },
-    { id: 2, sender: "You", text: "Hi! How are you?", time: "10:02 AM", mine: true },
+    {
+      id: 1,
+      sender: chat?.name,
+      text: chat?.lastMessage ?? "Hello there!",
+      time: chat?.time ?? "Now",
+      mine: false,
+    },
+    {
+      id: 2,
+      sender: "You",
+      text: "Hi! Thanks for connecting.",
+      time: "Just now",
+      mine: true,
+    },
   ]);
   const [input, setInput] = useState("");
   const bodyRef = useRef(null);
 
-  // Auto-scroll to bottom whenever messages change
   useEffect(() => {
     if (bodyRef.current) {
       bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
@@ -81,24 +92,27 @@ export default function ChatWindow({ chat, onBack }) {
     setMessages((prev) => [...prev, newMessage]);
     setInput("");
 
-    // Optional: simulate a reply from other user
+    // simulate reply from actual chat person
     setTimeout(() => {
       const reply = {
         id: Date.now(),
-        sender: "System",
-        text: "Got it 👍",
+        sender: chat?.name,
+        text: "Thanks for your message!",
         time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         mine: false,
       };
       setMessages((prev) => [...prev, reply]);
-    }, 1000);
+    }, 1200);
   };
 
   return (
     <div className="chat-window">
       <div className="chat-header">
         <button className="back-btn" onClick={onBack}>← Back</button>
-        <h4>{chat?.name ?? "Chat"}</h4>
+        <div>
+          <h4>{chat?.name}</h4>
+          <small>{chat?.role}</small>
+        </div>
       </div>
 
       <div className="chat-body" ref={bodyRef}>
@@ -110,7 +124,7 @@ export default function ChatWindow({ chat, onBack }) {
       <div className="chat-footer">
         <input
           type="text"
-          placeholder="Type a message..."
+          placeholder={`Message ${chat?.name}...`}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}

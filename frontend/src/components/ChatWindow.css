@@ -5,58 +5,102 @@
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 120px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+  height: 85vh;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
   overflow: hidden;
   animation: fadeIn 0.3s ease;
-  height: 85vh;
 }
 
+/* Header */
 .chat-header,
 .forum-header {
-  padding: 14px;
+  padding: 14px 18px;
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: 600;
+  color: #111827;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
+/* Body */
 .chat-body,
 .forum-body {
   flex: 1;
-  padding: 12px;
+  padding: 16px;
   overflow-y: auto;
   background: #f3f4f6;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1f2937;
 }
 
+/* Custom Scrollbar */
+.chat-body::-webkit-scrollbar,
+.forum-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-body::-webkit-scrollbar-thumb,
+.forum-body::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 8px;
+}
+
+.chat-body::-webkit-scrollbar-thumb:hover,
+.forum-body::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Footer */
 .chat-footer,
 .forum-footer {
   display: flex;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   background: #ffffff;
   border-top: 1px solid #e5e7eb;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
 }
 
 .chat-footer input,
 .forum-footer input {
   flex: 1;
-  padding: 10px 14px;
-  border-radius: 20px;
+  padding: 12px 16px;
+  border-radius: 24px;
   border: 1px solid #d1d5db;
   outline: none;
   font-size: 0.95rem;
+  background: #ffffff;
+  color: #111827; /* 🔹 Dark text visible */
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
+.chat-footer input::placeholder,
+.forum-footer input::placeholder {
+  color: #9ca3af; /* 🔹 Grey placeholder */
+  opacity: 1;
+}
+
+/* Focus States */
+.chat-footer input:focus,
+.forum-footer input:focus,
+.search-bar input:focus {
+  border-color: #067e4e;
+  box-shadow: 0 0 0 3px rgba(6, 126, 78, 0.2);
+}
+
+/* Buttons */
 .chat-footer button,
 .forum-footer button {
-  padding: 10px 18px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 24px;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.25s, transform 0.1s;
 }
 
 .chat-footer button {
@@ -64,7 +108,8 @@
   color: white;
 }
 .chat-footer button:hover {
-  background: #067e4e;
+  background: #04663e;
+  transform: translateY(-1px);
 }
 
 .forum-footer button {
@@ -72,14 +117,43 @@
   color: white;
 }
 .forum-footer button:hover {
+  background: #04663e;
+  transform: translateY(-1px);
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 12px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.search-bar input::placeholder {
+  color: #9ca3af;
+}
+
+/* General */
+.send-btn {
   background: #067e4e;
+  color: white;
+  font-weight: 600;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.send-btn{
-  background: #067e4e;
 }
