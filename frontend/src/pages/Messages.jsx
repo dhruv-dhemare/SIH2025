@@ -662,7 +662,10 @@ export default function Messages() {
             </div>
             <div className="window-panel">
               {activeChat ? (
-                <ChatWindow chat={activeChat} />
+                <ChatWindow
+                  chat={activeChat}          // current chat data
+                  onBack={() => setActiveChat(null)} // child can reset parent state
+                />
               ) : (
                 <div className="placeholder">
                   Select a chat to start messaging
@@ -690,7 +693,10 @@ export default function Messages() {
             </div>
             <div className="window-panel">
               {activeForum ? (
-                <ForumWindow forum={activeForum} />
+                <ForumWindow 
+                forum={activeForum} 
+                onBack={() => setActiveForum(null)}
+                />
               ) : (
                 <div className="placeholder">
                   Select a community to view details
