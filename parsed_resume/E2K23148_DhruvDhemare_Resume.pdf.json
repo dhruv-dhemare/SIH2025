@@ -1,0 +1,82 @@
+{
+  "personal_info": {
+    "name": "Dhruv Dhemare",
+    "emails": [
+      "dhruvdhemare@gmail.com"
+    ],
+    "phones": [
+      "+91 7020961222"
+    ]
+  },
+  "education": [
+    {
+      "institution": "Pune Institute of Computer Technology",
+      "degree": "Bachelor of Engineering in Electronics and Telecommunication",
+      "expected_graduation": "2027"
+    },
+    {
+      "institution": "Raja Shivaji Jr. College",
+      "degree": "HSC"
+    },
+    {
+      "institution": "Alphonsa English School",
+      "degree": "SSC"
+    }
+  ],
+  "experience": [],
+  "skills": [
+    "C++",
+    "Python",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "MongoDB",
+    "Firebase",
+    "Git"
+  ],
+  "projects": [
+    {
+      "name": "Voting App",
+      "description": "Developed a RESTful backend with role-based access control using JWT authentication and bcrypt password hashing. Enabled users to vote only once and view real-time voting results. Implemented secure admin features to manage candidates and restrict voting access. Used Postman for comprehensive testing of all API routes and edge cases.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Postman",
+        "JWT",
+        "Bcrypt"
+      ]
+    },
+    {
+      "name": "Emergency Alert System for Children",
+      "description": "Developed a wearable safety device for children using ESP32 microcontroller and GPS/GSM modules. Implemented real-time location tracking and SOS feature with Firebase integration. Designed robust communication logic ensuring emergency alerts are delivered even in poor network conditions.",
+      "technologies": [
+        "ESP32",
+        "GPS",
+        "GSM",
+        "Firebase",
+        "Arduino IDE"
+      ]
+    }
+  ],
+  "achievements": [],
+  "extracurricular": [
+    {
+      "organization": "Entrepreneurship Development Cell (EDC), PICT",
+      "role": "Vice President and Design Head (2025)",
+      "description": "Appointed as Vice President and Design Head"
+    },
+    {
+      "organization": "Entrepreneurship Development Cell (EDC), PICT",
+      "role": "Organizing Team Member",
+      "event": "EntrepreneurialHunt"
+    },
+    {
+      "organization": "Entrepreneurship Development Cell (EDC), PICT",
+      "role": "Event Head",
+      "event": "Magnate (2024-25)"
+    }
+  ]
+}

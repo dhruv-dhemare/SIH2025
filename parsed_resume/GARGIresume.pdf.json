@@ -1,0 +1,43 @@
+{
+  "personal_info": {
+    "name": "Gargi Kalekar",
+    "emails": [
+      "gargi.aarti11@gmail.com"
+    ],
+    "phones": [
+      "+91) 9028366787"
+    ]
+  },
+  "education": [
+    {
+      "degree": "Computer Engineering",
+      "institution": "Pune Institute Of Computer Technology"
+    }
+  ],
+  "experience": [],
+  "skills": [
+    "C++",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Node.js",
+    "MongoDB",
+    "Dart",
+    "Python",
+    "NLP",
+    "OCR",
+    "Regex"
+  ],
+  "projects": [
+    {
+      "name": "Marathi Text Summarizer Website",
+      "description": "A compatible tool that automatically summarizes long Marathi texts while preserving meaning. Integrated keyword extraction and highlighting. PDF for user-friendly sharing and archival. Laid groundwork for future accessibility features such as Text-to-Speech (TTS)."
+    },
+    {
+      "name": "Term Sheet Validation System",
+      "description": "Automated validation of financial term sheets using OCR. Extracted and validated clauses against regulatory rules. Excel reports with compliance highlights. Hackathon Project - Barclays Hack-O-Hire 2024."
+    }
+  ],
+  "achievements": [],
+  "extracurricular": []
+}

@@ -1,0 +1,62 @@
+{
+  "personal_info": {
+    "name": "Disha Bhelke",
+    "emails": [
+      "bhelked5@gmail.com"
+    ],
+    "phones": [
+      "+91 7507179098"
+    ]
+  },
+  "education": [
+    {
+      "institution": "Pune Institute of Computer Technology",
+      "degree": "Bachelor of Engineering",
+      "major": "Computer Engineering",
+      "expected_graduation": 2027
+    },
+    {
+      "institution": "Namo Rims Junior College",
+      "degree": "HSC"
+    },
+    {
+      "institution": "St. Joseph High School",
+      "degree": "SSC"
+    }
+  ],
+  "experience": [],
+  "skills": [
+    "C++",
+    "JavaScript",
+    "Python",
+    "HTML",
+    "CSS",
+    "Node.js",
+    "MongoDB",
+    "React",
+    "GitHub"
+  ],
+  "projects": [
+    {
+      "name": "Voting App",
+      "description": "Developed a RESTful backend with role-based access control using JWT authentication and bcrypt password hashing. Enabled users to vote only once and view real-time voting results. Implemented secure admin features to manage candidates and restrict voting access. Used Postman for comprehensive testing of all API routes and edge cases.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Postman"
+      ]
+    },
+    {
+      "name": "Memory Card Match Game",
+      "description": "Developed a dynamic two-player memory game with turn-based logic and real-time feedback. Engineered automatic score tracking and player turn switching for seamless gameplay. Designed an interface using modern CSS for compatibility across devices. Utilized DOM manipulation to dynamically reflect the current game state and user actions.",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ]
+    }
+  ],
+  "achievements": [],
+  "extracurricular": []
+}
