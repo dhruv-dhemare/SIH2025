@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Preview</title>
+  <link rel="stylesheet" href="signup.css"> <!-- put your CSS file here -->
+</head>
+<body>
+  <div class="sign-container">
+    <div class="sign-box">
+      <h2 class="sign-title">Create Your Account</h2>
+      
+      <form class="sign-form">
+        <!-- Floating label example -->
+        <div class="input-group">
+          <input type="text" placeholder=" " required />
+          <label>Full Name</label>
+        </div>
+
+        <div class="input-group">
+          <input type="email" placeholder=" " required />
+          <label>Email</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" placeholder=" " required />
+          <label>Password</label>
+        </div>
+
+        <!-- Side-by-side inputs -->
+        <div class="form-row">
+          <div class="input-group">
+            <input type="text" placeholder=" " required />
+            <label>City</label>
+          </div>
+          <div class="input-group">
+            <select required>
+              <option value="" disabled selected></option>
+              <option value="India">India</option>
+              <option value="US">US</option>
+              <option value="UK">UK</option>
+            </select>
+            <label>Country</label>
+          </div>
+        </div>
+
+        <!-- Education section example -->
+        <div class="edu-row">
+          <input type="text" placeholder="Your Degree" />
+          <button type="button" class="remove-edu-btn">×</button>
+        </div>
+        <button type="button" class="add-edu-btn">+ Add Education</button>
+
+        <!-- Submit -->
+        <button type="submit" class="sign-btn">Sign Up</button>
+      </form>
+
+      <div class="sign-footer">
+        Already have an account? <a href="#">Log in</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

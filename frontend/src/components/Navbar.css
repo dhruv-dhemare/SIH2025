@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 :root {
-  --sidebar-width: 320px;
-  --card-width: 250px;
-  --sidebar-pad: 22px;
+  --sidebar-width: 20vw;       /* 320px → 20vw (based on 1600px viewport width) */
+  --card-width: 15.625vw;      /* 250px → 15.625vw */
+  --sidebar-pad: 1.375vw;      /* 22px → 1.375vw */
   --bg: #ffffff;
   --muted: #9aa0b3;
 }
@@ -25,8 +27,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 2px 0 14px rgba(0,0,0,0.22);
+  box-shadow: 0.125vw 0 0.875vw rgba(0,0,0,0.22); /* 2px 0 14px */
   overflow: hidden;
+  width: 20vw;
 }
 
 /* Top: site title */
@@ -34,25 +37,22 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-bottom: 0.375vw; /* 6px */
 }
 .site-title {
-  color: #000000;
-  font-size: 35px;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  color: #000;
+  font-size: 2.5vw;   /* unchanged */
   font-weight: 700;
-  letter-spacing: 0.6px;
-  font-family: "Lucida Handwriting", cursive;
-  
+  letter-spacing: 0.5px;
+  margin: 0;
+  line-height: 1.1;
 }
-
-
-
-/* Glow on hover */
-
 
 /* NEW: This spacer pushes the profile card down */
 .top-spacer {
-  height: 10px;
+  height: 0.625vw; /* 10px */
 }
 
 /* Profile wrapper centers the card but doesn't stretch it */
@@ -61,8 +61,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 0.5vw;  /* 8px */
+  margin-bottom: 0.5vw;
   flex-shrink: 0;
 }
 
@@ -78,38 +78,35 @@
   max-width: var(--card-width);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: stretch;
+  gap: 0.75vw;
+  margin-bottom: 0.5vw; 
 }
 
 /* Buttons — fill the card width exactly */
 .nav-link {
   display: block;
   width: 100%;
-  padding: 12px 14px;
+  padding: 0.75vw 0.875vw; /* 12px 14px */
   text-align: center;
   text-decoration: none;
   color: #000000;
-  background: #ffffff;
-  border-radius: 12px;
+  background: #067e4e;
+  border-radius: 0.75vw; /* 12px */
   font-weight: 600;
   transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  box-shadow: 0 0.375vw 1vw rgba(0,0,0,0.16); /* 0 6px 16px */
 }
 
 /* Hover + focus */
 .nav-link:hover,
 .nav-link:focus {
   background: #adadad;
-  transform: translateY(-2px);
+  transform: translateY(-0.125vw); /* -2px */
   color: #fff;
 }
 
 /* Optional: active state */
 .nav-link.active {
-  background: #3b3f5a;
+  background: #013520;
   color: #fff;
 }

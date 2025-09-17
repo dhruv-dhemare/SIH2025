@@ -37,14 +37,14 @@
   cursor: pointer;
   transition: all 0.25s ease;
   animation: fadeInUp 0.35s ease;
-  border-left: 4px solid #4f46e5;
+  border-left: 4px solid #067e4e;
 }
 
 .forum-item:hover {
   background: #f9fafb;
   transform: translateY(-2px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #4f46e5;
+  border-left: 4px solid #003b24;
 }
 
 /* Highlight for pinned/important forums */

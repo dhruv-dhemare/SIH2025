@@ -1,45 +1,47 @@
 .profile-card {
-  width: var(--card-width);    /* use same variable as navbar so widths stay synced */
-  padding: 18px;
+  width: var(--card-width);     /* keep variable for consistent scaling */
+  padding: 1.125vw;             /* 18px */
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-radius: 0.75vw;        /* 12px */
+  box-shadow: 0.5vw 0.5vw 1.875vw rgba(6, 126, 78, 0.2);
+/* 0 8px 30px */
   text-align: center;
   box-sizing: border-box;
-  margin: 0;                   /* container (.profile-wrapper) centers it */
+  margin: 0;
+  background-color: rgba(4, 82, 51, 0.2);
 }
 
 .profile-img {
-  width: 96px;
-  height: 96px;
+  width: 6vw;                   /* 96px */
+  height: 6vw;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 12px;
+  margin: 0 auto 0.75vw;         /* 12px bottom */
   display: block;
-  transition: all 0.3s ease; /* smooth resize */
+  transition: all 0.3s ease;     /* smooth resize */
 }
 
 /* when on /profile */
 .profile-img.large {
-  width: 160px;   /* bigger size */
-  height: 160px;
+  width: 10vw;                  /* 160px */
+  height: 10vw;
 }
 
 .profile-name {
-  margin: 6px 0 4px;
+  margin: 0.375vw 0 0.25vw;     /* 6px 0 4px */
   color: #222;
-  font-size: 18px;
+  font-size: 1.125vw;           /* 18px */
   font-weight: 700;
 }
 
 .profile-title {
-  margin: 6px 0;
-  color: #555;
-  font-size: 14px;
+  margin: 0.375vw 0;            /* 6px 0 */
+  color: #3a3a3a;
+  font-size: 0.875vw;           /* 14px */
 }
 
 .profile-location {
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 13px;
+  margin: 0.375vw 0 0;
+  font-size: 0.81vw;            /* 13px */
+  color: #3a3a3a;
 }

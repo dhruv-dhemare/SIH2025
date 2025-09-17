@@ -1,45 +1,118 @@
-import React from "react";
-import { NavLink } from "react-router-dom";  // already imported
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
-import profileImg from "../assets/profile.jpg";
+import profileImg from "../assets/profile.jpg"; // fallback image
+import { getProfile } from "../services/api";
 
 function Navbar() {
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("No token found");
+      setLoading(false);
+      return;
+    }
+
+    getProfile(token)
+      .then((data) => {
+        const u = data.user;
+        if (!u) {
+          setError("User data not found");
+          setLoading(false);
+          return;
+        }
+
+        // Map backend fields to frontend-friendly fields
+        const mappedUser = {
+          name: u.name || "Unnamed",
+          title: u.headline || "",
+          location: u.locations ? u.locations.filter(Boolean).join(", ") : "",
+          // Use the profile image uploaded during signup
+          profileImg: u.profilePhoto || profileImg
+        };
+
+        setUser(mappedUser);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message || "Failed to load profile");
+        setLoading(false);
+      });
+  }, []);
+
+  if (error) {
+    console.error(error);
+  }
+
   return (
     <nav className="navbar-vertical" aria-label="Main sidebar">
       <div className="site-header">
-        <span className="site-title">AlmaMatter</span>
+        <span className="site-title">The Alumni Society</span>
       </div>
 
       <div className="top-spacer"></div>
 
       <div className="profile-wrapper">
-        <NavLink to="/profile" className="profile-link">
-          <ProfileCard
-            name="Dhruv Dhemare"
-            title="FullStack Engineer | AI/ML Enthusiast"
-            location="Pune, India"
-            profileImg={profileImg}
-          />
+        <NavLink
+          to="/profile"
+          className="profile-link-div"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          {loading ? (
+            // Show placeholder while loading
+            <ProfileCard
+              name="Loading..."
+              title=""
+              location=""
+              profileImg={profileImg}
+            />
+          ) : (
+            <ProfileCard
+              name={user?.name || "Unnamed"}
+              title={user?.title || ""}
+              location={user?.location || ""}
+              profileImg={profileImg} // show uploaded image
+            />
+          )}
         </NavLink>
       </div>
 
       <div className="spacer" />
 
       <div className="nav-links">
-        <NavLink to="/home" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink
+          to="/home"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
           Home
         </NavLink>
-        <NavLink to="/events" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink
+          to="/events"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
           Events
         </NavLink>
-        <NavLink to="/messages" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink
+          to="/messages"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
           Messages
         </NavLink>
-        <NavLink to="/analytics" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink
+          to="/analytics"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
           Analytics
         </NavLink>
-        <NavLink to="/contact" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
           Contact
         </NavLink>
       </div>

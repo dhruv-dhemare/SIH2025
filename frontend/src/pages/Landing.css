@@ -1,0 +1,115 @@
+/* Full background */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+.landing {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #045233;
+  color: white;
+  z-index: 2;
+}
+
+.nav-logo h2 {
+  font-size: 1.5rem;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;               /* Arrange children horizontally */
+  justify-content: flex-end;   /* Push to the right */
+  align-items: center;         /* Vertically center */
+  gap: 20px;                 /* Space between links */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  display: inline-block;       /* Ensure proper box behavior */
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Slant Container */
+.slant-container {
+  flex: 1;
+  display: flex;
+  position: relative;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Left Section (Text Area with slant) */
+.left-section {
+  width: 50%;
+  /* background: rgba(255, 255, 255, 0.4); */
+  padding: 80px;
+  padding-bottom: 20vh;
+  padding-right: 0%;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-section h1 {
+  font-size: 2.5rem;
+  color: #045233;
+  margin-bottom: 20px;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  text-shadow: 0.125vw 0 0.875vw rgba(0, 0, 0, 0.2);
+}
+
+.left-section p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.join-btn {
+  margin-top: 4vh;
+  background-color: #045233;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 30%;
+}
+
+.join-btn:hover {
+  background-color: #004463;
+}
+
+/* Right Section (Logo Area with matching slant) */
+.right-section {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.6);
+  clip-path: polygon(100% 100%, 0 100%, 20% 0%, 100% 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-logo {
+  max-width: 40vh;
+  opacity: 0.95;
+}

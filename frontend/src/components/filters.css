@@ -1,34 +1,33 @@
 .filters-sidebar {
   position: fixed;
-  top: 24px;
-  right: 40px;
+  top: 1.5vh;                 /* 24px */
+  right: 2.5vw;               /* 40px */
 
   /* ↓ Give some space from the bottom of the viewport */
-  max-height: calc(100vh - 48px - 24px); /* 24px extra bottom padding */
-  bottom: 24px;
+  max-height: calc(100vh - 3vh - 1.5vh); /* 48px + 24px */
+  bottom: 1.5vh;              /* 24px */
 
-  width: 240px;
+  width: 15vw;                /* 240px */
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px 20px;
+  gap: 1.5vh;                 /* 24px vertical gap */
+  padding: 1.5vh 1.25vw;      /* 24px 20px */
   background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(220, 220, 220, 0.6);
+  border: 0.06vw solid rgba(220, 220, 220, 0.6);
 
   /* ↓ Rounded corners all around */
-  border-radius: 14px;
+  border-radius: 0.9vw;       /* 14px */
 
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 0.375vh 1.25vw rgba(0, 0, 0, 0.12); /* 0 6px 20px */
+  backdrop-filter: blur(0.5vw);                     /* 8px */
   z-index: 1000;
   overflow-y: auto;
 
   /* smooth slide-in animation */
-  transform: translateX(40px);
+  transform: translateX(2.5vw); /* 40px */
   opacity: 0;
   animation: slideIn 0.6s ease forwards;
 }
-
 
 @keyframes slideIn {
   to {
@@ -38,20 +37,20 @@
 }
 
 .filters-sidebar h3 {
-  margin: 0 0 16px 0;
-  font-size: 22px;
+  margin: 0 0 1vh 0;          /* 16px */
+  font-size: 1.375vw;         /* 22px */
   font-weight: 600;
   color: #222;
   text-align: center;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px;      /* keep as-is */
 }
 
 .filters-sidebar select {
-  padding: 12px 14px;
-  font-size: 15px;
+  padding: 0.75vh 0.9vw;      /* 12px 14px */
+  font-size: 0.94vw;          /* 15px */
   width: 100%;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  border-radius: 0.65vw;      /* 10px */
+  border: 0.06vw solid #ccc;
   background: #fefefe;
   color: #333;
   cursor: pointer;
@@ -59,48 +58,48 @@
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px;
+  background-position: right 0.75vw center;  /* right 12px */
+  background-size: 1vw;                      /* 16px */
 }
 
 .filters-sidebar select:hover {
   border-color: #0073b1;
-  box-shadow: 0 0 6px rgba(0, 115, 177, 0.3);
+  box-shadow: 0 0 0.4vw rgba(0, 115, 177, 0.3); /* 6px */
   transform: scale(1.015);
 }
 
 .filters-sidebar select:focus {
   outline: none;
   border-color: #0073b1;
-  box-shadow: 0 0 8px rgba(0, 115, 177, 0.4);
+  box-shadow: 0 0 0.5vw rgba(0, 115, 177, 0.4); /* 8px */
 }
 
 /* Optional: Custom scrollbar for overflow */
 .filters-sidebar::-webkit-scrollbar {
-  width: 6px;
+  width: 0.4vw;               /* 6px */
 }
 
 .filters-sidebar::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 0.25vw;      /* 4px */
 }
 
 .add-post-btn {
-  margin-top: auto; /* pushes it to the bottom */
-  padding: 14px 0;
-  font-size: 16px;
+  margin-top: auto;
+  padding: 0.9vh 0;           /* 14px */
+  font-size: 1vw;             /* 16px */
   font-weight: 600;
   color: #fff;
-  background: #0073b1;
+  background: #067e4e;
   border: none;
-  border-radius: 12px;
+  border-radius: 0.75vw;      /* 12px */
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
 }
 
 .add-post-btn:hover {
-  background: #005f8d;
+  background: #00492c;
   transform: scale(1.03);
-  box-shadow: 0 4px 10px rgba(0, 115, 177, 0.3);
+  box-shadow: 0 0.25vh 0.6vw rgba(0, 115, 177, 0.3); /* 4px 10px */
 }

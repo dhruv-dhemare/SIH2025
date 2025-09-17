@@ -33,7 +33,7 @@ const AddPost = () => {
     // TODO: Add actual post submission logic here (API, Firebase, etc.)
 
     // After submission, redirect to home page
-    navigate("/"); 
+    navigate("/home"); 
   };
 
   return (

@@ -55,11 +55,11 @@
 }
 
 .tab-header button:hover {
-  background: #e5e7eb;
+  background: #004127;
 }
 
 .tab-header .active-tab {
-  background: teal;
+  background: #067e4e;
   color: white;
   border-radius: 6px 6px 0 0;
 }
