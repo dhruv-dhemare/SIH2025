@@ -28,6 +28,7 @@
 
 /* Each chat item */
 .chat-item {
+  height: 5vh;
   display: flex;
   align-items: center;
   padding: 12px 14px;

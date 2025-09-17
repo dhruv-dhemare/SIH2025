@@ -15,12 +15,15 @@
 
 .chat-header,
 .forum-header {
+  color: rgb(52, 52, 52);
   padding: 14px;
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-right: 5vh;
+  font-size: 2vh;
 }
 
 .chat-body,

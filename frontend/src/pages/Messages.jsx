@@ -91,12 +91,14 @@ export default function Messages() {
               />
             </div>
             <div className="window-panel">
-              {activeForum ? (
-                <ForumWindow forum={activeForum} />
+              {activeChat ? (
+                <ChatWindow chat={activeChat} onBack={() => setActiveChat(null)} />
               ) : (
-                <div className="placeholder">Select a community to view details</div>
+                <div className="placeholder">Select a chat to start messaging</div>
               )}
             </div>
+
+
           </div>
         )}
       </div>

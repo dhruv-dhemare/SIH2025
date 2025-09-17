@@ -10,8 +10,9 @@
 
 
 .site-title {
+  padding: 0px;
   font-family: "Georgia", "Times New Roman", serif; /* or Segoe UI for modern */
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #067e4e;
   letter-spacing: 0.5px;
@@ -38,7 +39,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 17vw;
+  width: 20vw;
   height: 100vh;
   background: #fff;
   padding-top: 1rem;
@@ -63,23 +64,25 @@
   height: 6vh;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.8rem;
+  align-items: center;   /* ✅ keeps icon + text vertically centered */
+  justify-content: flex-start; /* ✅ keeps them inline from the left */
+  gap: 0.8rem; 
   text-decoration: none;
-  color: #444 !important;       /* ✅ force dark grey */
+  color: #444 !important; 
   font-weight: 500;
   padding: 0.3rem 1rem 0.3rem 1.5rem;
   position: relative;
   box-sizing: border-box;
 }
-/* Add spacing to all icons inside nav links */
+
+/* Icons inside nav-link */
 .nav-link svg {
-  width: 21px ;
-  height: 21px ;
-  margin-right: 8px;   /* ✅ adds right padding */
-  flex-shrink: 0;      /* prevents icon from squishing */
+  width: 21px;
+  height: 21px;
+  margin-right: 8px;  /* ✅ spacing between icon & text */
+  flex-shrink: 0;
 }
+
 
 
 /* Hover effect */
