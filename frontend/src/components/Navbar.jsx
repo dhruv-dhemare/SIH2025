@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import {
+  Home,
+  Calendar,
+  MessageSquare,
+  BarChart3,
+  Phone,
+} from "lucide-react"; // ✅ lucide icons
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
 import profileImg from "../assets/profile.jpg"; // fallback image
@@ -27,13 +34,11 @@ function Navbar() {
           return;
         }
 
-        // Map backend fields to frontend-friendly fields
         const mappedUser = {
           name: u.name || "Unnamed",
           title: u.headline || "",
           location: u.locations ? u.locations.filter(Boolean).join(", ") : "",
-          // Use the profile image uploaded during signup
-          profileImg: u.profilePhoto || profileImg
+          profileImg: u.profilePhoto || profileImg,
         };
 
         setUser(mappedUser);
@@ -64,7 +69,6 @@ function Navbar() {
           style={{ textDecoration: "none", color: "inherit" }}
         >
           {loading ? (
-            // Show placeholder while loading
             <ProfileCard
               name="Loading..."
               title=""
@@ -76,7 +80,7 @@ function Navbar() {
               name={user?.name || "Unnamed"}
               title={user?.title || ""}
               location={user?.location || ""}
-              profileImg={profileImg} // show uploaded image
+              profileImg={user?.profileImg || profileImg}
             />
           )}
         </NavLink>
@@ -87,31 +91,31 @@ function Navbar() {
           to="/home"
           className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
         >
-          Home
+          <Home /> Home
         </NavLink>
         <NavLink
           to="/events"
           className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
         >
-          Events
+          <Calendar /> Events
         </NavLink>
         <NavLink
           to="/messages"
           className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
         >
-          Messages
+          <MessageSquare /> Messages
         </NavLink>
         <NavLink
           to="/analytics"
           className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
         >
-          Analytics
+          <BarChart3 /> Analytics
         </NavLink>
         <NavLink
           to="/contact"
           className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
         >
-          Contact
+          <Phone /> Contact
         </NavLink>
       </div>
     </nav>

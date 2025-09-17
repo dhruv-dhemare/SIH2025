@@ -62,14 +62,14 @@ export default function PieChart() {
 
   return (
     <div
-      style={{
-        width: "500px",
-        marginRight: "100px auto",
-        padding: "20px",
-        background: "white",
-        borderRadius: "16px",
-        boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
-      }}
+      // style={{
+      //   width: "500px",
+      //   marginRight: "100px auto",
+      //   padding: "20px",
+      //   background: "white",
+      //   borderRadius: "16px",
+      //   // boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+      // }}
     >
       <Pie data={data} options={options} />
     </div>

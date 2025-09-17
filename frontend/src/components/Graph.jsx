@@ -96,16 +96,16 @@ export default function PlacementHistory() {
 
   return (
     <div
-      style={{
-        width: "700px",   // fixed width
-        height: "400px",  // fixed height
-        maxWidth: "100%", // responsive fallback
-        margin: "0 auto", // center align
-        // padding: "20px",
-        background: "#fff",
-        borderRadius: "12px",
-        boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
-      }}
+      // style={{
+      //   width: "700px",   // fixed width
+      //   height: "400px",  // fixed height
+      //   maxWidth: "100%", // responsive fallback
+      //   margin: "0 auto", // center align
+      //   // padding: "20px",
+      //   background: "#fff",
+      //   borderRadius: "12px",
+      //   // boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+      // }}
     >
       <div style={{ marginBottom: "15px" }}>
         <label htmlFor="range" style={{ marginRight: "10px", fontWeight: "600" }}>

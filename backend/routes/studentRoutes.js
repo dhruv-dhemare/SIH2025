@@ -64,7 +64,7 @@ router.post("/signup", uploadFields, async (req, res) => {
     const lastStudent = await Student.findOne().sort({ createdAt: -1 });
     let nextNumber = 1;
     if (lastStudent && lastStudent.username) {
-      const lastNum = parseInt(lastStudent.username.replace("STD", ""));
+      const lastNum = parseInt(lastStudent.username.replace("STD", ""))
       if (!isNaN(lastNum)) nextNumber = lastNum + 1;
     }
     data.username = `STD${String(nextNumber).padStart(3, "0")}`;

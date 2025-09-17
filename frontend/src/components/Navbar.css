@@ -1,106 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
-
-:root {
-  --sidebar-width: 18vw;      
-  --card-width: 14vw;         
-  --sidebar-pad: 1.5vw;       
-  --bg: #ffffff;
-  --accent: #067e4e;
-  --accent-dark: #013520;
-  --muted: #9aa0b3;
-  --shadow: rgba(0, 0, 0, 0.08);
+.site-header {
+  display: flex;
+  justify-content: center;   /* ✅ centers text horizontally */
+  align-items: center;       /* ✅ centers text vertically */
+  padding: 1rem 0.5rem;
+  width: 100%;               /* ✅ fills only navbar width */
+  text-align: center;
+  box-sizing: border-box;    /* ✅ respects padding inside navbar */
 }
 
-/* Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+
+.site-title {
+  font-family: "Georgia", "Times New Roman", serif; /* or Segoe UI for modern */
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #067e4e;
+  letter-spacing: 0.5px;
 }
 
-/* Sidebar container */
+
+.profile-wrapper {
+  width: 100%;        /* or set a fixed width if you want */
+  display: flex;      /* ensures proper alignment */
+}
+
+.profile-link-div {
+  width: 95%;        /* ✅ make link span wrapper width */
+  display: block;     /* ensures child fills */
+}
+
+.profile-card {
+  margin: 2vh;
+  width: 95%;        /* ✅ make ProfileCard stretch */
+  /* box-sizing: border-box;  */
+}
+
 .navbar-vertical {
   position: fixed;
   top: 0;
   left: 0;
-  width: var(--sidebar-width);
+  width: 17vw;
   height: 100vh;
-  background: var(--bg);
-  padding: var(--sidebar-pad) 1vw;
+  /* background: #fff; */
+  padding-top: 1rem;
+  border-right: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-right: 1px solid #e6e6e6;
-  box-shadow: 2px 0 10px var(--shadow);
-  overflow: hidden;
-  transition: all 0.25s ease;
+  align-items: flex-start;
 }
 
-/* Title */
-.site-header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.2vw;
-}
-.site-title {
-  font-family: "Playfair Display", serif;
-  text-align: center;
-  color: #111;
-  font-size: 1.8vw;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin: 0;
-  line-height: 1.2;
-}
-
-/* Profile wrapper */
-.profile-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2vw;
-}
-
-/* Navigation links */
+/* Navigation links container */
 .nav-links {
-  width: 100%;
-  max-width: var(--card-width);
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.8vw;
-  margin-bottom: 2vw;
-}
-
-.nav-link {
-  display: block;
+  gap: 1.5rem;
   width: 100%;
-  padding: 0.8vw 1vw;
-  text-align: center;
+}
+.nav-link {
+  font-size: 2vh;
+  height: 6vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.8rem;
   text-decoration: none;
-  color: #222;
-  background: #f5f5f5;
-  border-radius: 0.6vw;
-  font-family: "Inter", sans-serif;
-  font-size: 1vw;
+  color: #444 !important;       /* ✅ force dark grey */
   font-weight: 500;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  padding: 0.3rem 1rem 0.3rem 1.5rem;
+  position: relative;
+  box-sizing: border-box;
+}
+/* Add spacing to all icons inside nav links */
+.nav-link svg {
+  width: 21px ;
+  height: 21px ;
+  margin-right: 8px;   /* ✅ adds right padding */
+  flex-shrink: 0;      /* prevents icon from squishing */
 }
 
-/* Hover & focus */
-.nav-link:hover,
-.nav-link:focus {
-  background: var(--accent);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+
+/* Hover effect */
+.nav-link:hover {
+  color: #067e4e;
+  background: #f5f5f5;   
+  text-decoration: none;   /* optional: highlight row on hover */
 }
 
-/* Active state */
+/* Active link */
+
+
+.nav-link.active::before {
+  color: black;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: #067e4e;
+}
+
 .nav-link.active {
-  background: var(--accent-dark);
-  color: #fff;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  color: #067e4e;
+  font-weight: 600;       /* optional: subtle background for active */
 }
