@@ -12,15 +12,21 @@
     {
       "institution": "Pune Institute of Computer Technology",
       "degree": "Bachelor of Engineering in Electronics and Telecommunication",
-      "expected_graduation": "2027"
+      "expected_graduation": "2027",
+      "location": "Pune",
+      "cgpa": "9"
     },
     {
       "institution": "Raja Shivaji Jr. College",
-      "degree": "HSC"
+      "degree": "HSC",
+      "percentage": "76",
+      "location": "Chhatrapati Sambhajinagar"
     },
     {
       "institution": "Alphonsa English School",
-      "degree": "SSC"
+      "degree": "SSC",
+      "percentage": "92",
+      "location": "Chhatrapati Sambhajinagar"
     }
   ],
   "experience": [],
@@ -33,8 +39,8 @@
     "React",
     "Node.js",
     "MongoDB",
-    "Firebase",
-    "Git"
+    "Git",
+    "Firebase"
   ],
   "projects": [
     {
@@ -46,7 +52,7 @@
         "MongoDB",
         "Postman",
         "JWT",
-        "Bcrypt"
+        "bcrypt"
       ]
     },
     {
@@ -64,19 +70,15 @@
   "achievements": [],
   "extracurricular": [
     {
-      "organization": "Entrepreneurship Development Cell (EDC), PICT",
-      "role": "Vice President and Design Head (2025)",
-      "description": "Appointed as Vice President and Design Head"
+      "organization": "Entrepreneurship Development Cell (EDC), Pune Institute of Computer Technology",
+      "position": "Vice President and Design Head",
+      "year": "2025"
     },
     {
-      "organization": "Entrepreneurship Development Cell (EDC), PICT",
-      "role": "Organizing Team Member",
-      "event": "EntrepreneurialHunt"
-    },
-    {
-      "organization": "Entrepreneurship Development Cell (EDC), PICT",
-      "role": "Event Head",
-      "event": "Magnate (2024-25)"
+      "organization": "Entrepreneurship Development Cell (EDC), Pune Institute of Computer Technology",
+      "position": "Organizing Team Member",
+      "event": "EntrepreneurialHunt",
+      "year": "2024-25"
     }
   ]
 }

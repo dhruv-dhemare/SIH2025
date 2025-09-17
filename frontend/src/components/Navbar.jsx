@@ -9,7 +9,7 @@ import {
 } from "lucide-react"; // ✅ lucide icons
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
-import profileImg from "../assets/profile.jpg"; // fallback image
+import profileImg from "../assets/profile.jpg";
 import { getProfile } from "../services/api";
 
 function Navbar() {
@@ -38,7 +38,7 @@ function Navbar() {
           name: u.name || "Unnamed",
           title: u.headline || "",
           location: u.locations ? u.locations.filter(Boolean).join(", ") : "",
-          profileImg: u.profilePhoto || profileImg,
+          profileImg: profileImg,
         };
 
         setUser(mappedUser);

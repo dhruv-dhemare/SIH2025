@@ -53,6 +53,7 @@ body, html, #root, #map-root {
   /* margin-left: 25vw;          push feed away from navbar */
   padding: 20px;
   box-sizing: border-box;
+  background: #eeeeee;
 }
 
 /* Posts feed */

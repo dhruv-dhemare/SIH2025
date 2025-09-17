@@ -5,6 +5,9 @@ import "./Signup.css";
 
 function Signup() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -32,7 +35,7 @@ function Signup() {
   const handleChange = async (e) => {
     const { name, type, files, value } = e.target;
 
-    if (type === "file" && name === "resume") {
+    if (type === "file" && name === "resume" && form.role !== "recruiter") {
       const file = files[0];
       setForm({ ...form, resume: file });
 
@@ -40,6 +43,7 @@ function Signup() {
       formData.append("file", file);
 
       try {
+        setLoading(true);
         const res = await fetch("http://127.0.0.1:8000/parse-resume", {
           method: "POST",
           body: formData,
@@ -63,61 +67,69 @@ function Signup() {
                     edu.degree ? ", " + edu.degree : ""
                   }${edu.major ? ", " + edu.major : ""}${
                     edu.gpa ? " (GPA: " + edu.gpa + ")" : ""
-                  }${edu.percentage ? " (Percentage: " + edu.percentage + ")" : ""}${
-                    edu.location ? " - " + edu.location : ""
-                  }`
+                  }${
+                    edu.percentage ? " (Percentage: " + edu.percentage + ")" : ""
+                  }${edu.location ? " - " + edu.location : ""}`
               ) || prev.education,
 
             skills: parsed.skills?.join(", ") || prev.skills,
 
-            experience: (
-              [...(parsed.experience || []), ...(parsed.internships || [])]
-                .map((exp) => {
-                  const title = exp.title || exp.role || "";
-                  const org = exp.organization ? ` at ${exp.organization}` : "";
-                  const start = exp.start_date || exp.year || "";
-                  const end = exp.end_date || (parsed.experience.includes(exp) ? "Present" : "");
-                  return `${title}${org}${start || end ? `   ${start} - ${end || ""}  ` : ""}`;
-                })
-                .filter(Boolean)
-            ).join(", ") || prev.experience,
+            experience:
+              (
+                [...(parsed.experience || []), ...(parsed.internships || [])]
+                  .map((exp) => {
+                    const title = exp.title || exp.role || "";
+                    const org = exp.organization ? ` at ${exp.organization}` : "";
+                    const start = exp.start_date || exp.year || "";
+                    const end =
+                      exp.end_date ||
+                      (parsed.experience.includes(exp) ? "Present" : "");
+                    return `${title}${org}${
+                      start || end ? `   ${start} - ${end || ""}  ` : ""
+                    }`;
+                  })
+                  .filter(Boolean)
+              ).join(", ") || prev.experience,
 
             projects:
               (parsed.projects?.map(
                 (p) =>
-                  `${p.name}${p.technologies ? " (" + p.technologies.join(", ") + ")" : ""}`
+                  `${p.name}${
+                    p.technologies ? " (" + p.technologies.join(", ") + ")" : ""
+                  }`
               ) || []).join(", ") || prev.projects,
 
             certification:
-              (parsed.certifications?.map(
-                (c) =>
-                  typeof c === "string"
-                    ? c
-                    : `${c.name}${c.organization ? " - " + c.organization : ""}${
-                        c.instructor ? " (Instructor: " + c.instructor + ")" : ""
-                      }`
+              (parsed.certifications?.map((c) =>
+                typeof c === "string"
+                  ? c
+                  : `${c.name}${c.organization ? " - " + c.organization : ""}${
+                      c.instructor ? " (Instructor: " + c.instructor + ")" : ""
+                    }`
               ) || []).join(", ") || prev.certification,
 
             achievements:
-              (parsed.achievements?.map(
-                (a) =>
-                  typeof a === "string"
-                    ? a
-                    : `${a.name}${a.organization ? " - " + a.organization : ""}`
+              (parsed.achievements?.map((a) =>
+                typeof a === "string"
+                  ? a
+                  : `${a.name}${a.organization ? " - " + a.organization : ""}`
               ) || []).join(", ") || prev.achievements,
 
             extracurricular:
-              (parsed.extracurricular?.map(
-                (ex) =>
-                  typeof ex === "string"
-                    ? ex
-                    : `${ex.activity}${ex.details ? " (" + ex.details + ")" : ""}`
+              (parsed.extracurricular?.map((ex) =>
+                typeof ex === "string"
+                  ? ex
+                  : `${ex.activity}${
+                      ex.details ? " (" + ex.details + ")" : ""
+                    }`
               ) || []).join(", ") || prev.extracurricular,
           }));
         }
       } catch (err) {
         console.error(err);
         alert("Error parsing resume");
+      } finally {
+        setLoading(false);
       }
     } else if (type === "file") {
       setForm({ ...form, [name]: files[0] });
@@ -132,9 +144,13 @@ function Signup() {
     updated[i] = val;
     setForm({ ...form, education: updated });
   };
-  const addEducationField = () => setForm({ ...form, education: [...form.education, ""] });
+  const addEducationField = () =>
+    setForm({ ...form, education: [...form.education, ""] });
   const removeEducationField = (i) =>
-    setForm({ ...form, education: form.education.filter((_, idx) => idx !== i) });
+    setForm({
+      ...form,
+      education: form.education.filter((_, idx) => idx !== i),
+    });
 
   // URL handlers
   const handleUrlChange = (i, val) => {
@@ -154,15 +170,19 @@ function Signup() {
 
       const formData = new FormData();
 
-      // Locations
-      const locations = [form.address, form.city, form.state, form.country].filter(Boolean);
+      const locations = [
+        form.address,
+        form.city,
+        form.state,
+        form.country,
+      ].filter(Boolean);
       locations.forEach((loc) => formData.append("locations[]", loc));
 
-      // Education & URLs
-      form.education.forEach((edu) => edu && formData.append("education[]", edu));
+      form.education.forEach(
+        (edu) => edu && formData.append("education[]", edu)
+      );
       form.urls.forEach((url) => url && formData.append("urls[]", url));
 
-      // Array fields
       [
         "experience",
         "certification",
@@ -180,7 +200,6 @@ function Signup() {
         }
       });
 
-      // Single fields
       [
         "name",
         "email",
@@ -199,7 +218,6 @@ function Signup() {
         if (form[field]) formData.append(field, form[field]);
       });
 
-      // Files
       if (form.resume) formData.append("resume", form.resume);
       if (form.profilePhoto) formData.append("profilePhoto", form.profilePhoto);
 
@@ -214,6 +232,41 @@ function Signup() {
 
   return (
     <div className="whole">
+      {/* Loader overlay */}
+      {loading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(255, 255, 255, 0.8)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              border: "8px solid #e0e0e0",
+              borderTop: "8px solid #045233",
+              borderRadius: "50%",
+              width: "70px",
+              height: "70px",
+              animation: "spin 1s linear infinite",
+            }}
+          />
+          <style>
+            {`@keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }`}
+          </style>
+        </div>
+      )}
+
       <nav className="navbar" height="10vh">
         <div className="nav-logo">
           <h2>The Alumni Society</h2>
@@ -225,7 +278,67 @@ function Signup() {
           <h2 className="sign-title">Create an Account</h2>
 
           <form onSubmit={handleSubmit} className="sign-form">
-            {/* Basic Info */}
+            <select
+                name="role"
+                value={form.role}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Select Role
+                </option>
+                <option value="student">Student</option>
+                <option value="alumni">Alumni</option>
+                <option value="faculty">Faculty</option>
+                <option value="recruiter">Recruiter</option>
+              </select>
+              {/* Resume upload (not for recruiters) */}
+            {form.role !== "recruiter" && form.role !== "" && (
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ color: "#000", marginBottom: "0px" }}>
+                  Upload Resume (PDF)
+                </label>
+                <input
+                  type="file"
+                  name="resume"
+                  accept="application/pdf"
+                  onChange={handleChange}
+                />
+
+                {showTooltip && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      padding: "10px",
+                      background: "#fff9c4",
+                      border: "1px solid #fbc02d",
+                      borderRadius: "6px",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+                      fontSize: "14px",
+                      color: "#333",
+                    }}
+                  >
+                    💡 Upload your resume here. Most fields will be auto-filled
+                    with your details.
+                    <div style={{ textAlign: "right", marginTop: "5px" }}>
+                      <button
+                        type="button"
+                        onClick={() => setShowTooltip(false)}
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                          color: "#333",
+                          cursor: "pointer",
+                          fontSize: "12px",
+                        }}
+                      >
+                        Got it
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
             <div className="form-row">
               <input
                 name="name"
@@ -243,6 +356,7 @@ function Signup() {
                 required
               />
             </div>
+
             <div className="form-row">
               <input
                 name="password"
@@ -252,18 +366,9 @@ function Signup() {
                 onChange={handleChange}
                 required
               />
-              <select name="role" value={form.role} onChange={handleChange} required>
-                <option value="" disabled>
-                  Select Role
-                </option>
-                <option value="student">Student</option>
-                <option value="alumni">Alumni</option>
-                <option value="faculty">Faculty</option>
-                <option value="recruiter">Recruiter</option>
-              </select>
+              
             </div>
 
-            {/* Common extra fields */}
             <div className="form-row">
               <input
                 name="phn"
@@ -271,10 +376,22 @@ function Signup() {
                 value={form.phn}
                 onChange={handleChange}
               />
-              <input name="dob" type="date" value={form.dob} onChange={handleChange} />
+              <input
+                name="dob"
+                type="date"
+                value={form.dob}
+                onChange={handleChange}
+              />
             </div>
+
+            
+
             <div className="form-row">
-              <select name="gender" value={form.gender} onChange={handleChange}>
+              <select
+                name="gender"
+                value={form.gender}
+                onChange={handleChange}
+              >
                 <option value="">Gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -282,7 +399,6 @@ function Signup() {
               </select>
             </div>
 
-            {/* Location fields */}
             <div className="form-row">
               <input
                 name="address"
@@ -290,8 +406,14 @@ function Signup() {
                 value={form.address}
                 onChange={handleChange}
               />
-              <input name="city" placeholder="City" value={form.city} onChange={handleChange} />
+              <input
+                name="city"
+                placeholder="City"
+                value={form.city}
+                onChange={handleChange}
+              />
             </div>
+
             <div className="form-row">
               <input
                 name="state"
@@ -307,8 +429,9 @@ function Signup() {
               />
             </div>
 
-            {/* Student / Alumni / Faculty */}
-            {(form.role === "student" || form.role === "alumni" || form.role === "faculty") && (
+            {(form.role === "student" ||
+              form.role === "alumni" ||
+              form.role === "faculty") && (
               <>
                 <div className="form-row">
                   <input
@@ -360,10 +483,15 @@ function Signup() {
                     <input
                       value={edu}
                       placeholder={`Education ${i + 1}`}
-                      onChange={(e) => handleEducationChange(i, e.target.value)}
+                      onChange={(e) =>
+                        handleEducationChange(i, e.target.value)
+                      }
                     />
                     {form.education.length > 1 && (
-                      <button type="button" onClick={() => removeEducationField(i)}>
+                      <button
+                        type="button"
+                        onClick={() => removeEducationField(i)}
+                      >
                         Remove
                       </button>
                     )}
@@ -381,7 +509,10 @@ function Signup() {
                       onChange={(e) => handleUrlChange(i, e.target.value)}
                     />
                     {form.urls.length > 1 && (
-                      <button type="button" onClick={() => removeUrlField(i)}>
+                      <button
+                        type="button"
+                        onClick={() => removeUrlField(i)}
+                      >
                         Remove
                       </button>
                     )}
@@ -390,15 +521,9 @@ function Signup() {
                 <button type="button" onClick={addUrlField}>
                   + Add URL
                 </button>
-
-                <label style={{ color: "#000", marginBottom: "0px" }}>
-                  Upload Resume (PDF)
-                </label>
-                <input type="file" name="resume" accept="application/pdf" onChange={handleChange} />
               </>
             )}
 
-            {/* Recruiter */}
             {form.role === "recruiter" && (
               <>
                 <div className="form-row">
@@ -435,9 +560,15 @@ function Signup() {
               </>
             )}
 
-            {/* Profile photo */}
-            <label style={{ color: "#000", marginBottom: "0px" }}>Profile Photo (optional)</label>
-            <input type="file" name="profilePhoto" accept="image/*" onChange={handleChange} />
+            <label style={{ color: "#000", marginBottom: "0px" }}>
+              Profile Photo (optional)
+            </label>
+            <input
+              type="file"
+              name="profilePhoto"
+              accept="image/*"
+              onChange={handleChange}
+            />
 
             <button type="submit" className="sign-btn">
               Sign Up
