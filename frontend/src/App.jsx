@@ -147,9 +147,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* Delhi chapter */}
           <Route
-            path="/chapters/delhi"
+            path="/chapters/Delhi"
             element={
               <ProtectedRoute>
                 <LocationChapter />

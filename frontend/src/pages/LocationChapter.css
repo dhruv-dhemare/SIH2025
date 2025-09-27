@@ -19,24 +19,34 @@
 }
 
 .members-card {
-  background: #f4f6f9;
+  margin-left: 20vw;
+  background-color: rgba(0, 133, 80, 0.836);
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
   margin-bottom: 30px;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.members-card p {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
 }
 
 .members-card:hover {
-  background: #eaf0f7;
+  background-color: rgb(0, 133, 80);
 }
 
 .view-more {
   display: block;
-  margin-top: 8px;
-  font-size: 14px;
-  color: #007bff;
+  font-size: 22px;
+  color: black;
 }
 
 
@@ -89,12 +99,22 @@
 .close-btn:hover {
   background: #d9363e;
 }
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 20px; /* space between events */
+  margin-bottom: 20px;
+}
 
 .activity-item {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
+  background-color: #fff; /* optional card background */
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .activity-image {
@@ -107,4 +127,27 @@
 .activity-info {
   display: flex;
   flex-direction: column;
+}
+
+
+.notification-item {
+  background-color: #ffffff; /* dark card for black bg */
+  border: 1px solid #1d4ed8;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 70vw;
+  height: 5vh;
+}
+
+
+.notif-icon {
+  font-size: 20px;
+}
+
+.notif-text {
+  color: #000000;
+  font-size: 15px;
 }

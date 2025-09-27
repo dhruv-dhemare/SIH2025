@@ -6,39 +6,40 @@ export default function Chapters() {
   const navigate = useNavigate();
 
   const [chapters] = useState([
-    {
-      id: 1,
-      name: "Batch of 2015",
-      description: "Connect with alumni from your graduation batch.",
-      members: 120,
-      representative: "John Doe",
-      icon: "🎓",
-    },
-    {
-      id: 2,
-      name: "Location: New York",
-      description: "Network with alumni based in New York.",
-      members: 80,
-      representative: "Jane Smith",
-      icon: "📍",
-    },
-    {
-      id: 3,
-      name: "Department: Computer Science",
-      description: "Stay connected with peers from CS department.",
-      members: 150,
-      representative: "Alice Johnson",
-      icon: "🏛️",
-    },
-    {
-      id: 4,
-      name: "Industry: Tech",
-      description: "Collaborate with alumni working in tech industry.",
-      members: 95,
-      representative: "Bob Williams",
-      icon: "💼",
-    },
-  ]);
+  {
+    id: 1,
+    name: "Batch of 2015",
+    description: "Connect with alumni from your graduation batch.",
+    members: 120,
+    representative: "Rahul Sharma",
+    icon: "🎓",
+  },
+  {
+    id: 2,
+    name: "Location: Delhi",
+    description: "Network with alumni based in Pune.",
+    members: 80,
+    representative: "Sneha Patil",
+    icon: "📍",
+  },
+  {
+    id: 3,
+    name: "Department: Computer Engineering",
+    description: "Stay connected with peers from the Computer Engineering department.",
+    members: 150,
+    representative: "Arjun Nair",
+    icon: "🏛️",
+  },
+  {
+    id: 4,
+    name: "Industry: IT Services",
+    description: "Collaborate with alumni working in the Indian IT industry.",
+    members: 95,
+    representative: "Priya Iyer",
+    icon: "💼",
+  },
+]);
+
 
   return (
     <div className="chapters-container">

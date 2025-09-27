@@ -18,7 +18,7 @@
 
 .dashboard-container {
   min-height: 100vh;
-  width: 100vw;
+  width: 98vw;
   margin-left: 350px;
   background-color: var(--background-color);
   padding: 40px 30px;
@@ -43,7 +43,7 @@
 .main-subtitle, .section-title {
   text-align: center;
   color: var(--text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 1.125rem;
   font-weight: 400;
 }
@@ -55,8 +55,7 @@
 }
 
 .divider {
-  width: 100%;
-  max-width: 600px;
+  width: 90%;
   height: 2px;
   border: none;
   background-color: var(--border-color);
@@ -73,10 +72,12 @@
 
 .two-column-grid {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  width: 98%;
 }
 
 .four-column-grid {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: 98%;
 }
 
 /* --------------------------------------------------- */
@@ -146,10 +147,10 @@
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--primary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1px;
 }
 
 .card-title-small {
@@ -192,8 +193,6 @@
 .category-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 10px;
 }
 
 .category-item {
@@ -240,9 +239,33 @@
   font-weight: 600;
   font-size: 0.85rem;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+  width: 30vw;
 }
 
 .card-button:hover {
   background: var(--accent-hover);
   transform: scale(1.05);
+}
+
+.card-images {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.card-image {
+  width: calc(33.33% - 4px); /* 3 images in a row */
+  height: 30vh;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.card-title{
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+.card-description{
+  font-size: 18px;
+}
+.card-date{
+  font-size: 16px;
 }

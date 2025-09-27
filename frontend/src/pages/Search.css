@@ -1,73 +1,191 @@
+/* Container */
 .search-results {
   padding: 20px;
+  background-color: #ffffff; /* Light background for contrast */
+  color: #333; /* Default text color */
+  font-family: 'Poppins', sans-serif;
+  width: 75vw;
+  margin-left: 20vw;
 }
-
-.alumni-list {
+.search-results section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 20px; 
+}
+
+/* Page title */
+.page-title {
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
-.alumni-card {
-    color: black;
+.highlight {
+  color: #0077ff;
+  font-weight: bold;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 28px;
+  margin: 20px 0 10px;
+  color: #222;
+  text-align: center;
+}
+
+/* Alumni */
+.alumni-list {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center all cards */
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.alumni-card {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   background: #fff;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  width: 20vw;
+}
+
+.alumni-card:hover {
+  transform: translateY(-3px);
 }
 
 .alumni-avatar {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  width: 50px;
-  margin-right: 12px;
+  margin-bottom: 10px;
+  object-fit: cover;
 }
 
+.alumni-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #111;
+  text-align: center;
+}
+
+.alumni-info .role {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+.alumni-info small {
+  color: #666;
+  text-align: center;
+}
+
+/* Opportunity Card */
 .opportunity-card {
-  margin-bottom: 16px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.opportunity-card:hover {
+  transform: translateY(-3px);
 }
 
 .apply-btn {
-  margin: 10px;
-  padding: 8px 14px;
+  margin-top: 10px;
+  padding: 10px 18px;
   border: none;
   background: #0077ff;
   color: white;
+  font-weight: 500;
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .apply-btn:hover {
   background: #005fcc;
 }
 
+/* Communities */
 .community-list {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center; /* center all cards */
+  gap: 20px;
+  padding: 10px 0;
 }
 
 .community-card {
-    color: black;
   background: #fff;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  width: 250px;
+}
+
+.community-card:hover {
+  transform: translateY(-3px);
+}
+
+.members {
+  font-size: 13px;
+  color: #555;
 }
 
 .join-btn {
   margin-top: 8px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border: none;
   background: #28a745;
   color: white;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 
 .join-btn:hover {
   background: #1f7d34;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  gap: 20px;
+  justify-items: center;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.events-section,
+.opportunities-section {
+  width: 100%;
+}
+
+.community-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive full-width */
+  gap: 20px;
+  width: 80%; /* take full width */
+  padding: 10px 0;
+}
+
+.community-card {
+  background: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  width: 100%; /* stretch inside grid column */
 }
