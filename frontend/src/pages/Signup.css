@@ -42,9 +42,14 @@ html, body {
   width: 60vw;
   max-width: 800px;
   padding: 22px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  background-color: rgba(250, 251, 251, 0.88); /* semi-transparent white */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);             /* glass blur effect */
+-webkit-backdrop-filter: blur(10px);     /* Safari support */
+border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  
   z-index: 1;
   text-align: center;
 }
@@ -63,6 +68,7 @@ html, body {
 /* Small phones */
 @media (max-width: 480px) {
   .sign-box {
+    padding: 5vh;
     width: 90%;
     left: 50%;
     right: auto;
@@ -102,17 +108,20 @@ html, body {
 .sign-form input,
 .sign-form select,
 .sign-form textarea {
-  background: #ffffff;       /* pure white background */
   color: #1e293b;
   width: 100%;
   padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  /* border: 1px solid #cbd5e1; */
   font-size: 14px;
   box-sizing: border-box;
   outline: none;
   transition: border-color .15s, box-shadow .15s;
   resize: vertical;          /* allow vertical resize for textarea */
+  background: rgba(255, 255, 255, 0.25);   /* semi-transparent input */
+border: 1px solid rgba(255, 255, 255, 0.3);
+color: black;                             /* text visible on glass */
+
 }
 
 /* Focus states */

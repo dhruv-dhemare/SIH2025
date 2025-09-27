@@ -1,4 +1,3 @@
-// App.jsx (the almost final code)
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
@@ -14,16 +13,17 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Landing from "./pages/Landing.jsx";
 import Fundraisers from "./pages/Fundraisers.jsx";
+import LocationChapter from "./pages/LocationChapter.jsx";
 import Chapters from "./pages/Chapters.jsx";
+import Search from "./pages/Search.jsx";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { getProfile } from "./services/api";
 
 // ProtectedRoute component
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
+  const [isValid, setIsValid] = React.useState(null);
 
-  // Simple token validation: try fetching profile
-  const [isValid, setIsValid] = React.useState(null); // null = loading
   React.useEffect(() => {
     if (!token) {
       setIsValid(false);
@@ -35,7 +35,7 @@ const ProtectedRoute = ({ children }) => {
       .catch(() => setIsValid(false));
   }, [token]);
 
-  if (isValid === null) return <div>Loading...</div>; // or spinner
+  if (isValid === null) return <div>Loading...</div>;
   if (!isValid) return <Navigate to="/login" replace />;
 
   return children;
@@ -44,7 +44,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   const location = useLocation();
 
-  // Paths where Navbar should be hidden
+  // Hide Navbar on specific routes
   const hideNavbarPaths = ["/login", "/signup", "/"];
   const hideNavbar = hideNavbarPaths.includes(location.pathname.toLowerCase());
 
@@ -139,8 +139,25 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/search"
+            element={
+              <ProtectedRoute>
+                <Search />
+              </ProtectedRoute>
+            }
+          />
+          {/* Delhi chapter */}
+          <Route
+            path="/chapters/delhi"
+            element={
+              <ProtectedRoute>
+                <LocationChapter />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Fallback 404 */}
+          {/* 404 fallback */}
           <Route path="*" element={<div>404: Page not found.</div>} />
         </Routes>
       </main>
