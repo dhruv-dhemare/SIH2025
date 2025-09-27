@@ -1,0 +1,248 @@
+/* --------------------------------------------------- */
+/* 1. CSS Variables & Global Styles
+/* --------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #045233;    /* Dark Green */
+  --secondary-color: #004463;  /* Darker Green */
+  --accent-color: #045233;     /* Dark Green buttons */
+  --accent-hover: #004463;     /* Darker Green hover */
+  --background-color: #ffffff; /* White background */
+  --card-background: rgba(255, 255, 255, 0.6); /* Semi-transparent card background */
+  --text-primary: #045233;     /* Dark Green text */
+  --text-secondary: #333333;   /* Dark gray text for paragraphs */
+  --border-color: rgba(4, 82, 51, 0.2); /* subtle border */
+  --shadow-color: rgba(4, 82, 51, 0.1); /* subtle shadow */
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  width: 100vw;
+  margin-left: 350px;
+  background-color: var(--background-color);
+  padding: 40px 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-section {
+  margin-bottom: 50px;
+}
+
+/* --------------------------------------------------- */
+/* 2. Typography & Dividers
+/* --------------------------------------------------- */
+.main-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.main-subtitle, .section-title {
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.divider {
+  width: 100%;
+  max-width: 600px;
+  height: 2px;
+  border: none;
+  background-color: var(--border-color);
+  margin: 0 auto 30px auto;
+}
+
+/* --------------------------------------------------- */
+/* 3. Grid Layout (optional if still needed) 
+/* --------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: 25px;
+}
+
+.two-column-grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.four-column-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* --------------------------------------------------- */
+/* 4. Fundraiser List Styling (Single Line Events)
+/* --------------------------------------------------- */
+.fundraiser-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fundraiser-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--card-background);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 6px var(--shadow-color);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fundraiser-item:hover {
+  background: rgba(4, 82, 51, 0.08);
+  transform: translateX(2px);
+}
+
+.fundraiser-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  flex: 1;
+}
+
+.fundraiser-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0 20px;
+  white-space: nowrap;
+}
+
+.fundraiser-amount {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-right: 20px;
+}
+
+/* --------------------------------------------------- */
+/* 5. Card Styling (for other sections if needed)
+/* --------------------------------------------------- */
+.fundraiser-card {
+  background: var(--card-background);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fundraiser-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.card-title-small {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.card-date {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* Summary card (Your Contributions) */
+.summary-card {
+  align-items: center;
+  text-align: center;
+}
+
+.summary-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+/* --------------------------------------------------- */
+/* 6. Category Item Styling (Inside Cards)
+/* --------------------------------------------------- */
+.category-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.category-icon {
+  font-size: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(4, 82, 51, 0.1); /* Light green background */
+  color: var(--accent-color);
+}
+
+.category-title {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.category-amount {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+/* --------------------------------------------------- */
+/* 7. Button Styling
+/* --------------------------------------------------- */
+.card-button {
+  padding: 8px 16px;
+  background: var(--accent-color);
+  color: rgb(232, 230, 230);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.card-button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}

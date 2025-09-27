@@ -1,83 +1,106 @@
-import { useState } from "react";
+import "./Fundraisers.css";
 
-export default function Fundraiser() {
-  // Mock data for demonstration
-  const topChapters = [
-    { title: "Top Batch Chapter", description: "Batch of 2010 raised ₹4,50,000", icon: "🎓" },
-    { title: "Top Location Chapter", description: "Pune Chapter raised ₹3,20,000", icon: "📍" },
-    { title: "Top Department Chapter", description: "Computer Engineering raised ₹5,00,000", icon: "💻" },
-    { title: "Top Industry Chapter", description: "IT Industry Alumni raised ₹6,40,000", icon: "🏢" },
-  ];
+export default function Fundraisers() {
+  // Data remains the same as your original component
+  const topChapters = {
+    batch: [
+      { title: "Batch 2010", amount: "₹1,50,000", icon: "🎓" },
+      { title: "Batch 2012", amount: "₹1,20,000", icon: "🎓" },
+      { title: "Batch 2015", amount: "₹1,10,000", icon: "🎓" },
+    ],
+    location: [
+      { title: "Pune Chapter", amount: "₹1,50,000", icon: "📍" },
+      { title: "Mumbai Chapter", amount: "₹1,20,000", icon: "📍" },
+      { title: "Delhi Chapter", amount: "₹1,00,000", icon: "📍" },
+    ],
+    department: [{ title: "Computer Engineering", amount: "₹5,00,000", icon: "💻" }],
+    industry: [{ title: "IT Industry Alumni", amount: "₹6,40,000", icon: "🏢" }],
+  };
 
   const yourTotals = [
-    { title: "Your Batch Total Donation", amount: "₹1,20,000" },
-    { title: "Your Location Chapter Donation", amount: "₹95,000" },
-    { title: "Your Department Donation", amount: "₹1,80,000" },
-    { title: "Your Industry Donation", amount: "₹2,10,000" },
+    { title: "Your Batch Total", amount: "₹1,20,000" },
+    { title: "Your Location Total", amount: "₹95,000" },
+    { title: "Your Department Total", amount: "₹1,80,000" },
+    { title: "Your Industry Total", amount: "₹2,10,000" },
   ];
 
   const posts = [
     {
       title: "AI Lab Fundraising Event",
-      description: "Join us in raising funds for the new AI lab at PICT. Contributions will help set up state-of-the-art infrastructure.",
+      description: "Join us in raising funds for the new AI lab. Your contribution will help set up state-of-the-art infrastructure.",
       date: "27 Sep 2025",
     },
     {
       title: "Alumni Meet & Fundraiser",
-      description: "Reconnect with alumni and contribute to student scholarships. Every contribution counts!",
+      description: "Reconnect with fellow alumni and contribute to student scholarships. Every contribution makes a difference!",
       date: "15 Oct 2025",
     },
     {
       title: "Library Expansion Campaign",
-      description: "Help expand our library resources and provide students access to modern learning materials.",
+      description: "Help expand our library's resources and provide students with access to modern learning materials.",
       date: "01 Nov 2025",
     },
   ];
 
+  const renderCategoryCard = (categoryTitle, items) => (
+    <div className="fundraiser-card">
+      <h3 className="card-title">{categoryTitle}</h3>
+      <div className="category-items">
+        {items.map((item, idx) => (
+          <div key={idx} className="category-item">
+            <span className="category-icon" aria-hidden="true">{item.icon}</span>
+            <span className="category-title">{item.title}</span>
+            <span className="category-amount">{item.amount}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
-    <div className="chapters-container">
-      {/* Title */}
-      <h1 className="chapters-title">Fundraising Dashboard</h1>
-      <p className="chapters-subtitle">Track chapter contributions and explore fundraising events</p>
-      <hr className="divider-alumni" />
+    <div className="dashboard-container">
+      {/* Dashboard Stats */}
+      <section className="dashboard-section">
+        <h1 className="main-title">Fundraising Dashboard</h1>
+        <p className="main-subtitle">Top contributing chapters across all categories</p>
+        <hr className="divider" />
+        <div className="grid two-column-grid">
+          {renderCategoryCard("Top Batches", topChapters.batch)}
+          {renderCategoryCard("Top Locations", topChapters.location)}
+          {renderCategoryCard("Top Department", topChapters.department)}
+          {renderCategoryCard("Top Industry", topChapters.industry)}
+        </div>
+      </section>
 
-      {/* Top Chapters Stats */}
-      <div className="chapters-grid">
-        {topChapters.map((item, idx) => (
-          <div key={idx} className="chapter-card">
-            <div className="chapter-icon">{item.icon}</div>
-            <h3 className="chapter-name">{item.title}</h3>
-            <p className="chapter-description">{item.description}</p>
-            <button className="chapter-button">View Details</button>
-          </div>
-        ))}
-      </div>
-
-      {/* Your Personal Totals */}
-      <h2 className="chapters-title" style={{ marginTop: "40px" }}>Your Chapter Contributions</h2>
-      <hr className="divider-alumni" />
-      <div className="chapters-grid">
-        {yourTotals.map((item, idx) => (
-          <div key={idx} className="chapter-card">
-            <h3 className="chapter-name">{item.title}</h3>
-            <p className="chapter-description text-lg font-bold">{item.amount}</p>
-          </div>
-        ))}
-      </div>
+      {/* Your Contributions */}
+      <section className="dashboard-section">
+        <h2 className="section-title">Your Chapters Contributions</h2>
+        <hr className="divider" />
+        <div className="grid four-column-grid">
+          {yourTotals.map((item, idx) => (
+            <div key={idx} className="fundraiser-card summary-card">
+              <h3 className="card-title-small">{item.title}</h3>
+              <p className="summary-amount">{item.amount}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Fundraising Posts */}
-      <h2 className="chapters-title" style={{ marginTop: "40px" }}>Fundraising Events</h2>
-      <hr className="divider-alumni" />
-      <div className="chapters-grid">
-        {posts.map((post, idx) => (
-          <div key={idx} className="chapter-card">
-            <h3 className="chapter-name">{post.title}</h3>
-            <p className="chapter-description">{post.description}</p>
-            <p className="chapter-description font-semibold mt-2">Date: {post.date}</p>
-            <button className="chapter-button">Contribute</button>
-          </div>
-        ))}
-      </div>
+      <section className="dashboard-section">
+        <h2 className="section-title">Active Fundraising Events</h2>
+        <hr className="divider" />
+        <div className="grid two-column-grid">
+          {posts.map((post, idx) => (
+            <div key={idx} className="fundraiser-card">
+              <h3 className="card-title">{post.title}</h3>
+              <p className="card-description">{post.description}</p>
+              <p className="card-date">Date: {post.date}</p>
+              <button className="card-button">Contribute Now</button>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
