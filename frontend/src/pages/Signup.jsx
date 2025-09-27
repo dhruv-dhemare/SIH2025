@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import "./Signup.css";
 
 function Signup() {
@@ -232,7 +233,7 @@ function Signup() {
 
   return (
     <div className="whole">
-      {/* Loader overlay */}
+      {/* Loader overlay with Lottie */}
       {loading && (
         <div
           style={{
@@ -248,22 +249,12 @@ function Signup() {
             zIndex: 9999,
           }}
         >
-          <div
-            style={{
-              border: "8px solid #e0e0e0",
-              borderTop: "8px solid #045233",
-              borderRadius: "50%",
-              width: "70px",
-              height: "70px",
-              animation: "spin 1s linear infinite",
-            }}
+          <DotLottieReact
+            src="/animations/LoadingFiles.lottie" // Put your Lottie file path or URL here
+            loop
+            autoplay
+            style={{ width: "700px", height: "700px" }}
           />
-          <style>
-            {`@keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }`}
-          </style>
         </div>
       )}
 
@@ -279,20 +270,21 @@ function Signup() {
 
           <form onSubmit={handleSubmit} className="sign-form">
             <select
-                name="role"
-                value={form.role}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select Role
-                </option>
-                <option value="student">Student</option>
-                <option value="alumni">Alumni</option>
-                <option value="faculty">Faculty</option>
-                <option value="recruiter">Recruiter</option>
-              </select>
-              {/* Resume upload (not for recruiters) */}
+              name="role"
+              value={form.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select Role
+              </option>
+              <option value="student">Student</option>
+              <option value="alumni">Alumni</option>
+              <option value="faculty">Faculty</option>
+              <option value="recruiter">Recruiter</option>
+            </select>
+
+            {/* Resume upload (not for recruiters) */}
             {form.role !== "recruiter" && form.role !== "" && (
               <div style={{ marginBottom: "20px" }}>
                 <label style={{ color: "#000", marginBottom: "0px" }}>
@@ -339,6 +331,7 @@ function Signup() {
                 )}
               </div>
             )}
+
             <div className="form-row">
               <input
                 name="name"
@@ -366,7 +359,6 @@ function Signup() {
                 onChange={handleChange}
                 required
               />
-              
             </div>
 
             <div className="form-row">
@@ -384,14 +376,8 @@ function Signup() {
               />
             </div>
 
-            
-
             <div className="form-row">
-              <select
-                name="gender"
-                value={form.gender}
-                onChange={handleChange}
-              >
+              <select name="gender" value={form.gender} onChange={handleChange}>
                 <option value="">Gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -483,9 +469,7 @@ function Signup() {
                     <input
                       value={edu}
                       placeholder={`Education ${i + 1}`}
-                      onChange={(e) =>
-                        handleEducationChange(i, e.target.value)
-                      }
+                      onChange={(e) => handleEducationChange(i, e.target.value)}
                     />
                     {form.education.length > 1 && (
                       <button
@@ -509,10 +493,7 @@ function Signup() {
                       onChange={(e) => handleUrlChange(i, e.target.value)}
                     />
                     {form.urls.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeUrlField(i)}
-                      >
+                      <button type="button" onClick={() => removeUrlField(i)}>
                         Remove
                       </button>
                     )}
