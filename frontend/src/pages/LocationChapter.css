@@ -1,0 +1,110 @@
+.chapter-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  color: #555;
+}
+
+.chapter-container h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.chapter-desc {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.members-card {
+  background: #f4f6f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 30px;
+}
+
+.members-card:hover {
+  background: #eaf0f7;
+}
+
+.view-more {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #007bff;
+}
+
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+}
+
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-content li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 12px;
+  background: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #d9363e;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.activity-image {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.activity-info {
+  display: flex;
+  flex-direction: column;
+}

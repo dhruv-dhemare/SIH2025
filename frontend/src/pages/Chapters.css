@@ -1,97 +1,105 @@
-/* Whole container */
 .chapters-container {
-  min-height: 100vh;
-  margin-left: 350px;  
-  background-color: #f9fafb;
-  padding: 40px 20px;
+  padding: 2rem 5%;
+  font-family: 'Merriweather', serif;
+  background-color: #f9f9f9;
+  margin-left: 18vw;
 }
 
-/* Title */
+.chapters-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
 .chapters-title {
-  text-align: center;
-  color: #333;
-  margin-bottom: 5px;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #045233;
 }
 
-/* Subtitle */
-.chapters-subtitle {
-  text-align: center;
-  color: #444;
-  margin-bottom: 5px;
-  font-size: 20px;
-}
-
-/* Divider (under Alumni Chapters title) */
 .divider-alumni {
-  width: 70vw;
+  width: 60px;
   height: 4px;
+  background-color: #045233;
+  margin: 0.5rem auto 1.5rem;
   border: none;
-  background: linear-gradient(90deg, #067e4e, #0fa968);
-  margin: 0 auto 30px auto;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
-/* Grid for cards (2 per row) */
+.chapters-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
 .chapters-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* ✅ exactly 2 per row */
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
 }
 
-/* Card for each chapter */
 .chapter-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  transition: box-shadow 0.2s ease-in-out;
-  width: 29vw;
-
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .chapter-card:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
-/* Chapter icon */
 .chapter-icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-/* Chapter name */
 .chapter-name {
-  font-size: 20px;
-  font-weight: 600;
-  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #045233;
   margin-bottom: 0.5rem;
 }
 
-/* Chapter description */
 .chapter-description {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
 }
 
-/* Explore button */
+.chapter-members,
+.chapter-rep {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
 .chapter-button {
-  margin-top: auto;
-  padding: 10px 16px;
-  background: #067e4e;
-  color: white;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #045233;
+  color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
 .chapter-button:hover {
-  background: #055c39;
+  background-color: #037a2f;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .chapters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .chapters-grid {
+    grid-template-columns: 1fr;
+  }
 }

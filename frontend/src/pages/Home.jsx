@@ -247,7 +247,7 @@ function Home() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim() !== "") {
-      navigate(`/searched?query=${encodeURIComponent(searchQuery)}`);
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
     }
   };
 
