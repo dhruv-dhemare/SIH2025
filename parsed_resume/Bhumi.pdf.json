@@ -11,23 +11,22 @@
   "education": [
     {
       "institution": "Pune Institute of Computer Technology",
-      "degree": "Bachelor of Engineering",
-      "major": "Artificial Intelligence and Data Science",
+      "degree": "Bachelor of Engineering in Artificial Intelligence and Data Science",
       "start_date": "2023",
       "end_date": "2027",
-      "gpa": "9.55"
+      "cgpa": "9.55"
     },
     {
       "institution": "Agnel Multipurpose School",
       "degree": "HSC",
       "end_date": "2023",
-      "percentage": "91.5%"
+      "percentage": "91.5"
     },
     {
       "institution": "Agnel Multipurpose School",
       "degree": "SSC",
       "end_date": "2021",
-      "percentage": "94.0%"
+      "percentage": "94.0"
     }
   ],
   "experience": [
@@ -36,13 +35,7 @@
       "title": "Project Intern",
       "start_date": "2025-02",
       "end_date": "2025-05",
-      "description": "Developed an AI-based zero-day vulnerability detection system with two main modules that focus on static code analysis and behavior analysis respectively. The first module performs static code analysis on Java codebases with a custom-trained LLM to detect security flaws. The second module analyzes user behavior to detect vulnerabilities missed by code analysis, using LLM for feature extraction and a deep neural network for anomaly detection."
-    },
-    {
-      "organization": "PICTEDC",
-      "title": "Marketing Head",
-      "start_date": "2025-06",
-      "description": "Led logistics and PR for a 12-hour hackathon."
+      "description": "Developed an AI-based zero-day vulnerability detection system with two main modules that focus on static code analysis and behavior analysis respectively. The first module performs static code analysis on Java and Js codebases with a custom-trained LLM to detect security flaws. The second module analyzes user behavior to detect vulnerabilities missed by code analysis, using LLM for feature extraction and a deep neural network for anomaly detection."
     }
   ],
   "skills": [
@@ -56,16 +49,17 @@
     "NLTK",
     "SpaCy",
     "Flask",
-    "Scikit-learn",
+    "Scikit-Learn",
     "Pandas",
     "Matplotlib",
+    "OOP",
+    "DBMS",
+    "DSA",
     "Git",
-    "LLM",
-    "Deep Learning",
     "RAG",
     "FAISS",
     "OCR",
-    "PyMuPDF"
+    "LLM"
   ],
   "projects": [
     {
@@ -84,28 +78,17 @@
     },
     {
       "name": "DefenceX",
-      "description": "AI tool to detect scam calls by fine-tuning DistilBERT on call transcripts. Integrated Gemini API with prompt engineering to explain results in simple terms.",
-      "technologies": [
-        "AI",
-        "DistilBERT",
-        "Gemini API"
-      ]
+      "description": "AI tool to detect scam calls by fine-tuning DistilBERT on call transcripts. Integrated Gemini API with prompt engineering to explain results in simple terms."
     },
     {
       "name": "LegalLens",
-      "description": "AI tool that summarizes legal documents and supports multilingual search. Uses a Locally hosted LLaMA-based model to deliver concise summaries. OCR and PyMuPDF to handle scanned PDF and legal text.",
-      "technologies": [
-        "AI",
-        "LLaMA",
-        "OCR",
-        "PyMuPDF"
-      ]
+      "description": "AI tool that summarizes legal documents and supports multilingual search. Used a Locally hosted LLaMA-based model to deliver concise summaries and PyMuPDF to handle scanned PDFs and legal text."
     }
   ],
   "achievements": [
     {
-      "name": "WebWeaver Hackathon",
-      "organization": "CredenzFest"
+      "name": "Web Weaver Hackathon",
+      "organization": "Credenz Fest"
     },
     {
       "name": "PISB Club Certificate",
@@ -113,7 +96,7 @@
     },
     {
       "name": "Startathon",
-      "organization": "MagnateFest"
+      "organization": "Magnate Fest"
     },
     {
       "name": "EDC Club Certificate",
@@ -122,32 +105,34 @@
   ],
   "extracurricular": [
     {
-      "activity": "CodeChef contestant",
-      "details": "Max rating 1155"
+      "title": "Marketing Head",
+      "organization": "PICTEDC",
+      "start_date": "2025-06",
+      "description": "Led logistics and PR for a 12-hour hackathon."
+    },
+    {
+      "title": "Competitive Programming",
+      "description": "CodeChef contestant with max rating 1155"
     }
   ],
   "certifications": [
     {
       "name": "Supervised Machine Learning",
-      "organization": "Coursera",
-      "instructor": "Andrew Ng"
+      "provider": "By Andrew Ng"
     },
     {
       "name": "Regression and Classification",
-      "organization": "Coursera",
-      "instructor": "Andrew Ng"
+      "provider": "By Andrew Ng"
     },
     {
-      "name": "Deep Learning",
-      "organization": "Coursera"
+      "name": "Deep Learning"
     },
     {
       "name": "AI Certificate"
     },
     {
       "name": "Advanced Learning Algorithms",
-      "organization": "Coursera",
-      "instructor": "Andrew Ng"
+      "provider": "By Andrew Ng"
     }
   ]
 }

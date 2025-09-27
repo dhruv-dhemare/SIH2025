@@ -61,7 +61,7 @@
 }
 .nav-link {
   font-size: 2vh;
-  height: 6vh;
+  height: 4vh;
   width: 100%;
   display: flex;
   align-items: center;   /* ✅ keeps icon + text vertically centered */

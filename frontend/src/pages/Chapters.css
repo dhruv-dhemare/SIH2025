@@ -1,0 +1,97 @@
+/* Whole container */
+.chapters-container {
+  min-height: 100vh;
+  margin-left: 350px;  
+  background-color: #f9fafb;
+  padding: 40px 20px;
+}
+
+/* Title */
+.chapters-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* Subtitle */
+.chapters-subtitle {
+  text-align: center;
+  color: #444;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+/* Divider (under Alumni Chapters title) */
+.divider-alumni {
+  width: 70vw;
+  height: 4px;
+  border: none;
+  background: linear-gradient(90deg, #067e4e, #0fa968);
+  margin: 0 auto 30px auto;
+  border-radius: 8px;
+}
+
+/* Grid for cards (2 per row) */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* ✅ exactly 2 per row */
+  gap: 20px;
+}
+
+/* Card for each chapter */
+.chapter-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transition: box-shadow 0.2s ease-in-out;
+  width: 29vw;
+
+}
+
+.chapter-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* Chapter icon */
+.chapter-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Chapter name */
+.chapter-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+/* Chapter description */
+.chapter-description {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Explore button */
+.chapter-button {
+  margin-top: auto;
+  padding: 10px 16px;
+  background: #067e4e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.chapter-button:hover {
+  background: #055c39;
+}

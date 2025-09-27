@@ -13,6 +13,8 @@ import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Landing from "./pages/Landing.jsx";
+import Fundraisers from "./pages/Fundraisers.jsx";
+import Chapters from "./pages/Chapters.jsx";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { getProfile } from "./services/api";
 
@@ -118,6 +120,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <Contact />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/fundraisers"
+            element={
+              <ProtectedRoute>
+                <Fundraisers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chapters"
+            element={
+              <ProtectedRoute>
+                <Chapters />
               </ProtectedRoute>
             }
           />

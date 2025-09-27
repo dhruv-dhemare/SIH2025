@@ -32,7 +32,7 @@ html, body {
   display: flex;
   justify-content: center; /* centers sign-box vertically */
   align-items: center;
-  background: linear-gradient(rgba(250,251,251,0.1), rgba(250,251,251,0.2)),
+  background: linear-gradient(rgba(250,251,251,0.5), rgba(250,251,251,0.2)),
               url("../assets/bg.jpg") center/cover no-repeat;
   background-attachment: fixed; /* keeps background constant */
 }

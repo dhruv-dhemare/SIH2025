@@ -6,9 +6,6 @@
     ],
     "phones": [
       "9552910359"
-    ],
-    "organizations": [
-      "Pune Institute of Computer Technology"
     ]
   },
   "education": [
@@ -18,19 +15,8 @@
       "institution": "Pune Institute of Computer Technology",
       "start_date": "2023-09",
       "end_date": "2027-05"
-    },
-    {
-      "degree": "HSC",
-      "institution": "Rajarshi Shahu Jr. Science College",
-      "year": 2022
-    },
-    {
-      "degree": "SSC",
-      "institution": "Shripatrao Bhosale Highschool",
-      "year": 2020
     }
   ],
-  "experience": [],
   "skills": [
     "HTML",
     "CSS",
@@ -39,15 +25,24 @@
     "Node.js",
     "MongoDB",
     "C++",
+    "Numpy",
+    "Pandas",
     "Matplotlib",
-    "Scikit-learn",
+    "SkLearn",
     "OOP",
-    "DSA"
+    "DSA",
+    "Communication",
+    "Teamwork",
+    "Leadership",
+    "AI",
+    "ML",
+    "Data Science",
+    "Backend Development"
   ],
   "projects": [
     {
-      "name": "Expensify: An Expense Management Platform",
-      "description": "Frontend Team Lead for an expense management platform enabling users to manage their expense and update it frequently. Optimized visualization of user expenses and their transaction history using graphs and charts. Key Features: Dynamic Graphic Visualization, Tracking daily expenses.",
+      "name": "Expensify",
+      "description": "An expense management platform enabling users to manage their expenses and update it frequently. Optimized visualization of user expenses and their transaction history using graphs and charts. Key Features: Dynamic Graphic Visualization, Tracking daily expenses.",
       "tools": [
         "HTML",
         "CSS",
@@ -55,8 +50,8 @@
       ]
     },
     {
-      "name": "AegisCare: A Health Risk Assessment Tool",
-      "description": "Team Leader for this AI/ML based health risk assessment platform. It provides potential health risks for users. Key Features: Trained AI Models, Dynamic Data Handling.",
+      "name": "AegisCare",
+      "description": "An AI/ML based health risk assessment platform. It provides potential health risks for users. Key Features: Trained AI Models, Dynamic Data Handling.",
       "tools": [
         "Gemini",
         "Numpy",
@@ -65,24 +60,12 @@
         "React",
         "Node.js",
         "MongoDB",
-        "Matplotlib",
-        "Scikit-learn"
+        "Matplotlib"
       ]
     }
   ],
   "achievements": [],
   "extracurricular": [
     "Event Management Head at EDC PICT"
-  ],
-  "interests": [
-    "AI",
-    "ML",
-    "Data Science",
-    "Backend Development"
-  ],
-  "languages": [
-    "English",
-    "Hindi",
-    "Marathi"
   ]
 }

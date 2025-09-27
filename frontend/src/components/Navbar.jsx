@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { LogOut, Home, Calendar, MessageSquare, BarChart3, Phone } from "lucide-react";
+import { LogOut, Home, Calendar, MessageSquare, BarChart3, Phone,DollarSign,Book } from "lucide-react";
 import "./Navbar.css";
 import ProfileCard from "./ProfileCard.jsx";
 import profileImg from "../assets/profile.jpg";
@@ -126,11 +126,24 @@ function Navbar() {
           <BarChart3 /> Analytics
         </NavLink>
         <NavLink
+          to="/chapters"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
+          <Book /> Chapters
+        </NavLink>
+        <NavLink
+          to="/fundraisers"
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        >
+          <DollarSign /> Fundraisers
+        </NavLink>
+        <NavLink
           to="/contact"
           className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
         >
           <Phone /> Contact
         </NavLink>
+        
 
         {/* Logout NavLink with onClick */}
         <div className="logout-btn" onClick={handleLogout} style={{ cursor: "pointer" }}>

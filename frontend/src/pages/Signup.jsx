@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
-import { DotLottie } from "@lottiefiles/dotlottie-web";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import "./Signup.css";
 
 function Signup() {
@@ -237,7 +237,7 @@ function Signup() {
 
   return (
     <div className="whole">
-      {/* Lottie Loader Overlay */}
+      {/* Loader overlay with Lottie */}
       {loading && (
         <div
           style={{
@@ -253,7 +253,12 @@ function Signup() {
             zIndex: 9999,
           }}
         >
-          <canvas id="dotlottie-canvas" width="300" height="300"></canvas>
+          <DotLottieReact
+            src="/animations/LoadingFiles.lottie" // Put your Lottie file path or URL here
+            loop
+            autoplay
+            style={{ width: "700px", height: "700px" }}
+          />
         </div>
       )}
 
@@ -267,7 +272,300 @@ function Signup() {
       {/* (I didn’t touch the form part to avoid breaking your fields/logic) */}
       {/* Copy-paste your form code here as-is */}
 
-    </div>
+          <form onSubmit={handleSubmit} className="sign-form">
+            <select
+              name="role"
+              value={form.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select Role
+              </option>
+              <option value="student">Student</option>
+              <option value="alumni">Alumni</option>
+              <option value="faculty">Faculty</option>
+              <option value="recruiter">Recruiter</option>
+            </select>
+
+            {/* Resume upload (not for recruiters) */}
+            {form.role !== "recruiter" && form.role !== "" && (
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ color: "#000", marginBottom: "0px" }}>
+                  Upload Resume (PDF)
+                </label>
+                <input
+                  type="file"
+                  name="resume"
+                  accept="application/pdf"
+                  onChange={handleChange}
+                />
+
+                {showTooltip && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      padding: "10px",
+                      background: "#fff9c4",
+                      border: "1px solid #fbc02d",
+                      borderRadius: "6px",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+                      fontSize: "14px",
+                      color: "#333",
+                    }}
+                  >
+                    💡 Upload your resume here. Most fields will be auto-filled
+                    with your details.
+                    <div style={{ textAlign: "right", marginTop: "5px" }}>
+                      <button
+                        type="button"
+                        onClick={() => setShowTooltip(false)}
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                          color: "#333",
+                          cursor: "pointer",
+                          fontSize: "12px",
+                        }}
+                      >
+                        Got it
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="form-row">
+              <input
+                name="name"
+                placeholder="Full Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-row">
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-row">
+              <input
+                name="phn"
+                placeholder="Phone"
+                value={form.phn}
+                onChange={handleChange}
+              />
+              <input
+                name="dob"
+                type="date"
+                value={form.dob}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-row">
+              <select name="gender" value={form.gender} onChange={handleChange}>
+                <option value="">Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div className="form-row">
+              <input
+                name="address"
+                placeholder="Street / Address"
+                value={form.address}
+                onChange={handleChange}
+              />
+              <input
+                name="city"
+                placeholder="City"
+                value={form.city}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-row">
+              <input
+                name="state"
+                placeholder="State"
+                value={form.state}
+                onChange={handleChange}
+              />
+              <input
+                name="country"
+                placeholder="Country"
+                value={form.country}
+                onChange={handleChange}
+              />
+            </div>
+
+            {(form.role === "student" ||
+              form.role === "alumni" ||
+              form.role === "faculty") && (
+              <>
+                <div className="form-row">
+                  <input
+                    name="headline"
+                    placeholder="Headline"
+                    value={form.headline}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="department"
+                    placeholder="Department/Branch"
+                    value={form.department}
+                    onChange={handleChange}
+                  />
+                </div>
+                <input
+                  name="yearOfStudy"
+                  placeholder="Year of Study"
+                  value={form.yearOfStudy}
+                  onChange={handleChange}
+                />
+                <textarea
+                  name="about"
+                  placeholder="About"
+                  value={form.about}
+                  onChange={handleChange}
+                />
+                <input
+                  name="experience"
+                  placeholder="Experience (comma separated)"
+                  value={form.experience}
+                  onChange={handleChange}
+                />
+                <input
+                  name="certification"
+                  placeholder="Certifications (comma separated)"
+                  value={form.certification}
+                  onChange={handleChange}
+                />
+                <input
+                  name="skills"
+                  placeholder="Skills (comma separated)"
+                  value={form.skills}
+                  onChange={handleChange}
+                />
+
+                {form.education.map((edu, i) => (
+                  <div key={i} className="form-row">
+                    <input
+                      value={edu}
+                      placeholder={`Education ${i + 1}`}
+                      onChange={(e) => handleEducationChange(i, e.target.value)}
+                    />
+                    {form.education.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeEducationField(i)}
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={addEducationField}>
+                  + Add Education
+                </button>
+
+                {form.urls.map((url, i) => (
+                  <div key={i} className="form-row">
+                    <input
+                      value={url}
+                      placeholder={`Portfolio / URL ${i + 1}`}
+                      onChange={(e) => handleUrlChange(i, e.target.value)}
+                    />
+                    {form.urls.length > 1 && (
+                      <button type="button" onClick={() => removeUrlField(i)}>
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={addUrlField}>
+                  + Add URL
+                </button>
+              </>
+            )}
+
+            {form.role === "recruiter" && (
+              <>
+                <div className="form-row">
+                  <input
+                    name="company"
+                    placeholder="Company Name"
+                    value={form.company}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="position"
+                    placeholder="Position / Title"
+                    value={form.position}
+                    onChange={handleChange}
+                  />
+                </div>
+                <textarea
+                  name="about"
+                  placeholder="About Company"
+                  value={form.about}
+                  onChange={handleChange}
+                />
+                {form.urls.map((url, i) => (
+                  <input
+                    key={i}
+                    value={url}
+                    placeholder={`Company / URL ${i + 1}`}
+                    onChange={(e) => handleUrlChange(i, e.target.value)}
+                  />
+                ))}
+                <button type="button" onClick={addUrlField}>
+                  + Add URL
+                </button>
+              </>
+            )}
+
+            <label style={{ color: "#000", marginBottom: "0px" }}>
+              Profile Photo (optional)
+            </label>
+            <input
+              type="file"
+              name="profilePhoto"
+              accept="image/*"
+              onChange={handleChange}
+            />
+
+            <button type="submit" className="sign-btn">
+              Sign Up
+            </button>
+          </form>
+
+          <p className="sign-footer">
+            Already have an account? <a href="/login">Login</a>
+          </p>
+        </div>
+  
+
   );
 }
 
