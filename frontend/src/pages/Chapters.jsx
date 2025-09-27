@@ -9,7 +9,7 @@ export default function Chapters() {
   {
     id: 1,
     name: "Batch of 2015",
-    description: "Connect with alumni from your graduation batch.",
+    description: "Connect with alumni from your graduation batch. Keep in touch",
     members: 120,
     representative: "Rahul Sharma",
     icon: "🎓",
@@ -17,14 +17,14 @@ export default function Chapters() {
   {
     id: 2,
     name: "Location: Delhi",
-    description: "Network with alumni based in Pune.",
+    description: "Network with alumni based in Pune. Stay updated on local events.",
     members: 80,
     representative: "Sneha Patil",
     icon: "📍",
   },
   {
     id: 3,
-    name: "Department: Computer Engineering",
+    name: "Department: CE",
     description: "Stay connected with peers from the Computer Engineering department.",
     members: 150,
     representative: "Arjun Nair",
@@ -32,7 +32,7 @@ export default function Chapters() {
   },
   {
     id: 4,
-    name: "Industry: IT Services",
+    name: "Industry: Finance",
     description: "Collaborate with alumni working in the Indian IT industry.",
     members: 95,
     representative: "Priya Iyer",
@@ -55,7 +55,7 @@ export default function Chapters() {
             <div
               key={chapter.id}
               className="chapter-card"
-              onClick={() => navigate("/chapters/delhi")}  // ✅ Direct all cards to Delhi page
+              onClick={() => navigate("/chapters/delhi")}
             >
               <div className="chapter-icon">{chapter.icon}</div>
               <h2 className="chapter-name">{chapter.name}</h2>
