@@ -14,14 +14,13 @@ app.use(express.urlencoded({ extended: true })); // optional, for form data
 
 // Load JSON data (must be pure JSON array, NOT JS variable)
 const alumniData = JSON.parse(fs.readFileSync("./alumni_geocoded.json", "utf8"));
-// const userRoutes = require('./routes/userRoutes');
 
 app.get("/api/alumni", (req, res) => {
   res.json(alumniData);
 });
 
 const alumniRoutes = require("./routes/alumniRoutes");
-app.use('/api/alumni', alumniRoutes);
+app.use('/api/old', alumniRoutes);
 
 const adminRoutes = require("./routes/adminRoutes");
 app.use('/api/admin', adminRoutes);
@@ -39,7 +38,7 @@ const teacherRoutes = require("./routes/facultyRoutes");
 app.use('/api/teacher', teacherRoutes);
 
 const { router: generalRoutes } = require("./routes/generalRoutes");
-app.use("/api", generalRoutes);
+app.use("/api", generalRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
