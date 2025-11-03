@@ -29,6 +29,11 @@ Key AI-powered features include:
 - **Performance Analytics:** Dashboard for administrators to track engagement, placement history, and other key metrics.
 
 ---
+## 🎥 Demo Video
+
+Watch a demo of our platform here: [YouTube Demo](https://www.youtube.com/watch?v=MCv1bbrVREs)
+
+---
 
 ## 💻 Technology Stack
 
